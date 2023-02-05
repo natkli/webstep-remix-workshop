@@ -101,10 +101,10 @@ export default function LoginPage() {
                 autoComplete="email"
                 aria-invalid={actionData?.errors?.email ? true : undefined}
                 aria-describedby="email-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="input-bordered input-primary input w-full"
               />
               {actionData?.errors?.email && (
-                <div className="pt-1 text-red-700" id="email-error">
+                <div className="pt-1 text-error" id="email-error">
                   {actionData.errors.email}
                 </div>
               )}
@@ -127,10 +127,10 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 aria-invalid={actionData?.errors?.password ? true : undefined}
                 aria-describedby="password-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="input-bordered input-primary input w-full"
               />
               {actionData?.errors?.password && (
-                <div className="pt-1 text-red-700" id="password-error">
+                <div className="pt-1 text-error" id="password-error">
                   {actionData.errors.password}
                 </div>
               )}
@@ -138,10 +138,7 @@ export default function LoginPage() {
           </div>
 
           <input type="hidden" name="redirectTo" value={redirectTo} />
-          <button
-            type="submit"
-            className="w-full rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-          >
+          <button type="submit" className="btn-primary btn w-full">
             Log in
           </button>
           <div className="flex items-center justify-between">
@@ -150,7 +147,7 @@ export default function LoginPage() {
                 id="remember"
                 name="remember"
                 type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="checkbox-primary checkbox"
               />
               <label
                 htmlFor="remember"
@@ -162,7 +159,7 @@ export default function LoginPage() {
             <div className="text-center text-sm text-gray-500">
               Don't have an account?{" "}
               <Link
-                className="text-blue-500 underline"
+                className="link-primary link"
                 to={{
                   pathname: "/join",
                   search: searchParams.toString(),
