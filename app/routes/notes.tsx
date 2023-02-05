@@ -19,20 +19,20 @@ export default function NotesPage() {
 
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <header className="flex items-center justify-between bg-base-200 p-4 text-neutral">
+      <header className="flex items-center justify-between bg-base-content p-4 text-base-100">
         <h1 className="text-3xl font-bold">
           <Link to=".">Notes</Link>
         </h1>
         <p>{user.email}</p>
         <Form action="/logout" method="post">
-          <button type="submit" className=" btn">
+          <button type="submit" className="btn-primary btn">
             Logout
           </button>
         </Form>
       </header>
 
-      <main className="base-100 flex 	h-full">
-        <div className="h-full w-80 border-r">
+      <main className="flex h-full bg-gray-100">
+        <div className="h-full w-80 border-r bg-base-100">
           <Link to="new" className="block p-4 text-xl text-primary">
             + New Note
           </Link>
@@ -47,7 +47,7 @@ export default function NotesPage() {
                 <li key={note.id}>
                   <NavLink
                     className={({ isActive }) =>
-                      `inline-flex items-center border-b p-4 text-xl ${
+                      `inline-flex w-full items-center border-b p-4 text-xl ${
                         isActive ? "bg-base-100" : ""
                       }`
                     }

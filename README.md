@@ -1,6 +1,6 @@
-# Remix Indie Stack (Lite)
-![The Remix Indie Stack (Lite)](/indie-stack-lite.png?raw=true)
-Learn more about [Remix Stacks](https://remix.run/stacks).
+# Remix Ice Stack
+![The Remix Ice Stack](/ice-stack.png?raw=true)
+Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run/stacks).
 
 
 ## What's in the stack

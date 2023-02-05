@@ -15,6 +15,6 @@ module.exports = {
     prefix: "",
   },
   daisyui: {
-    themes: ["bumblebee"],
+    themes: ["garden"],
   },
 };
