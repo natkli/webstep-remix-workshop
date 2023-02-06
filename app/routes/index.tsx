@@ -9,19 +9,19 @@ export default function Index() {
     <main className="relative min-h-screen sm:flex sm:items-center sm:justify-center">
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="relative shadow-xl sm:overflow-hidden ">
+          <div className="relative shadow-xl sm:overflow-hidden">
             <div className="absolute inset-0">
               <img
                 className="h-full w-full object-cover"
-                src="https://images.unsplash.com/photo-1584362325051-68ff1726c348?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                src="https://i.ytimg.com/vi/5qap5aO4i9A/maxresdefault.jpg"
                 alt="Sonic Youth On Stage"
               />
               <div className="absolute inset-0 bg-[color:rgba(0,0,0,0.4)] mix-blend-multiply" />
             </div>
             <div className="relative px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pb-20 lg:pt-32">
               <h1 className="text-center text-6xl font-extrabold tracking-tight sm:text-8xl lg:text-9xl">
-                <span className="relative block uppercase text-accent drop-shadow-md">
-                  Ice Stack
+                <span className="relative block uppercase text-white drop-shadow-md">
+                  Lofi Stack
                 </span>
               </h1>
               <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">

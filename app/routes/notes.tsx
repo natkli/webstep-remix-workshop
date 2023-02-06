@@ -31,8 +31,8 @@ export default function NotesPage() {
         </Form>
       </header>
 
-      <main className="flex h-full bg-gray-100">
-        <div className="h-full w-80 border-r bg-base-100">
+      <main className="flex h-full bg-accent-content">
+        <div className="h-full w-80 border-r bg-neutral-content">
           <Link to="new" className="block p-4 text-xl text-primary">
             + New Note
           </Link>

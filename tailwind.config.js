@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
+    themes: ["lofi"],
     styled: true,
     themes: true,
     base: true,
@@ -13,8 +14,5 @@ module.exports = {
     logs: true,
     rtl: false,
     prefix: "",
-  },
-  daisyui: {
-    themes: ["garden"],
   },
 };

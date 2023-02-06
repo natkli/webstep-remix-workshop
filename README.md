@@ -1,5 +1,5 @@
-# Remix Ice Stack
-![The Remix Ice Stack](/ice-stack.png?raw=true)
+# Remix Lofi Stack
+![The Remix Lofi Stack](/lofi-stack.png?raw=true)
 Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run/stacks).
 
 
