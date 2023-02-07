@@ -16,8 +16,8 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 ## Development
 
 - Getting started:
-
   ```sh
+  npm install
   npx remix init
   ```
 
