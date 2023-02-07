@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        archivo: ['"Archivo"', "sans-serif"],
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
