@@ -10,7 +10,7 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 - Database ORM with [Prisma](https://prisma.io)
 - Styling with [Tailwind](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
 - Code formatting with [Prettier](https://prettier.io)
-- Local third party request mocking with MSW
+- Local third party request mocking with [MSW](https://mswjs.io)
 - Linting with [ESLint](https://eslint.org)
 - Static Types with [TypeScript](https://typescriptlang.org)
 
