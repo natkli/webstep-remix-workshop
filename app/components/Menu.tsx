@@ -28,7 +28,7 @@ const menuList: IMenuList[] = [
 
 export default function Menu() {
   return (
-    <div className="nav fixed bottom-0 z-40 w-screen bg-primary text-primary-content">
+    <div className="nav fixed bottom-0 z-40 w-full max-w-[32rem] bg-primary text-primary-content">
       <ul className={`grid h-[4em] grid-cols-4`}>
         {menuList.map(({ link, icon }, index) => {
           return (

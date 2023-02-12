@@ -1,0 +1,6 @@
+main {
+    /* https://tailwindcss.com/docs/max-width */
+    max-width: 36rem; /* 576px */  
+    margin: 0 auto;
+    overflow: hidden;
+}

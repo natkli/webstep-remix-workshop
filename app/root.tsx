@@ -9,13 +9,17 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import Menu from "./components/menu/Menu";
+import Menu from "./components/Menu";
 import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
+import indexStyleshettUrl from "./styles/index.css";
 import { useOptionalUser } from "./utils";
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
+  return [
+    { rel: "stylesheet", href: indexStyleshettUrl },
+    { rel: "stylesheet", href: tailwindStylesheetUrl },
+  ];
 };
 
 export const meta: MetaFunction = () => ({
@@ -49,8 +53,8 @@ export default function App() {
         />
         <Links />
       </head>
-      <body className="h-full font-archivo">
-        <main className="flex h-full max-w-lg">
+      <body className="font-archivo">
+        <main className="min-h-screen w-full max-w-lg">
           <Outlet />
           <ScrollRestoration />
           <Scripts />
