@@ -11,7 +11,7 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 - Styling with [Tailwind](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
 - Code formatting with [Prettier](https://prettier.io)
 - Local third party request mocking with [MSW](https://mswjs.io)
-- Linting with [ESLint](https://eslint.org)
+- Linting with [ESLint](https://eslint.org)w
 - Static Types with [TypeScript](https://typescriptlang.org)
 
 ## Development
@@ -19,7 +19,6 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 - Getting started:
   ```sh
   npm install
-  npx remix init
   ```
 
 - Initial setup:
@@ -38,5 +37,12 @@ This starts your app in development mode, rebuilding assets on file changes.
 
 The database seed script creates a new user with some data you can use to get started:
 
-- Email: `rachel@remix.run`
-- Password: `racheliscool`
+- Email: `webstep@remix.run`
+- Password: `remixiscool`
+
+## Commands
+
+- Revert database back to start.
+  ```sh
+  npm run db:reset
+  ```
