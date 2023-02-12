@@ -14,8 +14,16 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  password Password?
+  name      String?
+  username  String?
+  avatarId  String?
+
+  password  Password?
   notes    Note[]
+
+  events      Event[]
+  icingWins   Icing[] @relation("winner")
+  icingLoses  Icing[] @relation("loser")
 }
 
 model Password {
@@ -35,4 +43,34 @@ model Note {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String
+}
+
+model Event {
+  id          String @id @default(cuid())
+  location    String
+  title       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId    String
+
+  icings  Icing[]
+}
+
+model Icing {
+  id          String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  event       Event   @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  eventId     String
+
+  winner      User   @relation(fields: [winenrId], references: [id], name: "winner", onDelete: Cascade, onUpdate: Cascade)
+  winenrId    String
+
+  loser       User   @relation(fields: [loserId], references: [id], name: "loser", onDelete: Cascade, onUpdate: Cascade)
+  loserId     String
 }
