@@ -6,8 +6,8 @@ export default function Index() {
   const user = useOptionalUser();
 
   return (
-    <main className="flex h-screen w-screen  items-center justify-center overflow-auto">
+    <div>
       {user ? <AuthenticatedFrontPage /> : <UnauthenticatedFrontPage />}
-    </main>
+    </div>
   );
 }

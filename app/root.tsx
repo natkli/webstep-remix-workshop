@@ -46,10 +46,12 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full font-archivo">
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <main className="flex h-full max-w-lg">
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </main>
       </body>
     </html>
   );
