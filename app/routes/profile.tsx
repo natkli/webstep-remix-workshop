@@ -24,7 +24,7 @@ export default function ProfilePage() {
                 <img
                   src={aliciaDickerson}
                   className="bg-neutral-content"
-                  alt={`${user?.name} profile image`}
+                  alt={`${user?.name} avatar`}
                 />
               </div>
             </div>
