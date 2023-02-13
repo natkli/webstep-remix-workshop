@@ -17,10 +17,6 @@ const menuList: IMenuList[] = [
     icon: <TbFlame size={24} />,
   },
   {
-    link: "my-events",
-    icon: <TbCalendarEvent size={24} />,
-  },
-  {
     link: "profile",
     icon: <TbUser size={24} />,
   },
@@ -29,7 +25,7 @@ const menuList: IMenuList[] = [
 export default function Menu() {
   return (
     <div className="nav fixed bottom-0 z-40 w-full max-w-[32rem] bg-primary text-primary-content">
-      <ul className={`grid h-[4em] grid-cols-4`}>
+      <ul className={`grid h-[4em] grid-cols-3`}>
         {menuList.map(({ link, icon }, index) => {
           return (
             <Link

@@ -1,7 +1,5 @@
-import { Form, Outlet } from "@remix-run/react";
-import { TbPlus } from "react-icons/tb";
+import { Outlet } from "@remix-run/react";
 import { Frontpage } from "~/components/Frontpage";
-import Menu from "~/components/Menu";
 
 import { useOptionalUser } from "~/utils";
 

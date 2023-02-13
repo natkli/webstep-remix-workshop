@@ -4,12 +4,12 @@ import undrawEnegizer from "~/images/undraw_energizer.svg";
 export function Frontpage() {
   return (
     <div className="flex h-screen flex-col items-center justify-center">
-      <h1 className="relative w-full text-center text-6xl font-black tracking-tight">
+      <h1 className="relative text-center text-6xl font-black tracking-tight">
         ICE
-        <span className="absolute top-8 right-20 rotate-[20deg] text-4xl">
+        <span className="absolute -left-24 top-8 -rotate-[20deg] text-4xl">
           ICE
         </span>
-        <span className="absolute top-8 left-20 -rotate-[20deg] text-4xl">
+        <span className="absolute top-8 -right-24 rotate-[20deg] text-4xl">
           ICE
         </span>
       </h1>
