@@ -21,7 +21,11 @@ export default function ProfilePage() {
           <div className="flex flex-col items-center">
             <div className="avatar mt-16 mb-4">
               <div className="w-28 rounded-full bg-neutral-focus text-neutral-content">
-                <img src={aliciaDickerson} className="bg-neutral-content" />
+                <img
+                  src={aliciaDickerson}
+                  className="bg-neutral-content"
+                  alt={`${user?.name} profile image`}
+                />
               </div>
             </div>
             <div className="text-center">
