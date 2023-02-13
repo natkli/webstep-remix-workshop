@@ -27,6 +27,7 @@ const menuList: IMenuList[] = [
 
 export default function Menu() {
   const { pathname } = useLocation();
+  const firstPath = `/${pathname.split("/")[1]}`;
 
   return (
     <div className="nav fixed bottom-0 z-40 w-full max-w-[32rem] bg-primary text-primary-content">
@@ -38,7 +39,7 @@ export default function Menu() {
               to={link}
               className={clsx(
                 "flex items-center justify-center border-b-2",
-                link === pathname ? "border-icing-red" : "border-primary"
+                link === firstPath ? "border-icing-red" : "border-primary"
               )}
             >
               <li>{icon}</li>
