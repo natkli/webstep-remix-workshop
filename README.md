@@ -1,7 +1,7 @@
 # Remix Lofi Stack
+
 ![The Remix Lofi Stack](/lofi-stack.png?raw=true)
 Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run/stacks).
-
 
 ## What's in the stack
 
@@ -16,6 +16,7 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 ## Development
 
 - Getting started:
+
   ```sh
   npm install
   ```

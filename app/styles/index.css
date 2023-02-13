@@ -1,6 +1,6 @@
+/* Mobile view only for this workshop*/
 main {
-    /* https://tailwindcss.com/docs/max-width */
-    max-width: 36rem; /* 576px */  
-    margin: 0 auto;
-    overflow: hidden;
+  max-width: 36rem; /* 576px: https://tailwindcss.com/docs/max-width */
+  margin: 0 auto;
+  overflow: hidden;
 }

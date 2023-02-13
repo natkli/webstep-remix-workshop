@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 import { ReactElement } from "react";
-import { TbCalendarEvent, TbFlame, TbHome2, TbUser } from "react-icons/tb";
+import { TbFlame, TbHome2, TbUser } from "react-icons/tb";
 
 interface IMenuList {
   link: string;
