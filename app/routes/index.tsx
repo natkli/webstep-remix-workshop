@@ -12,7 +12,7 @@ export default function Index() {
 
   return (
     <div className="min-h-full w-full">
-      <div className="p-2">
+      <div className="p-4">
         <Outlet />
         Home
       </div>
