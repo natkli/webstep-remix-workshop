@@ -1,7 +1,9 @@
+import { type ReactElement } from "react";
+
 import { Link, useLocation } from "@remix-run/react";
-import clsx from "clsx";
-import { useState, type ReactElement } from "react";
 import { TbFlame, TbHome2, TbUser } from "react-icons/tb";
+
+import clsx from "clsx";
 
 interface IMenuList {
   link: string;
