@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { TbFlame, TbHome2, TbUser } from "react-icons/tb";
 
 interface IMenuList {
