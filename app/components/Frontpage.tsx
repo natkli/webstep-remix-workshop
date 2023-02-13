@@ -13,7 +13,11 @@ export function Frontpage() {
           ICE
         </span>
       </h1>
-      <img className="mt-24 mb-8 max-h-[25rem] w-[80vw]" src={undrawEnegizer} />
+      <img
+        className="mt-24 mb-8 max-h-[25rem] w-[80vw]"
+        src={undrawEnegizer}
+        alt="drink illustration"
+      />
       <div className="mx-auto mt-10 flex w-full justify-center">
         <div className="mx-auto inline-grid grid-cols-2 gap-5 space-y-0">
           <Link to="/signup" className="btn-sedondary btn-outline btn">
