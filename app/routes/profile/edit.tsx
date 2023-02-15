@@ -1,5 +1,5 @@
 import { Form, Link, useActionData } from "@remix-run/react";
-import { ActionArgs, json, redirect } from "@remix-run/server-runtime";
+import { type ActionArgs, json, redirect } from "@remix-run/server-runtime";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
 import { updateUser } from "~/models/user.server";
