@@ -60,3 +60,21 @@ export async function verifyLogin(
 
   return userWithoutPassword;
 }
+
+
+
+export function updateUser({
+  name,
+  username,
+  userId,
+}: Pick<User, "name" | "username"> & {
+  userId: User["id"];
+}) {
+  return prisma.user.update({
+    data: {
+      name,
+      username,
+    },
+    where: { id: userId },
+  });
+}

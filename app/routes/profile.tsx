@@ -1,10 +1,17 @@
 import { Form, Outlet } from "@remix-run/react";
-import { json, type LoaderArgs } from "@remix-run/server-runtime";
+import { json, MetaFunction, type LoaderArgs } from "@remix-run/server-runtime";
+import clsx from "clsx";
 import { TbLogout } from "react-icons/tb";
 import aliciaDickerson from "~/images/avatars/alicia-dickerson.svg";
 import { requireUserId } from "~/session.server";
 
 import { useOptionalUser } from "~/utils";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Icing | My profile",
+  };
+};
 
 export async function loader({ request }: LoaderArgs) {
   await requireUserId(request);
@@ -29,8 +36,17 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="text-center">
-              <p className="text-lg font-bold">jdxe</p>
-              <p>John Doe</p>
+              <p
+                className={clsx(
+                  "text-lg font-bold",
+                  !user?.username && "text-zinc-400"
+                )}
+              >
+                {user?.username ? user.username : "-"}
+              </p>
+              <p className={clsx(!user?.name && "text-zinc-400")}>
+                {user?.name ? user.name : "-"}
+              </p>
               <p className="mt-2 text-zinc-400">{user?.email}</p>
             </div>
 
