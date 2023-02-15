@@ -61,8 +61,6 @@ export async function verifyLogin(
   return userWithoutPassword;
 }
 
-
-
 export function updateUser({
   name,
   username,

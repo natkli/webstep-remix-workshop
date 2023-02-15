@@ -1,5 +1,9 @@
 import { Form, Outlet } from "@remix-run/react";
-import { json, MetaFunction, type LoaderArgs } from "@remix-run/server-runtime";
+import {
+  json,
+  type MetaFunction,
+  type LoaderArgs,
+} from "@remix-run/server-runtime";
 import clsx from "clsx";
 import { TbLogout } from "react-icons/tb";
 import aliciaDickerson from "~/images/avatars/alicia-dickerson.svg";

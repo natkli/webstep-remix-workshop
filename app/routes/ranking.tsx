@@ -1,5 +1,9 @@
 import { Outlet } from "@remix-run/react";
-import { json, MetaFunction, type LoaderArgs } from "@remix-run/server-runtime";
+import {
+  json,
+  type MetaFunction,
+  type LoaderArgs,
+} from "@remix-run/server-runtime";
 import { requireUserId } from "~/session.server";
 
 export const meta: MetaFunction = () => {
@@ -7,7 +11,6 @@ export const meta: MetaFunction = () => {
     title: "Icing | Ranking",
   };
 };
-
 
 export async function loader({ request }: LoaderArgs) {
   await requireUserId(request);

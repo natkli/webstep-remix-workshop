@@ -1,5 +1,5 @@
 import { Outlet } from "@remix-run/react";
-import { MetaFunction } from "@remix-run/server-runtime";
+import { type MetaFunction } from "@remix-run/server-runtime";
 import { Frontpage } from "~/components/Frontpage";
 
 import { useOptionalUser } from "~/utils";
@@ -9,7 +9,6 @@ export const meta: MetaFunction = () => {
     title: "Icing",
   };
 };
-
 
 export default function Index() {
   const user = useOptionalUser();
