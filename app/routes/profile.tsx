@@ -46,10 +46,10 @@ export default function ProfilePage() {
                   !user?.username && "text-zinc-400"
                 )}
               >
-                {user?.username ? user.username : "-"}
+                {user?.username || "-"}
               </p>
               <p className={clsx(!user?.name && "text-zinc-400")}>
-                {user?.name ? user.name : "-"}
+                {user?.name || "-"}
               </p>
               <p className="mt-2 text-zinc-400">{user?.email}</p>
             </div>
