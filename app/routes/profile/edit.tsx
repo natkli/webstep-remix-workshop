@@ -63,7 +63,7 @@ export default function ProfileEditPage() {
           type="text"
           name="username"
           ref={usernameRef}
-          placeholder={user?.username ? user.username : "Username"}
+          placeholder={user?.username || "Username"}
           className={clsx(
             "input-bordered input w-full max-w-xs",
             actionData?.errors.username && "input-warning"
@@ -83,7 +83,7 @@ export default function ProfileEditPage() {
           type="text"
           ref={nameRef}
           name="name"
-          placeholder={user?.name ? user.name : "Name"}
+          placeholder={user?.name || "Name"}
           className={clsx(
             "input-bordered input w-full max-w-xs",
             actionData?.errors.name && "input-warning"
