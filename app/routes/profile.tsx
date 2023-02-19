@@ -43,7 +43,7 @@ export default function ProfilePage() {
               <p
                 className={clsx(
                   "text-lg font-bold",
-                  !user?.username && "text-zinc-400"
+                  !user?.username && "text-base-400"
                 )}
               >
                 {user?.username || "-"}

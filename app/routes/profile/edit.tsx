@@ -21,6 +21,18 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
+  if (typeof username !== "string" || username.length > 4) {
+    return json(
+      {
+        errors: {
+          username: "Max 4 characters",
+          name: null,
+        },
+      },
+      { status: 400 }
+    );
+  }
+
   if (typeof name !== "string" || name.length === 0) {
     return json(
       { errors: { username: null, name: "Name is required" } },
