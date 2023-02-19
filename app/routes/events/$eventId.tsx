@@ -1,10 +1,9 @@
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { getEvent } from "~/models/event.server";
 
-// import { deleteNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
 
 export async function loader({ request, params }: LoaderArgs) {
@@ -17,15 +16,6 @@ export async function loader({ request, params }: LoaderArgs) {
   }
   return json({ event });
 }
-
-// export async function action({ request, params }: ActionArgs) {
-//   const userId = await requireUserId(request);
-//   invariant(params.noteId, "noteId not found");
-
-//   await deleteNote({ userId, id: params.noteId });
-
-//   return redirect("/notes");
-// }
 
 export default function EventDetailsPage() {
   const data = useLoaderData<typeof loader>();
@@ -46,7 +36,6 @@ export default function EventDetailsPage() {
 
 export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
-
   return <div>An unexpected error occurred: {error.message}</div>;
 }
 
