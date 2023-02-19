@@ -1,4 +1,4 @@
-import { Link, Outlet } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import { type MetaFunction } from "@remix-run/server-runtime";
 import { TbPlus } from "react-icons/tb";
 import { EventCard } from "~/components/EventCard";

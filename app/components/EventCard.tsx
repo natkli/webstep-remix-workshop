@@ -55,7 +55,10 @@ export function EventCard() {
             );
           })}
         </div>
-        <a className="link-primary link flex items-center font-bold no-underline">
+        <a
+          className="link-primary link flex items-center font-bold no-underline"
+          href=""
+        >
           View event <TbArrowRight className="ml-1" size={16} />
         </a>
       </div>
