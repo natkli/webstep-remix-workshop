@@ -55,10 +55,12 @@ export default function App() {
       </head>
       <body className="font-archivo">
         <main className="min-h-screen w-full max-w-lg">
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
+          <div className="h-screen p-4">
+            <Outlet />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </div>
           {user && <Menu />}
         </main>
       </body>

@@ -27,7 +27,7 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-full w-full">
-      <div className="flex h-[90vh] flex-col justify-between p-4">
+      <div className="flex h-[90vh] flex-col justify-between">
         <div>
           <div className="flex flex-col items-center">
             <div className="avatar mt-16 mb-4">

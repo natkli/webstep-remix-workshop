@@ -8,12 +8,14 @@ import clsx from "clsx";
 interface IMenuList {
   link: string;
   icon: ReactElement<any, any>;
+  cononicalLinks?: string[];
 }
 
 const menuList: IMenuList[] = [
   {
     link: "/",
     icon: <TbHome2 size={24} />,
+    cononicalLinks: ["/events"],
   },
   {
     link: "/ranking",
@@ -27,22 +29,26 @@ const menuList: IMenuList[] = [
 
 export default function Menu() {
   const { pathname } = useLocation();
-  const firstPath = `/${pathname.split("/")[1]}`;
+
+  function isActiveLink(menu: IMenuList) {
+    const firstPath = `/${pathname.split("/")[1]}`;
+    return menu.link === firstPath || menu.cononicalLinks?.includes(firstPath);
+  }
 
   return (
     <div className="nav fixed bottom-0 z-40 w-full max-w-[32rem] bg-primary text-primary-content">
       <ul className={`grid h-[4em] grid-cols-3`}>
-        {menuList.map(({ link, icon }) => {
+        {menuList.map((menu) => {
           return (
             <Link
-              key={link}
-              to={link}
+              key={menu.link}
+              to={menu.link}
               className={clsx(
                 "flex items-center justify-center border-b-2",
-                link === firstPath ? "border-icing-red" : "border-primary"
+                isActiveLink(menu) ? "border-icing-red" : "border-primary"
               )}
             >
-              <li>{icon}</li>
+              <li>{menu.icon}</li>
             </Link>
           );
         })}

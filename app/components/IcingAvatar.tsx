@@ -26,7 +26,7 @@ export function IcingAvatar({ name, isWinner }: IProps) {
           />
         )}
       </div>
-      <p className="text-xs">{name}</p>
+      <p className="text-sm">{name}</p>
     </div>
   );
 }

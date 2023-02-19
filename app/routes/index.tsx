@@ -21,10 +21,10 @@ export default function Index() {
 
   return (
     <div className="min-h-full w-full">
-      <div className="relative h-screen p-4">
+      <div className="relative h-screen">
         <EventCard />
         <EventCard />
-        <div className="z- absolute bottom-20 right-4">
+        <div className="absolute bottom-24 right-0 z-50">
           <Link to="/events/new">
             <button className="btn-circle btn-lg btn">
               <TbPlus size={26} />

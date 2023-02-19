@@ -20,10 +20,8 @@ export async function loader({ request }: LoaderArgs) {
 export default function RankingPage() {
   return (
     <div className="min-h-full w-full">
-      <div className="p-4">
-        <Outlet />
-        Ranking
-      </div>
+      <Outlet />
+      Ranking
     </div>
   );
 }

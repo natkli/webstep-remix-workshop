@@ -38,21 +38,17 @@ export function EventCard() {
         </div>
         <div className="flex gap-4 text-sm text-base-600">
           <p className="flex items-center gap-1">
-            <TbCalendarEvent size={18} />
+            <TbCalendarEvent size={15} />
             17.jan.23
           </p>
-          <p className="inline-flex items-center text-sm ">
-            <TbLocation size={16} className="mr-1" />
+          <p className="inline-flex items-center">
+            <TbLocation size={13} className="mr-1" />
             Hemsedal
           </p>
         </div>
         <div className="my-6 flex items-center gap-2">
-          {icingList.map(({ name, isWinner }) => {
-            return (
-              <>
-                <IcingAvatar name={name} isWinner={isWinner} />
-              </>
-            );
+          {icingList.map(({ name, isWinner }, index) => {
+            return <IcingAvatar key={index} name={name} isWinner={isWinner} />;
           })}
         </div>
         <a
