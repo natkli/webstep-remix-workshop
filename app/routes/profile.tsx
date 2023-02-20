@@ -26,8 +26,8 @@ export default function ProfilePage() {
   const user = useOptionalUser();
 
   return (
-    <div className="min-h-full w-full">
-      <div className="flex h-[90vh] flex-col justify-between">
+    <div className="w-full">
+      <div className="flex h-[90vh] flex-col">
         <div>
           <div className="flex flex-col items-center">
             <div className="avatar mt-16 mb-4">
@@ -59,9 +59,8 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
-
         <Form action="/logout" method="post" className="flex justify-center">
-          <button type="submit" className="btn-secondary btn gap-2">
+          <button type="submit" className="btn-secondary btn mt-[30vh] gap-2">
             <TbLogout size={18} />
             Logout
           </button>

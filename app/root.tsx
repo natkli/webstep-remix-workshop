@@ -55,7 +55,7 @@ export default function App() {
       </head>
       <body className="font-archivo">
         <main className="min-h-screen w-full max-w-lg">
-          <div className="h-screen p-4">
+          <div className="p-4">
             <Outlet />
             <ScrollRestoration />
             <Scripts />

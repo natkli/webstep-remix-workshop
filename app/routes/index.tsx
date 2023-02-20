@@ -20,16 +20,29 @@ export default function Index() {
   }
 
   return (
-    <div className="min-h-full w-full">
-      <div className="relative h-screen">
+    <div className="w-full">
+      <div className="mb-16">
         <EventCard />
         <EventCard />
-        <div className="absolute bottom-24 right-0 z-50">
-          <Link to="/events/new">
-            <button className="btn-circle btn-lg btn">
-              <TbPlus size={26} />
-            </button>
-          </Link>
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+      </div>
+      <div className="relative">
+        <div className="fixed bottom-0 w-full max-w-[30rem]">
+          <div className="bordered relative flex flex-row-reverse">
+            <Link
+              to="/events/new"
+              className="absolute bottom-20 right-8 z-50 md:right-0"
+            >
+              <button className="btn-circle btn-lg btn">
+                <TbPlus size={26} />
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

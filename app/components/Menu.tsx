@@ -36,7 +36,7 @@ export default function Menu() {
   }
 
   return (
-    <div className="nav fixed bottom-0 z-40 w-full max-w-[32rem] bg-primary text-primary-content">
+    <div className="nav fixed -bottom-[1px] z-40 w-full max-w-[32rem] bg-primary text-primary-content">
       <ul className={`grid h-[4em] grid-cols-3`}>
         {menuList.map((menu) => {
           return (
@@ -44,7 +44,7 @@ export default function Menu() {
               key={menu.link}
               to={menu.link}
               className={clsx(
-                "flex items-center justify-center border-b-2",
+                "flex items-center justify-center border-b-[4px]",
                 isActiveLink(menu) ? "border-icing-red" : "border-primary"
               )}
             >

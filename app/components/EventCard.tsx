@@ -30,13 +30,13 @@ const icingList = [
 
 export function EventCard() {
   return (
-    <div className="mb-4">
+    <div className="card mb-4">
       <div className="border border-primary p-4">
         <div className="flex justify-between">
           <h2 className="card-title">Hemsedal Icing</h2>
           <p className="text-icing-red">@jnhx</p>
         </div>
-        <div className="flex gap-4 text-sm text-base-600">
+        <div className="mt-2 flex gap-4 text-sm text-base-600">
           <p className="flex items-center gap-1">
             <TbCalendarEvent size={15} />
             17.jan.23

@@ -19,7 +19,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function RankingPage() {
   return (
-    <div className="min-h-full w-full">
+    <div className="w-full">
       <Outlet />
       Ranking
     </div>
