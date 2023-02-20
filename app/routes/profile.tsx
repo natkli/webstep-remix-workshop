@@ -6,7 +6,7 @@ import {
 } from "@remix-run/server-runtime";
 import clsx from "clsx";
 import { TbLogout } from "react-icons/tb";
-import aliciaDickerson from "~/images/avatars/alicia-dickerson.svg";
+import avatar1 from "~/images/avatars/avatar1.svg";
 import { requireUserId } from "~/session.server";
 
 import { useOptionalUser } from "~/utils";
@@ -27,13 +27,13 @@ export default function ProfilePage() {
 
   return (
     <div className="w-full">
-      <div className="flex h-[90vh] flex-col">
+      <div className="flex flex-col">
         <div>
           <div className="flex flex-col items-center">
             <div className="avatar mt-16 mb-4">
               <div className="w-28 rounded-full bg-neutral-focus text-neutral-content">
                 <img
-                  src={aliciaDickerson}
+                  src={avatar1}
                   className="bg-neutral-content"
                   alt={`${user?.name} avatar`}
                 />

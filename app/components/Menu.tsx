@@ -27,7 +27,7 @@ const menuList: IMenuList[] = [
   },
 ];
 
-export default function Menu() {
+export function Menu() {
   const { pathname } = useLocation();
 
   function isActiveLink(menu: IMenuList) {
@@ -44,7 +44,7 @@ export default function Menu() {
               key={menu.link}
               to={menu.link}
               className={clsx(
-                "flex items-center justify-center border-b-[4px]",
+                "flex items-center justify-center border-b-[3px]",
                 isActiveLink(menu) ? "border-icing-red" : "border-primary"
               )}
             >

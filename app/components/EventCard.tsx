@@ -41,8 +41,8 @@ export function EventCard() {
             <TbCalendarEvent size={15} />
             17.jan.23
           </p>
-          <p className="inline-flex items-center">
-            <TbLocation size={13} className="mr-1" />
+          <p className="inline-flex items-center gap-1">
+            <TbLocation size={13} />
             Hemsedal
           </p>
         </div>
