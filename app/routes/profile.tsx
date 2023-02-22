@@ -6,10 +6,9 @@ import {
 } from "@remix-run/server-runtime";
 import clsx from "clsx";
 import { TbLogout } from "react-icons/tb";
-import avatar1 from "~/images/avatars/avatar1.svg";
 import { requireUserId } from "~/session.server";
 
-import { useOptionalUser } from "~/utils";
+import { getAvatarById, useOptionalUser } from "~/utils";
 
 export const meta: MetaFunction = () => {
   return {
@@ -33,7 +32,7 @@ export default function ProfilePage() {
             <div className="avatar mt-16 mb-4">
               <div className="w-28 rounded-full bg-neutral-focus text-neutral-content">
                 <img
-                  src={avatar1}
+                  src={user && getAvatarById(user?.avatarId)}
                   className="bg-neutral-content"
                   alt={`${user?.name} avatar`}
                 />

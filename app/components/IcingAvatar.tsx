@@ -1,5 +1,5 @@
 import { TbSword, TbTargetOff } from "react-icons/tb";
-import avatar1 from "~/images/avatars/avatar1.svg";
+import avatar3 from "~/images/avatars/avatar3.svg";
 
 interface IProps {
   name: string;
@@ -16,7 +16,7 @@ export function IcingAvatar({ name, isWinner }: IProps) {
       )}
       <div className="avatar relative my-1">
         <div className="w-10">
-          <img src={avatar1} alt="avatar" />
+          <img src={avatar3} alt="avatar" />
         </div>
       </div>
       <p className="text-sm">{name}</p>

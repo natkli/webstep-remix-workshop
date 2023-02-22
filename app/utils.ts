@@ -3,6 +3,17 @@ import { useMemo } from "react";
 
 import type { User } from "~/models/user.server";
 
+import avatar0 from "~/images/avatars/avatar0.svg";
+import avatar1 from "~/images/avatars/avatar1.svg";
+import avatar2 from "~/images/avatars/avatar2.svg";
+import avatar3 from "~/images/avatars/avatar3.svg";
+import avatar4 from "~/images/avatars/avatar4.svg";
+import avatar5 from "~/images/avatars/avatar5.svg";
+import avatar6 from "~/images/avatars/avatar6.svg";
+import avatar7 from "~/images/avatars/avatar7.svg";
+import avatar8 from "~/images/avatars/avatar8.svg";
+import avatar9 from "~/images/avatars/avatar9.svg";
+
 const DEFAULT_REDIRECT = "/";
 
 /**
@@ -68,4 +79,32 @@ export function useUser(): User {
 
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
+}
+
+export function randomInt() {
+  return Math.floor(Math.random() * 9);
+}
+export function getAvatarById(avatarId: string) {
+  switch (avatarId) {
+    case "avatar0":
+      return avatar0;
+    case "avatar1":
+      return avatar1;
+    case "avatar2":
+      return avatar2;
+    case "avatar3":
+      return avatar3;
+    case "avatar4":
+      return avatar4;
+    case "avatar5":
+      return avatar5;
+    case "avatar6":
+      return avatar6;
+    case "avatar7":
+      return avatar7;
+    case "avatar8":
+      return avatar8;
+    default:
+      return avatar9;
+  }
 }

@@ -16,7 +16,7 @@ model User {
 
   name      String?
   username  String?
-  avatarId  String?
+  avatarId  String
 
   password  Password?
   notes    Note[]
