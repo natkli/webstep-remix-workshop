@@ -72,7 +72,7 @@ export default function EventDetailsPage() {
           </button>
         )}
       </Form>
-      <StickyButton url={`/events/${id}/new`} />
+      <StickyButton url={`/events/${id}/new-icing`} />
     </div>
   );
 }

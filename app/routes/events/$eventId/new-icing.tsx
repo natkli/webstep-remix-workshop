@@ -13,7 +13,7 @@ import { requireUserId } from "~/session.server";
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Icing | New event",
+    title: "Icing | Add new icing",
   };
 };
 
@@ -43,12 +43,13 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
+  // todo add new icing
   const event = await createEvent({ title, location, userId });
 
   return redirect(`/events/${event.id}`);
 }
 
-export default function NewEventPage() {
+export default function EventIdNewIcing() {
   const actionData = useActionData<typeof action>();
   const titleRef = useRef<HTMLInputElement>(null);
   const locationRef = useRef<HTMLInputElement>(null);
@@ -63,11 +64,11 @@ export default function NewEventPage() {
 
   return (
     <div className="min-h-full w-full">
-      <h1 className="my-4 text-center text-2xl font-bold">New event</h1>
+      <h1 className="my-4 text-center text-2xl font-bold">New Icing</h1>
       <Form method="post" className="flex w-full flex-col items-center">
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text-alt text-sm">Event title</span>
+            <span className="label-text-alt text-sm">Winner</span>
             {actionData?.errors.title && (
               <span className="label-text-alt text-warning">
                 {actionData.errors.title}
@@ -86,7 +87,7 @@ export default function NewEventPage() {
         </div>
         <div className="form-control mt-2 w-full max-w-xs">
           <label className="label">
-            <span className="label-text-alt text-sm">Location</span>
+            <span className="label-text-alt text-sm">Loser</span>
             {actionData?.errors.location && (
               <span className="label-text-alt text-warning">
                 {actionData.errors.location}
@@ -104,11 +105,12 @@ export default function NewEventPage() {
           />
         </div>
         <div className="mt-8 flex justify-start gap-4">
+          {/* todo return to current event page */}
           <Link to="/" className="btn-outline  btn-secondary btn">
             Cancel
           </Link>
           <button type="submit" className="btn-primary btn">
-            Create
+            Add new
           </button>
         </div>
       </Form>

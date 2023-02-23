@@ -30,7 +30,7 @@ export default function Index() {
         <EventCard />
         <EventCard />
       </div>
-      <StickyButton url="/events/new" />
+      <StickyButton url="/events/new-event" />
     </div>
   );
 }

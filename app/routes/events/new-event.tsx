@@ -13,7 +13,7 @@ import { requireUserId } from "~/session.server";
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Icing | New event",
+    title: "Icing | Create new event",
   };
 };
 
@@ -43,13 +43,12 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  // todo add new icing
   const event = await createEvent({ title, location, userId });
 
   return redirect(`/events/${event.id}`);
 }
 
-export default function EventIdNewIcing() {
+export default function NewEventPage() {
   const actionData = useActionData<typeof action>();
   const titleRef = useRef<HTMLInputElement>(null);
   const locationRef = useRef<HTMLInputElement>(null);
@@ -64,7 +63,6 @@ export default function EventIdNewIcing() {
 
   return (
     <div className="min-h-full w-full">
-      new icing
       <h1 className="my-4 text-center text-2xl font-bold">New event</h1>
       <Form method="post" className="flex w-full flex-col items-center">
         <div className="form-control w-full max-w-xs">
@@ -106,7 +104,6 @@ export default function EventIdNewIcing() {
           />
         </div>
         <div className="mt-8 flex justify-start gap-4">
-          {/* todo return to current event page */}
           <Link to="/" className="btn-outline  btn-secondary btn">
             Cancel
           </Link>
