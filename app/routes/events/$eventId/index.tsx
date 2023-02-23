@@ -1,11 +1,17 @@
 import {
-  type ActionArgs,
-  type LoaderArgs,
   json,
   redirect,
+  type ActionArgs,
+  type LoaderArgs,
 } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
-import { TbCalendarEvent, TbLocation } from "react-icons/tb";
+import {
+  TbArrowLeft,
+  TbCalendarEvent,
+  TbLocation,
+  TbTrash,
+  TbUser,
+} from "react-icons/tb";
 import invariant from "tiny-invariant";
 
 import { EventIcingItem } from "~/components/events/eventIcingItem";
@@ -39,10 +45,27 @@ export default function EventDetailsPage() {
 
   return (
     <div>
-      <div>
-        <div className="flex justify-between">
-          <h1 className="card-title">{title}</h1>
-          <p className="text-icing-red">@{createdBy.username}</p>
+      <div className="mb-8 flex justify-between">
+        <a
+          className="link-primary link flex items-center gap-1 font-bold no-underline"
+          href="/events"
+        >
+          <TbArrowLeft size={16} /> Event
+        </a>
+        <Form method="post">
+          {createdBy.id === user?.id && (
+            <button
+              type="submit"
+              className="btn-outline btn-warning btn-sm btn flex gap-1"
+            >
+              <TbTrash size={20} />
+            </button>
+          )}
+        </Form>
+      </div>
+      <div className="flex flex-col items-center">
+        <div className="flex">
+          <h1 className="card-title text-2xl">{title}</h1>
         </div>
         <div className="mt-2 flex gap-4 text-sm text-base-600">
           <p className="flex items-center gap-1">
@@ -53,26 +76,19 @@ export default function EventDetailsPage() {
             <TbLocation size={13} />
             {location}
           </p>
+          <p className="inline-flex items-center gap-1">
+            <TbUser size={15} />@{createdBy.username}
+          </p>
         </div>
       </div>
-
       <div className="my-8">
+        <h2 className="text-lg font-medium">Icing list</h2>
         <EventIcingItem />
         <EventIcingItem />
         <EventIcingItem />
       </div>
 
-      <Form method="post" className="mt-16 flex flex-col items-center">
-        {createdBy.id === user?.id && (
-          <button
-            type="submit"
-            className="btn-outline btn-warning btn-sm btn flex gap-1"
-          >
-            Delete event
-          </button>
-        )}
-      </Form>
-      <StickyButton url={`/events/${id}/new-icing`} />
+      <StickyButton url={`/events/${id}/new-icing`} color="red" />
     </div>
   );
 }
