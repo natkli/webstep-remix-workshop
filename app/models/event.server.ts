@@ -4,15 +4,16 @@ import { prisma } from "~/db.server";
 
 export type { Event } from "@prisma/client";
 
-export function getEvent({
-  id,
-  userId,
-}: Pick<Event, "id"> & {
-  userId: User["id"];
-}) {
+export function getEvent({ id }: Pick<Event, "id">) {
   return prisma.event.findFirst({
-    select: { id: true, title: true, location: true },
-    where: { id, userId },
+    select: {
+      id: true,
+      title: true,
+      location: true,
+      createdAt: true,
+      createdBy: true,
+    },
+    where: { id },
   });
 }
 
@@ -27,11 +28,20 @@ export function createEvent({
     data: {
       title,
       location,
-      user: {
+      createdBy: {
         connect: {
           id: userId,
         },
       },
     },
+  });
+}
+
+export function deleteEvent({
+  id,
+  userId,
+}: Pick<Event, "id"> & { userId: User["id"] }) {
+  return prisma.event.deleteMany({
+    where: { id, userId },
   });
 }

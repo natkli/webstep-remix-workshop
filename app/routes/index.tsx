@@ -1,8 +1,7 @@
-import { Link } from "@remix-run/react";
 import { type MetaFunction } from "@remix-run/server-runtime";
-import { TbPlus } from "react-icons/tb";
 import { EventCard } from "~/components/EventCard";
 import { Frontpage } from "~/components/Frontpage";
+import { StickyButton } from "~/components/StickyButton";
 
 import { useOptionalUser } from "~/utils";
 
@@ -31,20 +30,7 @@ export default function Index() {
         <EventCard />
         <EventCard />
       </div>
-      <div className="relative">
-        <div className="fixed bottom-0 w-full max-w-[30rem]">
-          <div className="bordered relative flex flex-row-reverse">
-            <Link
-              to="/events/new"
-              className="absolute bottom-20 right-8 z-50 md:right-0"
-            >
-              <button className="btn-circle btn-lg btn">
-                <TbPlus size={26} />
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <StickyButton url="/events/new" />
     </div>
   );
 }

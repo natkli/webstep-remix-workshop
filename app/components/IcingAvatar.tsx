@@ -1,6 +1,4 @@
-import { TbSword, TbTargetOff } from "react-icons/tb";
 import avatar3 from "~/images/avatars/avatar3.svg";
-
 interface IProps {
   name: string;
   isWinner: boolean;
@@ -10,9 +8,9 @@ export function IcingAvatar({ name, isWinner }: IProps) {
   return (
     <div className="flex flex-col items-center">
       {isWinner ? (
-        <TbSword size={17} className="text-primary" />
+        <p className="font-medium text-green-500">W</p>
       ) : (
-        <TbTargetOff size={16} className="text-primary" />
+        <p className="font-medium text-red-500">L</p>
       )}
       <div className="avatar relative my-1">
         <div className="w-10">

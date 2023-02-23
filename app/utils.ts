@@ -13,6 +13,7 @@ import avatar6 from "~/images/avatars/avatar6.svg";
 import avatar7 from "~/images/avatars/avatar7.svg";
 import avatar8 from "~/images/avatars/avatar8.svg";
 import avatar9 from "~/images/avatars/avatar9.svg";
+import { format, parseISO } from "date-fns";
 
 const DEFAULT_REDIRECT = "/";
 
@@ -84,6 +85,11 @@ export function validateEmail(email: unknown): email is string {
 export function randomInt() {
   return Math.floor(Math.random() * 9);
 }
+
+export function formattedDate(date: string) {
+  return format(parseISO(date), "dd MMM yyyy");
+}
+
 export function getAvatarById(avatarId: string) {
   switch (avatarId) {
     case "avatar0":

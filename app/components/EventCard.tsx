@@ -46,16 +46,16 @@ export function EventCard() {
             Hemsedal
           </p>
         </div>
-        <div className="my-6 flex items-center gap-2">
+        <div className="my-4 flex items-center gap-2">
           {icingList.map(({ name, isWinner }, index) => {
             return <IcingAvatar key={index} name={name} isWinner={isWinner} />;
           })}
         </div>
         <a
-          className="link-primary link flex items-center font-bold no-underline"
+          className="link-primary link flex items-center gap-1 font-bold no-underline"
           href="/events"
         >
-          View event <TbArrowRight className="ml-1" size={16} />
+          View event <TbArrowRight size={16} />
         </a>
       </div>
     </div>
