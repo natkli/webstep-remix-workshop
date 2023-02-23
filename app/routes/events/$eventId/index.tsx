@@ -1,6 +1,6 @@
 import { ActionArgs, json, LoaderArgs, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
-import { TbCalendarEvent, TbLocation, TbTrash } from "react-icons/tb";
+import { TbCalendarEvent, TbLocation } from "react-icons/tb";
 import invariant from "tiny-invariant";
 
 import { EventIcingItem } from "~/components/events/eventIcingItem";
