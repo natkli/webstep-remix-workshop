@@ -1,4 +1,9 @@
-import { ActionArgs, json, LoaderArgs, redirect } from "@remix-run/node";
+import {
+  type ActionArgs,
+  type LoaderArgs,
+  json,
+  redirect,
+} from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import { TbCalendarEvent, TbLocation } from "react-icons/tb";
 import invariant from "tiny-invariant";
