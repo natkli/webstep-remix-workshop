@@ -1,22 +1,19 @@
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import { getHashedPassword, usersList } from "./users.mocks";
 
 const prisma = new PrismaClient();
 
 async function seed() {
   const email = "rachel@remix.run";
 
-  // cleanup the existing database
-  await prisma.user.delete({ where: { email } }).catch(() => {
-    // no worries if it doesn't exist yet
-  });
-
-  const hashedPassword = await bcrypt.hash("racheliscool", 10);
+  const hashedPassword = await getHashedPassword("racheliscool");
 
   const user = await prisma.user.create({
     data: {
       email,
       avatarId: "avatar0",
+      name: "Rachel Jakobsen",
+      username: "rach",
       password: {
         create: {
           hash: hashedPassword,
@@ -25,21 +22,40 @@ async function seed() {
     },
   });
 
-  await prisma.note.create({
+  await prisma.event.create({
     data: {
-      title: "My first note",
-      body: "Hello, world!",
+      title: "Save the date ~ Hemsedal",
+      location: "Hemsedal",
       userId: user.id,
     },
   });
 
-  await prisma.note.create({
+  await prisma.event.create({
     data: {
-      title: "My second note",
-      body: "Hello, world!",
+      title: "Save the date ~ Nice",
+      location: "Nice",
       userId: user.id,
     },
   });
+
+  for (let user of usersList) {
+    const { email, name, username, avatarId, password } = user;
+    const hash = await getHashedPassword(password);
+
+    await prisma.user.create({
+      data: {
+        email,
+        name,
+        username,
+        avatarId,
+        password: {
+          create: {
+            hash,
+          },
+        },
+      },
+    });
+  }
 
   console.log(`Database has been seeded. 🌱`);
 }
