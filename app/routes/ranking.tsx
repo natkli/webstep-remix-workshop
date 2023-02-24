@@ -1,8 +1,7 @@
-import { Outlet } from "@remix-run/react";
 import {
   json,
-  type MetaFunction,
   type LoaderArgs,
+  type MetaFunction,
 } from "@remix-run/server-runtime";
 import { requireUserId } from "~/session.server";
 
