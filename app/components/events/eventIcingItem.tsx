@@ -1,4 +1,3 @@
-import avatar3 from "~/images/avatars/avatar3.svg";
 import { getAvatarById } from "~/utils";
 interface IIcingUser {
   name: string | null;

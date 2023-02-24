@@ -1,4 +1,4 @@
-import { User, Event } from "@prisma/client";
+import type { User, Event } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export function createIcing(
