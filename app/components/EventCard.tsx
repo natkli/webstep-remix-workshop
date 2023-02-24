@@ -32,24 +32,18 @@ const icingList = [
 interface IProps {
   id: string;
   title: string;
-  creatorUsername: string | null;
+  owner: string | null;
   createdAt: string;
   location: string;
 }
 
-export function EventCard({
-  id,
-  title,
-  creatorUsername,
-  createdAt,
-  location,
-}: IProps) {
+export function EventCard({ id, title, owner, createdAt, location }: IProps) {
   return (
     <div className="card mb-4 bg-primary-content shadow-lg">
       <div className="p-4">
         <div className="flex justify-between">
           <h2 className="card-title">{title}</h2>
-          <p className="text-icing-red">@{creatorUsername}</p>
+          <p className="text-icing-red">@{owner}</p>
         </div>
         <div className="mt-2 flex gap-4 text-sm text-base-600">
           <p className="flex items-center gap-1">

@@ -6,6 +6,21 @@ import { randomInt } from "~/utils";
 
 export type { User } from "@prisma/client";
 
+export async function getUsers() {
+  return prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      username: true,
+      avatarId: true,
+    },
+    orderBy: { name: "asc" },
+    where: {
+      NOT: [{ name: null }, { username: null }],
+    },
+  });
+}
+
 export async function getUserById(id: User["id"]) {
   return prisma.user.findUnique({ where: { id } });
 }

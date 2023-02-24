@@ -10,7 +10,7 @@ export function getEventList() {
       id: true,
       title: true,
       location: true,
-      creator: true,
+      owner: true,
       createdAt: true,
     },
     orderBy: { updatedAt: "desc" },
@@ -24,7 +24,29 @@ export function getEvent(id: Event["id"]) {
       title: true,
       location: true,
       createdAt: true,
-      creator: true,
+      owner: true,
+      icings: {
+        select: {
+          id: true,
+          winner: {
+            select: {
+              name: true,
+              username: true,
+              avatarId: true,
+            },
+          },
+          loser: {
+            select: {
+              name: true,
+              username: true,
+              avatarId: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
     where: { id },
   });
@@ -39,7 +61,7 @@ export function createEvent(
     data: {
       title,
       location,
-      creator: {
+      owner: {
         connect: {
           id: userId,
         },

@@ -87,7 +87,7 @@ export function randomInt() {
 }
 
 export function formattedDate(date: string) {
-  return format(parseISO(date), "dd MMM yyyy");
+  return format(parseISO(date), "dd MMM yy, HH:mm");
 }
 
 export function getAvatarById(avatarId: string) {

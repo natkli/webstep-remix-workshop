@@ -10,7 +10,6 @@ import {
   TbCalendarEvent,
   TbLocation,
   TbTrash,
-  TbUser,
 } from "react-icons/tb";
 import invariant from "tiny-invariant";
 
@@ -18,15 +17,17 @@ import { EventIcingItem } from "~/components/events/eventIcingItem";
 import { StickyButton } from "~/components/StickyButton";
 import { deleteEvent, getEvent } from "~/models/event.server";
 import { requireUserId } from "~/session.server";
-import { formattedDate, useOptionalUser } from "~/utils";
+import { formattedDate, getAvatarById, useOptionalUser } from "~/utils";
 
 export async function loader({ params }: LoaderArgs) {
   invariant(params.eventId, "eventId not found");
 
   const event = await getEvent(params.eventId);
+
   if (!event) {
     throw new Response("Not Found", { status: 404 });
   }
+
   return json({ event });
 }
 
@@ -41,19 +42,19 @@ export async function action({ request, params }: ActionArgs) {
 export default function EventDetailsPage() {
   const user = useOptionalUser();
   const data = useLoaderData<typeof loader>();
-  const { id, title, location, creator, createdAt } = data.event;
+  const { id, title, location, owner, createdAt, icings } = data.event;
 
   return (
     <div>
       <div className="mb-8 flex justify-between">
         <a
-          className="link-primary link ml-2 flex items-center gap-1 font-bold no-underline"
+          className="link-primary link flex items-center gap-1 font-bold no-underline"
           href="/events"
         >
           <TbArrowLeft size={16} /> Event
         </a>
         <Form method="post">
-          {creator.id === user?.id && (
+          {owner.id === user?.id && (
             <button
               type="submit"
               className="btn-warning btn-ghost btn-sm btn flex gap-1 text-icing-red"
@@ -63,7 +64,7 @@ export default function EventDetailsPage() {
           )}
         </Form>
       </div>
-      <div className="flex flex-col">
+      <div className="mb-[10rem] flex flex-col">
         <div className="flex flex-col items-center">
           <div className="flex">
             <h1 className="card-title text-2xl">{title}</h1>
@@ -77,19 +78,30 @@ export default function EventDetailsPage() {
               <TbLocation size={13} />
               {location}
             </p>
-            <p className="inline-flex items-center gap-1">
-              <TbUser size={15} />@{creator.username}
-            </p>
           </div>
         </div>
-        <h2 className="mt-8 mb-2 text-center text-lg font-medium">
-          Icing list
-        </h2>
+        <div className="flex items-center justify-center gap-2 py-6">
+          <div className="avatar">
+            <div className="w-10 rounded-full bg-neutral-focus text-neutral-content">
+              <img
+                src={owner && getAvatarById(owner?.avatarId)}
+                className="bg-neutral-content"
+                alt={`${owner?.name} avatar`}
+              />
+            </div>
+          </div>
+          <div>
+            <p className="text-md font-medium">{owner.name}</p>
+            <span className="text-sm font-normal text-icing-red">
+              @{owner.username}
+            </span>
+          </div>
+        </div>
+        <h2 className="my-4 text-lg font-bold">Icing list</h2>
         <div className="flex flex-col gap-2">
-          <EventIcingItem />
-          <EventIcingItem />
-          <EventIcingItem />
-          <EventIcingItem />
+          {icings.map(({ id, winner, loser }) => {
+            return <EventIcingItem key={id} winner={winner} loser={loser} />;
+          })}
         </div>
       </div>
 

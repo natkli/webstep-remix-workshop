@@ -19,9 +19,10 @@ model User {
   avatarId    String
 
   password    Password?
-  notes       Note[]
 
   events      Event[]
+  icings      Icing[]
+
   icingWins   Icing[] @relation("winner")
   icingLoses  Icing[] @relation("loser")
 }
@@ -33,18 +34,6 @@ model Password {
   userId    String @unique
 }
 
-model Note {
-  id          String @id @default(cuid())
-  title       String
-  body        String
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId      String
-}
-
 model Event {
   id          String @id @default(cuid())
   location    String
@@ -53,7 +42,7 @@ model Event {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  creator     User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  owner       User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId      String
 
   icings      Icing[]
@@ -65,11 +54,14 @@ model Icing {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  owner       User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId      String
+
   event       Event   @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   eventId     String
 
-  winner      User   @relation(fields: [winenrId], references: [id], name: "winner", onDelete: Cascade, onUpdate: Cascade)
-  winenrId    String
+  winner      User   @relation(fields: [winnerId], references: [id], name: "winner", onDelete: Cascade, onUpdate: Cascade)
+  winnerId    String
 
   loser       User   @relation(fields: [loserId], references: [id], name: "loser", onDelete: Cascade, onUpdate: Cascade)
   loserId     String

@@ -1,14 +1,13 @@
-import { Form, Link, useActionData } from "@remix-run/react";
+import { Form, Link, useLoaderData } from "@remix-run/react";
 import {
   json,
   redirect,
   type ActionArgs,
-  type LoaderArgs,
   type MetaFunction,
 } from "@remix-run/server-runtime";
-import clsx from "clsx";
-import { useEffect, useRef } from "react";
-import { createEvent } from "~/models/event.server";
+import invariant from "tiny-invariant";
+import { createIcing } from "~/models/icing.server";
+import { getUsers } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
 
 export const meta: MetaFunction = () => {
@@ -17,50 +16,42 @@ export const meta: MetaFunction = () => {
   };
 };
 
-export async function loader({ request }: LoaderArgs) {
-  await requireUserId(request);
-  return json({});
+export async function loader({ params }: ActionArgs) {
+  invariant(params.eventId, "eventId not found");
+
+  const users = await getUsers();
+  const eventId = params.eventId;
+
+  if (!users) {
+    throw new Response("Not Found", { status: 404 });
+  }
+
+  return json({ users, eventId });
 }
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request, params }: ActionArgs) {
   const userId = await requireUserId(request);
 
+  invariant(params.eventId, "eventId not found");
+
   const formData = await request.formData();
-  const title = formData.get("title");
-  const location = formData.get("location");
+  const winnerId = formData.get("winner") as string;
+  const loserId = formData.get("loser") as string;
 
-  if (typeof title !== "string" || title.length === 0) {
+  if (winnerId === loserId) {
     return json(
-      { errors: { title: "Event title is required", location: null } },
+      { errors: "Winner and loser can't be the same person" },
       { status: 400 }
     );
   }
 
-  if (typeof location !== "string" || location.length === 0) {
-    return json(
-      { errors: { title: null, location: "Location is required" } },
-      { status: 400 }
-    );
-  }
+  await createIcing(params.eventId, winnerId, loserId, userId);
 
-  // todo add new icing
-  const event = await createEvent(title, location, userId);
-
-  return redirect(`/events/${event.id}`);
+  return redirect(`/events/${params.eventId}`);
 }
 
 export default function EventIdNewIcing() {
-  const actionData = useActionData<typeof action>();
-  const titleRef = useRef<HTMLInputElement>(null);
-  const locationRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (actionData?.errors?.title) {
-      titleRef.current?.focus();
-    } else if (actionData?.errors?.location) {
-      locationRef.current?.focus();
-    }
-  }, [actionData]);
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div className="min-h-full w-full">
@@ -69,44 +60,44 @@ export default function EventIdNewIcing() {
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text-alt text-sm">Winner</span>
-            {actionData?.errors.title && (
-              <span className="label-text-alt text-warning">
-                {actionData.errors.title}
-              </span>
-            )}
           </label>
-          <input
-            type="text"
-            name="title"
-            ref={titleRef}
-            className={clsx(
-              "input-bordered input w-full max-w-xs",
-              actionData?.errors.title && "input-warning"
-            )}
-          />
+          <select
+            className="select-bordered select"
+            name="winner"
+            defaultValue={data.users[0].id}
+          >
+            {data.users.map(({ id, name, username }) => {
+              return (
+                <option key={id} value={id}>
+                  {name} @{username}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <div className="form-control mt-2 w-full max-w-xs">
           <label className="label">
             <span className="label-text-alt text-sm">Loser</span>
-            {actionData?.errors.location && (
-              <span className="label-text-alt text-warning">
-                {actionData.errors.location}
-              </span>
-            )}
           </label>
-          <input
-            type="text"
-            ref={locationRef}
-            name="location"
-            className={clsx(
-              "input-bordered input w-full max-w-xs",
-              actionData?.errors.location && "input-warning"
-            )}
-          />
+          <select
+            className="select-bordered select"
+            name="loser"
+            defaultValue={data.users[0].id}
+          >
+            {data.users.map(({ id, name, username }) => {
+              return (
+                <option key={id} value={id}>
+                  {name} @{username}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <div className="mt-8 flex justify-start gap-4">
-          {/* todo return to current event page */}
-          <Link to="/" className="btn-outline  btn-secondary btn">
+          <Link
+            to={`/events/${data.eventId}`}
+            className="btn-outline  btn-secondary btn"
+          >
             Cancel
           </Link>
           <button type="submit" className="btn-primary btn">

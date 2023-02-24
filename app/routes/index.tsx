@@ -30,9 +30,10 @@ export default function Index() {
   }
 
   return (
-    <div className="w-full ">
-      <div className="mb-16 ">
-        {data.eventList.map(({ id, title, location, createdAt, creator }) => {
+    <div className="w-full">
+      <h1 className="mb-2 text-xl font-bold">Events</h1>
+      <div className="mb-[10rem]">
+        {data.eventList.map(({ id, title, location, createdAt, owner }) => {
           return (
             <EventCard
               key={id}
@@ -40,7 +41,7 @@ export default function Index() {
               title={title}
               location={location}
               createdAt={createdAt}
-              creatorUsername={creator.username}
+              owner={owner.username}
             />
           );
         })}

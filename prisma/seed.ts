@@ -24,7 +24,7 @@ async function seed() {
 
   await prisma.event.create({
     data: {
-      title: "Save the date ~ Hemsedal",
+      title: "Hemsedal - Save the date",
       location: "Hemsedal",
       userId: user.id,
     },
@@ -32,7 +32,7 @@ async function seed() {
 
   await prisma.event.create({
     data: {
-      title: "Save the date ~ Nice",
+      title: "Nice - Save the date",
       location: "Nice",
       userId: user.id,
     },
