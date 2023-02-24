@@ -23,7 +23,7 @@ import { formattedDate, useOptionalUser } from "~/utils";
 export async function loader({ params }: LoaderArgs) {
   invariant(params.eventId, "eventId not found");
 
-  const event = await getEvent({ id: params.eventId });
+  const event = await getEvent(params.eventId);
   if (!event) {
     throw new Response("Not Found", { status: 404 });
   }
@@ -34,58 +34,63 @@ export async function action({ request, params }: ActionArgs) {
   const userId = await requireUserId(request);
   invariant(params.eventId, "eventId not found");
 
-  await deleteEvent({ userId, id: params.eventId });
+  await deleteEvent(params.eventId, userId);
   return redirect("/");
 }
 
 export default function EventDetailsPage() {
   const user = useOptionalUser();
   const data = useLoaderData<typeof loader>();
-  const { id, title, location, createdBy, createdAt } = data.event;
+  const { id, title, location, creator, createdAt } = data.event;
 
   return (
     <div>
       <div className="mb-8 flex justify-between">
         <a
-          className="link-primary link flex items-center gap-1 font-bold no-underline"
+          className="link-primary link ml-2 flex items-center gap-1 font-bold no-underline"
           href="/events"
         >
           <TbArrowLeft size={16} /> Event
         </a>
         <Form method="post">
-          {createdBy.id === user?.id && (
+          {creator.id === user?.id && (
             <button
               type="submit"
-              className="btn-outline btn-warning btn-sm btn flex gap-1"
+              className="btn-warning btn-ghost btn-sm btn flex gap-1 text-icing-red"
             >
               <TbTrash size={20} />
             </button>
           )}
         </Form>
       </div>
-      <div className="flex flex-col items-center">
-        <div className="flex">
-          <h1 className="card-title text-2xl">{title}</h1>
+      <div className="flex flex-col">
+        <div className="flex flex-col items-center">
+          <div className="flex">
+            <h1 className="card-title text-2xl">{title}</h1>
+          </div>
+          <div className="mt-2 flex gap-4 text-sm text-base-600">
+            <p className="flex items-center gap-1">
+              <TbCalendarEvent size={15} />
+              {formattedDate(createdAt)}
+            </p>
+            <p className="inline-flex items-center gap-1">
+              <TbLocation size={13} />
+              {location}
+            </p>
+            <p className="inline-flex items-center gap-1">
+              <TbUser size={15} />@{creator.username}
+            </p>
+          </div>
         </div>
-        <div className="mt-2 flex gap-4 text-sm text-base-600">
-          <p className="flex items-center gap-1">
-            <TbCalendarEvent size={15} />
-            {formattedDate(createdAt)}
-          </p>
-          <p className="inline-flex items-center gap-1">
-            <TbLocation size={13} />
-            {location}
-          </p>
-          <p className="inline-flex items-center gap-1">
-            <TbUser size={15} />@{createdBy.username}
-          </p>
+        <h2 className="mt-8 mb-2 text-center text-lg font-medium">
+          Icing list
+        </h2>
+        <div className="flex flex-col gap-2">
+          <EventIcingItem />
+          <EventIcingItem />
+          <EventIcingItem />
+          <EventIcingItem />
         </div>
-      </div>
-      <div className="my-8">
-        <h2 className="text-lg font-medium">Icing list</h2>
-        <EventIcingItem />
-        <EventIcingItem />
-        <EventIcingItem />
       </div>
 
       <StickyButton url={`/events/${id}/new-icing`} color="red" />

@@ -27,7 +27,7 @@ const menuList: IMenuList[] = [
   },
 ];
 
-export function Menu() {
+export function StickyMenu() {
   const { pathname } = useLocation();
 
   function isActiveLink(menu: IMenuList) {

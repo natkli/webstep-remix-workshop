@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { Menu } from "./components/Menu";
+import { StickyMenu } from "./components/StickerMenu";
 import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import indexStyleshettUrl from "./styles/index.css";
@@ -54,14 +54,14 @@ export default function App() {
         <Links />
       </head>
       <body className="font-archivo">
-        <main className="min-h-screen w-full max-w-lg">
+        <main className="min-h-screen w-full max-w-lg bg-gray-100">
           <div className="p-4">
             <Outlet />
             <ScrollRestoration />
             <Scripts />
             <LiveReload />
           </div>
-          {user && <Menu />}
+          {user && <StickyMenu />}
         </main>
       </body>
     </html>

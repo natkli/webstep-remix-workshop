@@ -40,7 +40,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  await updateUser({ username, name, userId });
+  await updateUser(userId, username, name);
 
   return redirect(`/profile`);
 }

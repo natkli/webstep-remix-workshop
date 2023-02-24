@@ -43,7 +43,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const event = await createEvent({ title, location, userId });
+  const event = await createEvent(userId, title, location);
 
   return redirect(`/events/${event.id}`);
 }

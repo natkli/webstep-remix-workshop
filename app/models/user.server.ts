@@ -65,13 +65,11 @@ export async function verifyLogin(
   return userWithoutPassword;
 }
 
-export function updateUser({
-  name,
-  username,
-  userId,
-}: Pick<User, "name" | "username"> & {
-  userId: User["id"];
-}) {
+export function updateUser(
+  userId: User["id"],
+  username: User["username"],
+  name: User["email"]
+) {
   return prisma.user.update({
     data: {
       name,

@@ -44,7 +44,7 @@ export async function action({ request }: ActionArgs) {
   }
 
   // todo add new icing
-  const event = await createEvent({ title, location, userId });
+  const event = await createEvent(title, location, userId);
 
   return redirect(`/events/${event.id}`);
 }
