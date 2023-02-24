@@ -46,12 +46,12 @@ export default function EventDetailsPage() {
 
   return (
     <div>
-      <div className="mb-8 flex justify-between">
+      <div className="mb-4 flex justify-between">
         <a
-          className="link-primary link flex items-center gap-1 font-bold no-underline"
+          className="link-primary link flex items-center gap-1 text-xl font-bold no-underline"
           href="/events"
         >
-          <TbArrowLeft size={16} /> Event
+          <TbArrowLeft size={16} /> Events
         </a>
         <Form method="post">
           {owner.id === user?.id && (
@@ -64,44 +64,47 @@ export default function EventDetailsPage() {
           )}
         </Form>
       </div>
-      <div className="mb-[10rem] flex flex-col">
-        <div className="flex flex-col items-center">
-          <div className="flex">
-            <h1 className="card-title text-2xl">{title}</h1>
-          </div>
-          <div className="mt-2 flex gap-4 text-sm text-base-600">
-            <p className="flex items-center gap-1">
-              <TbCalendarEvent size={15} />
-              {formattedDate(createdAt)}
-            </p>
-            <p className="inline-flex items-center gap-1">
-              <TbLocation size={13} />
-              {location}
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center justify-center gap-2 py-6">
-          <div className="avatar">
-            <div className="w-10 rounded-full bg-neutral-focus text-neutral-content">
-              <img
-                src={owner && getAvatarById(owner?.avatarId)}
-                className="bg-neutral-content"
-                alt={`${owner?.name} avatar`}
-              />
+
+      <div className="card mb-[10rem] bg-primary-content px-4 py-8 shadow-lg">
+        <div className="flex flex-col">
+          <div className="flex flex-col items-center">
+            <div className="flex">
+              <h1 className="card-title text-2xl">{title}</h1>
+            </div>
+            <div className="mt-2 flex gap-4 text-sm text-base-600">
+              <p className="flex items-center gap-1">
+                <TbCalendarEvent size={15} />
+                {formattedDate(createdAt)}
+              </p>
+              <p className="inline-flex items-center gap-1">
+                <TbLocation size={13} />
+                {location}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-md font-medium">{owner.name}</p>
-            <span className="text-sm font-normal text-icing-red">
-              @{owner.username}
-            </span>
+          <div className="flex items-center justify-center gap-2 py-6">
+            <div className="avatar">
+              <div className="w-10 rounded-full bg-neutral-focus text-neutral-content">
+                <img
+                  src={owner && getAvatarById(owner?.avatarId)}
+                  className="bg-neutral-content"
+                  alt={`${owner?.name} avatar`}
+                />
+              </div>
+            </div>
+            <div>
+              <p className="text-md font-medium">{owner.name}</p>
+              <span className="text-sm font-normal text-icing-red">
+                @{owner.username}
+              </span>
+            </div>
           </div>
-        </div>
-        <h2 className="my-4 text-lg font-bold">Icing list</h2>
-        <div className="flex flex-col gap-2">
-          {icings.map(({ id, winner, loser }) => {
-            return <EventIcingItem key={id} winner={winner} loser={loser} />;
-          })}
+          <h2 className="mt-4 px-2 text-lg font-bold">Icing list</h2>
+          <div className="flex flex-col gap-2 px-2">
+            {icings.map(({ id, winner, loser }) => {
+              return <EventIcingItem key={id} winner={winner} loser={loser} />;
+            })}
+          </div>
         </div>
       </div>
 

@@ -12,7 +12,7 @@ interface IProps {
 
 export function EventIcingItem({ winner, loser }: IProps) {
   return (
-    <div className="card flex flex-col gap-2 bg-primary-content p-4 shadow-lg">
+    <div className="event-icing-item mt-4 flex flex-col gap-2 bg-primary-content">
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-2">
           <div className="avatar relative">
@@ -27,7 +27,7 @@ export function EventIcingItem({ winner, loser }: IProps) {
             </span>
           </p>
         </div>
-        <p className="text-lg font-medium text-green-500">W</p>
+        <p className="w-5 text-center text-lg font-medium text-green-500">W</p>
       </div>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-2">
@@ -43,7 +43,7 @@ export function EventIcingItem({ winner, loser }: IProps) {
             </span>
           </p>
         </div>
-        <p className="text-lg font-medium text-red-500">L</p>
+        <p className="w-5 text-center text-lg font-medium text-red-500">L</p>
       </div>
     </div>
   );

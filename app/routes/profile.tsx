@@ -26,6 +26,7 @@ export default function ProfilePage() {
 
   return (
     <div className="w-full">
+      <h1 className="mb-2 text-xl font-bold">Profile</h1>
       <div className="flex flex-col">
         <div>
           <div className="flex flex-col items-center">

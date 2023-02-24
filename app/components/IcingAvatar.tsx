@@ -1,10 +1,11 @@
-import avatar3 from "~/images/avatars/avatar3.svg";
+import { getAvatarById } from "~/utils";
 interface IProps {
   name: string;
-  isWinner: boolean;
+  avatarId: string;
+  isWinner?: boolean;
 }
 
-export function IcingAvatar({ name, isWinner }: IProps) {
+export function IcingAvatar({ name, avatarId, isWinner }: IProps) {
   return (
     <div className="flex flex-col items-center">
       {isWinner ? (
@@ -14,7 +15,7 @@ export function IcingAvatar({ name, isWinner }: IProps) {
       )}
       <div className="avatar relative my-1">
         <div className="w-10">
-          <img src={avatar3} alt="avatar" />
+          <img src={getAvatarById(avatarId)} alt="avatar" />
         </div>
       </div>
       <p className="text-sm">{name}</p>

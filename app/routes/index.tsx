@@ -31,20 +31,23 @@ export default function Index() {
 
   return (
     <div className="w-full">
-      <h1 className="mb-2 text-xl font-bold">Events</h1>
+      <h1 className="mb-4 text-xl font-bold">Events</h1>
       <div className="mb-[10rem]">
-        {data.eventList.map(({ id, title, location, createdAt, owner }) => {
-          return (
-            <EventCard
-              key={id}
-              id={id}
-              title={title}
-              location={location}
-              createdAt={createdAt}
-              owner={owner.username}
-            />
-          );
-        })}
+        {data.eventList.map(
+          ({ id, title, location, createdAt, owner, icings }) => {
+            return (
+              <EventCard
+                key={id}
+                id={id}
+                title={title}
+                location={location}
+                createdAt={createdAt}
+                owner={owner.username}
+                icings={icings}
+              />
+            );
+          }
+        )}
       </div>
       <StickyButton url="/events/new-event" />
     </div>

@@ -20,8 +20,7 @@ export async function loader({ request }: LoaderArgs) {
 export default function RankingPage() {
   return (
     <div className="w-full">
-      <Outlet />
-      Ranking
+      <h1 className="mb-4 text-xl font-bold">Ranking</h1>
     </div>
   );
 }

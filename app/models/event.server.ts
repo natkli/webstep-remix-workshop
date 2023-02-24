@@ -12,6 +12,29 @@ export function getEventList() {
       location: true,
       owner: true,
       createdAt: true,
+      icings: {
+        select: {
+          id: true,
+          winner: {
+            select: {
+              name: true,
+              username: true,
+              avatarId: true,
+            },
+          },
+          loser: {
+            select: {
+              name: true,
+              username: true,
+              avatarId: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 3,
+      },
     },
     orderBy: { updatedAt: "desc" },
   });

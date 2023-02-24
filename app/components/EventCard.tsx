@@ -1,33 +1,11 @@
 import { TbArrowRight, TbCalendarEvent, TbLocation } from "react-icons/tb";
 import { formattedDate } from "~/utils";
 import { IcingAvatar } from "./IcingAvatar";
-
-const icingList = [
-  {
-    name: "jdhx",
-    isWinner: true,
-  },
-  {
-    name: "popa",
-    isWinner: true,
-  },
-  {
-    name: "joes",
-    isWinner: true,
-  },
-  {
-    name: "xsof",
-    isWinner: false,
-  },
-  {
-    name: "zozo",
-    isWinner: false,
-  },
-  {
-    name: "aesx",
-    isWinner: false,
-  },
-];
+interface IIcingUser {
+  name: string | null;
+  username: string | null;
+  avatarId: string;
+}
 
 interface IProps {
   id: string;
@@ -35,12 +13,20 @@ interface IProps {
   owner: string | null;
   createdAt: string;
   location: string;
+  icings: { winner: IIcingUser; loser: IIcingUser }[];
 }
 
-export function EventCard({ id, title, owner, createdAt, location }: IProps) {
+export function EventCard({
+  id,
+  title,
+  owner,
+  createdAt,
+  location,
+  icings,
+}: IProps) {
   return (
     <div className="card mb-4 bg-primary-content shadow-lg">
-      <div className="p-4">
+      <div className="p-6">
         <div className="flex justify-between">
           <h2 className="card-title">{title}</h2>
           <p className="text-icing-red">@{owner}</p>
@@ -55,9 +41,23 @@ export function EventCard({ id, title, owner, createdAt, location }: IProps) {
             {location}
           </p>
         </div>
-        <div className="my-8 flex items-center gap-2">
-          {icingList.map(({ name, isWinner }, index) => {
-            return <IcingAvatar key={index} name={name} isWinner={isWinner} />;
+        <div className="relative mt-4 mb-8 flex items-center gap-3">
+          {icings.map(({ winner, loser }, index) => {
+            return (
+              <>
+                <IcingAvatar
+                  key={index}
+                  name={winner.username || ""}
+                  avatarId={winner.avatarId}
+                  isWinner
+                />
+                <IcingAvatar
+                  key={index}
+                  avatarId={loser.avatarId}
+                  name={loser.username || ""}
+                />
+              </>
+            );
           })}
         </div>
         <a
