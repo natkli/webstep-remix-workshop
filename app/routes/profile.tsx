@@ -26,11 +26,11 @@ export default function ProfilePage() {
 
   return (
     <div className="w-full">
-      <h1 className="mb-2 text-xl font-bold">Profile</h1>
       <div className="flex flex-col">
+        <h1 className="my-4 text-center text-2xl font-bold">Profile</h1>
         <div>
           <div className="flex flex-col items-center">
-            <div className="avatar mt-16 mb-4">
+            <div className="avatar mt-12 mb-4">
               <div className="w-28 rounded-full bg-neutral-focus text-neutral-content">
                 <img
                   src={user && getAvatarById(user?.avatarId)}

@@ -53,8 +53,8 @@ export default function App() {
         />
         <Links />
       </head>
-      <body className="font-archivo">
-        <main className="min-h-screen w-full max-w-lg bg-gray-100">
+      <body className="bg-gray-100 font-archivo">
+        <main className="min-h-screen w-full max-w-lg">
           <div className="p-4">
             <Outlet />
             <ScrollRestoration />

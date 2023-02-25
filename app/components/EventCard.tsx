@@ -13,7 +13,7 @@ interface IProps {
   owner: string | null;
   createdAt: string;
   location: string;
-  icings: { winner: IIcingUser; loser: IIcingUser }[];
+  icings: { id: string; winner: IIcingUser; loser: IIcingUser }[];
 }
 
 export function EventCard({
@@ -42,21 +42,19 @@ export function EventCard({
           </p>
         </div>
         <div className="relative mt-4 mb-8 flex items-center gap-3">
-          {icings.map(({ winner, loser }, index) => {
+          {icings.map(({ id, winner, loser }) => {
             return (
-              <>
+              <div key={id} className="flex gap-3">
                 <IcingAvatar
-                  key={index}
                   name={winner.username || ""}
                   avatarId={winner.avatarId}
                   isWinner
                 />
                 <IcingAvatar
-                  key={index}
                   avatarId={loser.avatarId}
                   name={loser.username || ""}
                 />
-              </>
+              </div>
             );
           })}
         </div>

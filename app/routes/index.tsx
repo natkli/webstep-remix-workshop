@@ -31,7 +31,7 @@ export default function Index() {
 
   return (
     <div className="w-full">
-      <h1 className="mb-4 text-xl font-bold">Events</h1>
+      <h1 className="my-4 text-center text-2xl font-bold">Events</h1>
       <div className="mb-[10rem]">
         {data.eventList.map(
           ({ id, title, location, createdAt, owner, icings }) => {
