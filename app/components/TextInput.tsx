@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { RefObject } from "react";
+import { type RefObject } from "react";
 
 interface IProps {
   label: string;
