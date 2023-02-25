@@ -71,7 +71,7 @@ export default function RankingPage() {
       setRankingList(sortedByName);
       return;
     }
-  }, [sortMethod, data]);
+  }, [sortMethod]);
 
   return (
     <div className="w-full">
