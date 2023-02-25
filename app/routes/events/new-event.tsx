@@ -31,7 +31,7 @@ export async function action({ request }: ActionArgs) {
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: { title: "Event title is required", location: null } },
+      { errors: { title: "Event title is equired", location: null } },
       { status: 400 }
     );
   }
@@ -63,13 +63,13 @@ export default function NewEventPage() {
 
   return (
     <div className="min-h-full w-full">
-      <h1 className="my-4 text-center text-2xl font-bold">New event</h1>
+      <h1 className="my-4 text-center text-2xl font-bold">Create new event</h1>
       <Form method="post" className="flex w-full flex-col items-center">
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text-alt text-sm">Event title</span>
             {actionData?.errors.title && (
-              <span className="label-text-alt text-warning">
+              <span className="label-text-alt text-error">
                 {actionData.errors.title}
               </span>
             )}
@@ -80,7 +80,7 @@ export default function NewEventPage() {
             ref={titleRef}
             className={clsx(
               "input-bordered input w-full max-w-xs",
-              actionData?.errors.title && "input-warning"
+              actionData?.errors.title && "input-error"
             )}
           />
         </div>
@@ -88,7 +88,7 @@ export default function NewEventPage() {
           <label className="label">
             <span className="label-text-alt text-sm">Location</span>
             {actionData?.errors.location && (
-              <span className="label-text-alt text-warning">
+              <span className="label-text-alt text-error">
                 {actionData.errors.location}
               </span>
             )}
@@ -99,7 +99,7 @@ export default function NewEventPage() {
             name="location"
             className={clsx(
               "input-bordered input w-full max-w-xs",
-              actionData?.errors.location && "input-warning"
+              actionData?.errors.location && "input-error"
             )}
           />
         </div>

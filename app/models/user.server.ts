@@ -15,9 +15,6 @@ export async function getUsers() {
       avatarId: true,
     },
     orderBy: { name: "asc" },
-    where: {
-      NOT: [{ name: null }, { username: null }],
-    },
   });
 }
 
@@ -29,7 +26,12 @@ export async function getUserByEmail(email: User["email"]) {
   return prisma.user.findUnique({ where: { email } });
 }
 
-export async function createUser(email: User["email"], password: string) {
+export async function createUser(
+  email: User["email"],
+  username: User["username"],
+  name: User["name"],
+  password: string
+) {
   const hashedPassword = await bcrypt.hash(password, 10);
   const randomId = randomInt();
   const avatarId = `avatar${randomId}`;
@@ -38,6 +40,8 @@ export async function createUser(email: User["email"], password: string) {
     data: {
       email,
       avatarId,
+      name,
+      username,
       password: {
         create: {
           hash: hashedPassword,
@@ -103,9 +107,6 @@ export function getUsersWithStats() {
       avatarId: true,
       icingWins: true,
       icingLoses: true,
-    },
-    where: {
-      NOT: [{ name: null }, { username: null }],
     },
     orderBy: {
       icingWins: {

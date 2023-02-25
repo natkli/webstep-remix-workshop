@@ -7,6 +7,7 @@ import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 import { verifyLogin } from "~/models/user.server";
 import { createUserSession, getUserId } from "~/session.server";
 import { safeRedirect, validateEmail } from "~/utils";
+import clsx from "clsx";
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request);
@@ -83,61 +84,48 @@ export default function LoginPage() {
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <Form method="post" className="w-[20rem] max-w-lg space-y-6">
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email address
-          </label>
-          <div className="mt-1">
-            <input
-              ref={emailRef}
-              id="email"
-              required
-              autoFocus={true}
-              name="email"
-              type="email"
-              autoComplete="email"
-              aria-invalid={actionData?.errors?.email ? true : undefined}
-              aria-describedby="email-error"
-              className="input-bordered input-primary input w-full"
-            />
-            {actionData?.errors?.email && (
-              <div className="pt-1 text-error" id="email-error">
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text-alt text-sm">Email</span>
+            {actionData?.errors.email && (
+              <span className="label-text-alt text-error">
                 {actionData.errors.email}
-              </div>
+              </span>
             )}
-          </div>
+          </label>
+          <input
+            type="text"
+            name="email"
+            ref={emailRef}
+            className={clsx(
+              "input-bordered input w-full max-w-xs",
+              actionData?.errors.email && "input-error"
+            )}
+          />
         </div>
 
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
-          <div className="mt-1">
-            <input
-              id="password"
-              ref={passwordRef}
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              aria-invalid={actionData?.errors?.password ? true : undefined}
-              aria-describedby="password-error"
-              className="input-bordered input-primary input w-full"
-            />
-            {actionData?.errors?.password && (
-              <div className="pt-1 text-error" id="password-error">
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text-alt text-sm">Password</span>
+            {actionData?.errors.password && (
+              <span className="label-text-alt text-error">
                 {actionData.errors.password}
-              </div>
+              </span>
             )}
-          </div>
+          </label>
+          <input
+            name="password"
+            type="password"
+            ref={passwordRef}
+            className={clsx(
+              "input-bordered input w-full max-w-xs",
+              actionData?.errors.password && "input-warning"
+            )}
+          />
         </div>
 
         <input type="hidden" name="redirectTo" value={redirectTo} />
+
         <button type="submit" className="btn-primary btn w-full">
           Log in
         </button>

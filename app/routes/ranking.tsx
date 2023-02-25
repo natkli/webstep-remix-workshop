@@ -28,22 +28,12 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 type SortMethod = "name" | "wins" | "loses";
-interface IUserWithStats {
-  id: string;
-  name: string;
-  username: string;
-  avatarId: string;
-  icingWins: [];
-  icingLoses: [];
-}
 
 export default function RankingPage() {
   const data = useLoaderData<typeof loader>();
 
   const [sortMethod, setSortMethod] = useState<SortMethod>("wins");
-  const [rankingList, setRankingList] = useState(
-    data.users as IUserWithStats[]
-  );
+  const [rankingList, setRankingList] = useState(data.users);
 
   useEffect(() => {
     if (sortMethod === "wins") {

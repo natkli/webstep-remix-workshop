@@ -66,7 +66,7 @@ export default function ProfileEditPage() {
         <label className="label">
           <span className="label-text-alt text-sm">Username</span>
           {actionData?.errors.username && (
-            <span className="label-text-alt text-warning">
+            <span className="label-text-alt text-error">
               {actionData.errors.username}
             </span>
           )}
@@ -78,15 +78,16 @@ export default function ProfileEditPage() {
           placeholder={user?.username || "Username"}
           className={clsx(
             "input-bordered input w-full max-w-xs",
-            actionData?.errors.username && "input-warning"
+            actionData?.errors.username && "input-error"
           )}
         />
       </div>
+
       <div className="form-control mt-2 w-full max-w-xs">
         <label className="label">
           <span className="label-text-alt text-sm">Name</span>
           {actionData?.errors.name && (
-            <span className="label-text-alt text-warning">
+            <span className="label-text-alt text-error">
               {actionData.errors.name}
             </span>
           )}
@@ -98,10 +99,11 @@ export default function ProfileEditPage() {
           placeholder={user?.name || "Name"}
           className={clsx(
             "input-bordered input w-full max-w-xs",
-            actionData?.errors.name && "input-warning"
+            actionData?.errors.name && "input-error"
           )}
         />
       </div>
+
       <div className="mt-8 flex justify-start gap-4">
         <Link to="/profile" className="btn-outline  btn-secondary btn">
           Cancel

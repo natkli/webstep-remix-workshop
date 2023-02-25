@@ -57,7 +57,7 @@ export default function EventIdNewIcing() {
 
   return (
     <div className="min-h-full w-full">
-      <h1 className="my-4 text-center text-2xl font-bold">New Icing</h1>
+      <h1 className="my-4 text-center text-2xl font-bold">Add new Icing</h1>
       <Form method="post" className="flex w-full flex-col items-center">
         <div className="form-control w-full max-w-xs">
           <label className="label">
@@ -66,7 +66,7 @@ export default function EventIdNewIcing() {
           <select
             className={clsx(
               "select-bordered select",
-              actionData?.errors && "select-warning"
+              actionData?.errors && "select-error"
             )}
             name="winner"
             defaultValue={data.users[0].id}
@@ -87,7 +87,7 @@ export default function EventIdNewIcing() {
           <select
             className={clsx(
               "select-bordered select",
-              actionData?.errors && "select-warning"
+              actionData?.errors && "select-error"
             )}
             name="loser"
             defaultValue={data.users[0].id}
@@ -103,9 +103,7 @@ export default function EventIdNewIcing() {
         </div>
 
         {actionData?.errors && (
-          <p className="mt-4 font-medium text-icing-red">
-            * {actionData.errors}
-          </p>
+          <p className="mt-4 font-medium text-error">* {actionData.errors}</p>
         )}
         <div className="mt-8 flex justify-start gap-4">
           <Link
