@@ -6,6 +6,7 @@ import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 
 import { createUserSession, getUserId } from "~/session.server";
 
+import { TextInput } from "~/components/TextInput";
 import { createUser, getUserByEmail } from "~/models/user.server";
 import { safeRedirect, validateEmail } from "~/utils";
 
@@ -162,115 +163,34 @@ export default function Join() {
   return (
     <div className="flex h-screen  flex-col items-center justify-center">
       <Form method="post" className="w-[20rem] max-w-lg space-y-6">
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email address
-          </label>
-          <div className="mt-1">
-            <input
-              ref={emailRef}
-              id="email"
-              required
-              autoFocus={true}
-              name="email"
-              type="email"
-              autoComplete="email"
-              aria-invalid={actionData?.errors?.email ? true : undefined}
-              aria-describedby="email-error"
-              className="input-bordered input-primary input w-full"
-            />
-            {actionData?.errors?.email && (
-              <div className="pt-1 text-warning" id="email-error">
-                {actionData.errors.email}
-              </div>
-            )}
-          </div>
-        </div>
+        <TextInput
+          label="Email address"
+          name="email"
+          ref={emailRef}
+          error={actionData?.errors.email}
+        />
 
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Username
-          </label>
-          <div className="mt-1">
-            <input
-              ref={usernameRef}
-              id="username"
-              required
-              autoFocus={true}
-              name="username"
-              type="username"
-              autoComplete="username"
-              aria-invalid={actionData?.errors?.username ? true : undefined}
-              aria-describedby="username-error"
-              className="input-bordered input-primary input w-full"
-            />
-            {actionData?.errors?.username && (
-              <div className="pt-1 text-warning" id="username-error">
-                {actionData.errors.username}
-              </div>
-            )}
-          </div>
-        </div>
+        <TextInput
+          label="Username"
+          name="username"
+          ref={usernameRef}
+          error={actionData?.errors.username}
+        />
 
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Name
-          </label>
-          <div className="mt-1">
-            <input
-              ref={nameRef}
-              id="name"
-              required
-              autoFocus={true}
-              name="name"
-              type="name"
-              autoComplete="name"
-              aria-invalid={actionData?.errors?.name ? true : undefined}
-              aria-describedby="name-error"
-              className="input-bordered input-primary input w-full"
-            />
-            {actionData?.errors?.name && (
-              <div className="pt-1 text-warning" id="name-error">
-                {actionData.errors.name}
-              </div>
-            )}
-          </div>
-        </div>
+        <TextInput
+          label="Name"
+          name="name"
+          ref={usernameRef}
+          error={actionData?.errors.name}
+        />
 
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
-          <div className="mt-1">
-            <input
-              id="password"
-              ref={passwordRef}
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              aria-invalid={actionData?.errors?.password ? true : undefined}
-              aria-describedby="password-error"
-              className="input-bordered input-primary input w-full"
-            />
-            {actionData?.errors?.password && (
-              <div className="pt-1 text-warning" id="password-error">
-                {actionData.errors.password}
-              </div>
-            )}
-          </div>
-        </div>
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          ref={usernameRef}
+          error={actionData?.errors.password}
+        />
 
         <input type="hidden" name="redirectTo" value={redirectTo} />
         <button type="submit" className="btn-primary btn w-full">

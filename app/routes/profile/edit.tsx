@@ -1,7 +1,7 @@
 import { Form, Link, useActionData } from "@remix-run/react";
-import { type ActionArgs, json, redirect } from "@remix-run/server-runtime";
-import clsx from "clsx";
+import { json, redirect, type ActionArgs } from "@remix-run/server-runtime";
 import { useEffect, useRef } from "react";
+import { TextInput } from "~/components/TextInput";
 import { updateUser } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
 
@@ -62,47 +62,21 @@ export default function ProfileEditPage() {
 
   return (
     <Form method="post" className="flex w-full flex-col items-center">
-      <div className="form-control w-full max-w-xs">
-        <label className="label">
-          <span className="label-text-alt text-sm">Username</span>
-          {actionData?.errors.username && (
-            <span className="label-text-alt text-error">
-              {actionData.errors.username}
-            </span>
-          )}
-        </label>
-        <input
-          type="text"
-          name="username"
-          ref={usernameRef}
-          placeholder={user?.username || "Username"}
-          className={clsx(
-            "input-bordered input w-full max-w-xs",
-            actionData?.errors.username && "input-error"
-          )}
-        />
-      </div>
+      <TextInput
+        label="Username"
+        name="username"
+        ref={usernameRef}
+        placeholder={user?.username}
+        error={actionData?.errors.username}
+      />
 
-      <div className="form-control mt-2 w-full max-w-xs">
-        <label className="label">
-          <span className="label-text-alt text-sm">Name</span>
-          {actionData?.errors.name && (
-            <span className="label-text-alt text-error">
-              {actionData.errors.name}
-            </span>
-          )}
-        </label>
-        <input
-          type="text"
-          ref={nameRef}
-          name="name"
-          placeholder={user?.name || "Name"}
-          className={clsx(
-            "input-bordered input w-full max-w-xs",
-            actionData?.errors.name && "input-error"
-          )}
-        />
-      </div>
+      <TextInput
+        label="Name"
+        name="name"
+        ref={nameRef}
+        placeholder={user?.name}
+        error={actionData?.errors.name}
+      />
 
       <div className="mt-8 flex justify-start gap-4">
         <Link to="/profile" className="btn-outline  btn-secondary btn">

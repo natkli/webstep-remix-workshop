@@ -6,8 +6,8 @@ import {
   type LoaderArgs,
   type MetaFunction,
 } from "@remix-run/server-runtime";
-import clsx from "clsx";
 import { useEffect, useRef } from "react";
+import { TextInput } from "~/components/TextInput";
 import { createEvent } from "~/models/event.server";
 import { requireUserId } from "~/session.server";
 
@@ -65,44 +65,20 @@ export default function NewEventPage() {
     <div className="min-h-full w-full">
       <h1 className="my-4 text-center text-2xl font-bold">Create new event</h1>
       <Form method="post" className="flex w-full flex-col items-center">
-        <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text-alt text-sm">Event title</span>
-            {actionData?.errors.title && (
-              <span className="label-text-alt text-error">
-                {actionData.errors.title}
-              </span>
-            )}
-          </label>
-          <input
-            type="text"
-            name="title"
-            ref={titleRef}
-            className={clsx(
-              "input-bordered input w-full max-w-xs",
-              actionData?.errors.title && "input-error"
-            )}
-          />
-        </div>
-        <div className="form-control mt-2 w-full max-w-xs">
-          <label className="label">
-            <span className="label-text-alt text-sm">Location</span>
-            {actionData?.errors.location && (
-              <span className="label-text-alt text-error">
-                {actionData.errors.location}
-              </span>
-            )}
-          </label>
-          <input
-            type="text"
-            ref={locationRef}
-            name="location"
-            className={clsx(
-              "input-bordered input w-full max-w-xs",
-              actionData?.errors.location && "input-error"
-            )}
-          />
-        </div>
+        <TextInput
+          label="Event title"
+          name="title"
+          ref={titleRef}
+          error={actionData?.errors.title}
+        />
+
+        <TextInput
+          label="Location"
+          name="location"
+          ref={locationRef}
+          error={actionData?.errors.location}
+        />
+
         <div className="mt-8 flex justify-start gap-4">
           <Link to="/" className="btn-outline  btn-secondary btn">
             Cancel

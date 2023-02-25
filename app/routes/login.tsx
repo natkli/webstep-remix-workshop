@@ -4,10 +4,10 @@ import type { ActionArgs, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 
+import { TextInput } from "~/components/TextInput";
 import { verifyLogin } from "~/models/user.server";
 import { createUserSession, getUserId } from "~/session.server";
 import { safeRedirect, validateEmail } from "~/utils";
-import clsx from "clsx";
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request);
@@ -84,45 +84,20 @@ export default function LoginPage() {
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <Form method="post" className="w-[20rem] max-w-lg space-y-6">
-        <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text-alt text-sm">Email</span>
-            {actionData?.errors.email && (
-              <span className="label-text-alt text-error">
-                {actionData.errors.email}
-              </span>
-            )}
-          </label>
-          <input
-            type="text"
-            name="email"
-            ref={emailRef}
-            className={clsx(
-              "input-bordered input w-full max-w-xs",
-              actionData?.errors.email && "input-error"
-            )}
-          />
-        </div>
+        <TextInput
+          label="Email"
+          name="email"
+          ref={emailRef}
+          error={actionData?.errors.email}
+        />
 
-        <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text-alt text-sm">Password</span>
-            {actionData?.errors.password && (
-              <span className="label-text-alt text-error">
-                {actionData.errors.password}
-              </span>
-            )}
-          </label>
-          <input
-            name="password"
-            type="password"
-            ref={passwordRef}
-            className={clsx(
-              "input-bordered input w-full max-w-xs",
-              actionData?.errors.password && "input-warning"
-            )}
-          />
-        </div>
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          ref={passwordRef}
+          error={actionData?.errors.password}
+        />
 
         <input type="hidden" name="redirectTo" value={redirectTo} />
 
