@@ -71,6 +71,8 @@ export default function RankingPage() {
       setRankingList(sortedByName);
       return;
     }
+
+    //eslint-ignore
   }, [sortMethod]);
 
   return (
