@@ -116,7 +116,7 @@ export default function EventDetailsPage() {
 
           {icings.length === 0 && (
             <div className="card bg-icing-orange-light p-4 text-center">
-              <h2 className="text-lg font-medium">Icing begins!</h2>
+              <h2 className="mb-2 text-lg font-medium">Icing begins!</h2>
               <p>Press + to add one</p>
             </div>
           )}

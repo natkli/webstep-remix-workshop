@@ -69,21 +69,25 @@ export default function RankingPage() {
   return (
     <div className="w-full">
       <h1 className="my-4 text-center text-2xl font-bold">Ranking</h1>
-      <label className="label">
-        <span className="label-text">Sort by</span>
-      </label>
-      <select
-        className="select-bordered select select-md w-full max-w-[7rem]"
-        onChange={(event) => {
-          const value = event.target.value as SortMethod;
-          setSortMethod(value);
-        }}
-        defaultValue="wins"
-      >
-        <option value="wins">Wins</option>
-        <option value="loses">Loses</option>
-        <option value="name">Name</option>
-      </select>
+      <div className="flex w-full justify-center">
+        <div>
+          <label className="label">
+            <span className="label-text w-full text-center">Sort by</span>
+          </label>
+          <select
+            className="select-bordered select select-md w-full"
+            onChange={(event) => {
+              const value = event.target.value as SortMethod;
+              setSortMethod(value);
+            }}
+            defaultValue="wins"
+          >
+            <option value="wins">Wins</option>
+            <option value="loses">Loses</option>
+            <option value="name">Name</option>
+          </select>
+        </div>
+      </div>
 
       <div className="card mt-4 mb-[10rem] bg-primary-content py-6 px-4 shadow-lg">
         {rankingList.map((user, index) => {
