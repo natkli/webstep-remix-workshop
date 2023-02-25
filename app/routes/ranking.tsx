@@ -72,7 +72,7 @@ export default function RankingPage() {
       return;
     }
 
-    //eslint-ignore
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortMethod]);
 
   return (
