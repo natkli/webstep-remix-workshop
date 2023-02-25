@@ -93,3 +93,24 @@ export function updateUser(
     where: { id: userId },
   });
 }
+
+export function getUsersWithStats() {
+  return prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      username: true,
+      avatarId: true,
+      icingWins: true,
+      icingLoses: true,
+    },
+    where: {
+      NOT: [{ name: null }, { username: null }],
+    },
+    orderBy: {
+      icingWins: {
+        _count: "desc",
+      },
+    },
+  });
+}

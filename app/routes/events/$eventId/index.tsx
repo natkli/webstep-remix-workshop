@@ -19,7 +19,8 @@ import { deleteEvent, getEvent } from "~/models/event.server";
 import { requireUserId } from "~/session.server";
 import { formattedDate, getAvatarById, useOptionalUser } from "~/utils";
 
-export async function loader({ params }: LoaderArgs) {
+export async function loader({ params, request }: LoaderArgs) {
+  await requireUserId(request);
   invariant(params.eventId, "eventId not found");
 
   const event = await getEvent(params.eventId);
