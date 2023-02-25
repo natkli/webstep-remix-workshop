@@ -100,12 +100,26 @@ export default function EventDetailsPage() {
               </span>
             </div>
           </div>
-          <h2 className="mt-4 px-2 text-lg font-bold">Icing list</h2>
-          <div className="flex flex-col gap-2 px-2">
-            {icings.map(({ id, winner, loser }) => {
-              return <EventIcingItem key={id} winner={winner} loser={loser} />;
-            })}
-          </div>
+
+          {icings.length > 0 && (
+            <>
+              <h2 className="mt-4 px-2 text-lg font-bold">Icing list</h2>
+              <div className="flex flex-col gap-2 px-2">
+                {icings.map(({ id, winner, loser }) => {
+                  return (
+                    <EventIcingItem key={id} winner={winner} loser={loser} />
+                  );
+                })}
+              </div>
+            </>
+          )}
+
+          {icings.length === 0 && (
+            <div className="card bg-icing-orange-light p-4 text-center">
+              <h2 className="text-lg font-medium">Icing begins!</h2>
+              <p>Press + to add one</p>
+            </div>
+          )}
         </div>
       </div>
 

@@ -31,7 +31,7 @@ export async function action({ request }: ActionArgs) {
 
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: { title: "Event title is equired", location: null } },
+      { errors: { title: "Event title is required", location: null } },
       { status: 400 }
     );
   }

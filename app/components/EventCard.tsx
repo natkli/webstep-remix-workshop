@@ -41,6 +41,7 @@ export function EventCard({
             {location}
           </p>
         </div>
+
         <div className="relative mt-4 mb-8 flex items-center gap-3">
           {icings.map(({ id, winner, loser }) => {
             return (
@@ -57,6 +58,12 @@ export function EventCard({
               </div>
             );
           })}
+
+          {icings.length === 0 && (
+            <div className="card bg-icing-orange-light px-4 py-2">
+              <p>Icing begins ..</p>
+            </div>
+          )}
         </div>
         <a
           className="link-primary link flex items-center gap-1 font-bold no-underline"
