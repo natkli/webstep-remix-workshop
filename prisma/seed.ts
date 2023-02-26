@@ -47,7 +47,7 @@ async function seed() {
     usersList.push(mockUser.id);
   }
 
-  // Create two example events
+  // Create Hemsedal events
   const hemsedalEvent = await prisma.event.create({
     data: {
       title: "Hemsedal - Save the date",
@@ -56,6 +56,7 @@ async function seed() {
     },
   });
 
+  // Add first icing to Hemsedal event
   await prisma.icing.create({
     data: {
       event: {
@@ -81,6 +82,7 @@ async function seed() {
     },
   });
 
+  // Add second icing to Hemsedal event
   await prisma.icing.create({
     data: {
       event: {
@@ -106,6 +108,7 @@ async function seed() {
     },
   });
 
+  // Create Nice Event
   const niceEvent = await prisma.event.create({
     data: {
       title: "Nice - Save the date",
@@ -114,6 +117,7 @@ async function seed() {
     },
   });
 
+  // Add first icing to Nice event
   await prisma.icing.create({
     data: {
       event: {
@@ -139,6 +143,7 @@ async function seed() {
     },
   });
 
+  // Add second icing to Nice event
   await prisma.icing.create({
     data: {
       event: {
