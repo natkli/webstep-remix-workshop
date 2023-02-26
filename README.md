@@ -17,19 +17,19 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 
 - Getting started:
 
-  ```sh
+  ```
   npm install
   ```
 
 - Initial setup:
 
-  ```sh
+  ```
   npm run setup
   ```
 
 - Start dev server:
 
-  ```sh
+  ```
   npm run dev
   ```
 
@@ -40,11 +40,11 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 
 ## Known issue
 
-- Delete database file `data.db` inside `/prisma` folder if you get this error in browser's console
-  ```sh
+- Read only database error. Error message in browser's console
+  ```
   Failed to update database because the database is read only
   ```
-- Then setup new database
-  ```sh
+  Reset your database, run:
+  ```
   npm run setup
   ```
