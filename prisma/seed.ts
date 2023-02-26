@@ -1,14 +1,14 @@
 import { PrismaClient } from "@prisma/client";
-import { getHashedPassword, usersList } from "./users.mocks";
+import { getHashedPassword, mockUsersList } from "./mocks";
 
 const prisma = new PrismaClient();
 
 async function seed() {
   const email = "rachel@remix.run";
-
   const hashedPassword = await getHashedPassword("racheliscool");
 
-  const user = await prisma.user.create({
+  // Create test user
+  const rachel = await prisma.user.create({
     data: {
       email,
       avatarId: "avatar0",
@@ -22,27 +22,14 @@ async function seed() {
     },
   });
 
-  await prisma.event.create({
-    data: {
-      title: "Hemsedal - Save the date",
-      location: "Hemsedal",
-      userId: user.id,
-    },
-  });
+  const usersList = [];
 
-  await prisma.event.create({
-    data: {
-      title: "Nice - Save the date",
-      location: "Nice",
-      userId: user.id,
-    },
-  });
-
-  for (let user of usersList) {
+  // Create nine more users
+  for (let user of mockUsersList) {
     const { email, name, username, avatarId, password } = user;
     const hash = await getHashedPassword(password);
 
-    await prisma.user.create({
+    const mockUser = await prisma.user.create({
       data: {
         email,
         name,
@@ -55,7 +42,127 @@ async function seed() {
         },
       },
     });
+
+    // Storing created usersId
+    usersList.push(mockUser.id);
   }
+
+  // Create two example events
+  const hemsedalEvent = await prisma.event.create({
+    data: {
+      title: "Hemsedal - Save the date",
+      location: "Hemsedal",
+      userId: rachel.id,
+    },
+  });
+
+  await prisma.icing.create({
+    data: {
+      event: {
+        connect: {
+          id: hemsedalEvent.id,
+        },
+      },
+      winner: {
+        connect: {
+          id: usersList[0],
+        },
+      },
+      loser: {
+        connect: {
+          id: usersList[1],
+        },
+      },
+      owner: {
+        connect: {
+          id: rachel.id,
+        },
+      },
+    },
+  });
+
+  await prisma.icing.create({
+    data: {
+      event: {
+        connect: {
+          id: hemsedalEvent.id,
+        },
+      },
+      winner: {
+        connect: {
+          id: usersList[2],
+        },
+      },
+      loser: {
+        connect: {
+          id: usersList[3],
+        },
+      },
+      owner: {
+        connect: {
+          id: rachel.id,
+        },
+      },
+    },
+  });
+
+  const niceEvent = await prisma.event.create({
+    data: {
+      title: "Nice - Save the date",
+      location: "Nice",
+      userId: rachel.id,
+    },
+  });
+
+  await prisma.icing.create({
+    data: {
+      event: {
+        connect: {
+          id: niceEvent.id,
+        },
+      },
+      winner: {
+        connect: {
+          id: usersList[3],
+        },
+      },
+      loser: {
+        connect: {
+          id: usersList[5],
+        },
+      },
+      owner: {
+        connect: {
+          id: rachel.id,
+        },
+      },
+    },
+  });
+
+  await prisma.icing.create({
+    data: {
+      event: {
+        connect: {
+          id: niceEvent.id,
+        },
+      },
+      winner: {
+        connect: {
+          id: usersList[3],
+        },
+      },
+      loser: {
+        connect: {
+          id: usersList[8],
+        },
+      },
+      owner: {
+        connect: {
+          id: rachel.id,
+        },
+      },
+    },
+  });
 
   console.log(`Database has been seeded. 🌱`);
 }

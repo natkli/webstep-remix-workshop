@@ -4,7 +4,7 @@ export async function getHashedPassword(password: string) {
   return await bcrypt.hash(password, 10);
 }
 
-export const usersList = [
+export const mockUsersList = [
   {
     name: "Odin Emmerhoff",
     username: "odem",
