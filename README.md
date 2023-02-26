@@ -33,16 +33,14 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
   npm run dev
   ```
 
-This starts your app in development mode, rebuilding assets on file changes.
-
-The database seed script creates a new user with some data you can use to get started:
-
-- Email: `rachel@remix.run`
-- Password: `racheliscool`
-
 ## Commands
 
-- Revert database back to start.
+- Reset database
   ```sh
   npm run db:reset
   ```
+
+## Test user
+
+- Email: `rachel@remix.run`
+- Password: `racheliscool`
