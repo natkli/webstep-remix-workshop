@@ -1,8 +1,8 @@
 import { Form, Link, useActionData } from "@remix-run/react";
 import {
   json,
-  MetaFunction,
   redirect,
+  type MetaFunction,
   type ActionArgs,
 } from "@remix-run/server-runtime";
 import { useEffect, useRef } from "react";
