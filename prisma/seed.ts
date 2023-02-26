@@ -71,7 +71,7 @@ async function seed() {
       },
       loser: {
         connect: {
-          id: usersList[1],
+          id: usersList[3],
         },
       },
       owner: {
@@ -92,7 +92,7 @@ async function seed() {
       },
       winner: {
         connect: {
-          id: usersList[2],
+          id: usersList[0],
         },
       },
       loser: {
@@ -127,12 +127,12 @@ async function seed() {
       },
       winner: {
         connect: {
-          id: usersList[3],
+          id: usersList[0],
         },
       },
       loser: {
         connect: {
-          id: usersList[5],
+          id: usersList[3],
         },
       },
       owner: {
@@ -153,12 +153,12 @@ async function seed() {
       },
       winner: {
         connect: {
-          id: usersList[3],
+          id: usersList[5],
         },
       },
       loser: {
         connect: {
-          id: usersList[8],
+          id: usersList[3],
         },
       },
       owner: {

@@ -33,14 +33,18 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
   npm run dev
   ```
 
-## Commands
-
-- Reset database
-  ```sh
-  npm run db:reset
-  ```
-
 ## Test user
 
 - Email: `rachel@remix.run`
 - Password: `racheliscool`
+
+## Known issue
+
+- Delete database file **data.db** inside `/prisma` folder if you get this error in browser's console
+  ```sh
+  Failed to update database because the database is read only
+  ```
+- Setup new database
+  ```sh
+  npm run setup
+  ```

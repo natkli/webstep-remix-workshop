@@ -15,9 +15,7 @@
     "setup": "prisma generate && prisma migrate deploy && prisma db seed",
     "start": "remix-serve build",
     "start:mocks": "binode --require ./mocks -- @remix-run/serve:remix-serve build",
-    "typecheck": "tsc",
-    "db:delete": "del-cli --force ./prisma/data.db",
-    "db:reset": "npm run db:delete && npm run setup"
+    "typecheck": "tsc"
   },
   "prettier": {},
   "eslintIgnore": [
@@ -35,7 +33,6 @@
     "clsx": "^1.2.1",
     "daisyui": "^2.50.0",
     "date-fns": "^2.29.3",
-    "del-cli": "^5.0.0",
     "husky": "^8.0.3",
     "isbot": "^3.6.5",
     "react": "^18.2.0",
