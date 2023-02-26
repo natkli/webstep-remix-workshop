@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
 import {
   json,
@@ -5,8 +6,10 @@ import {
   type ActionArgs,
   type MetaFunction,
 } from "@remix-run/server-runtime";
-import clsx from "clsx";
 import invariant from "tiny-invariant";
+
+import { UserSelectInput } from "~/components/UserSelectInput";
+
 import { createIcing } from "~/models/icing.server";
 import { getUsers } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
@@ -41,7 +44,7 @@ export async function action({ request, params }: ActionArgs) {
 
   if (winnerId === loserId) {
     return json(
-      { errors: "Winner and loser can't be the same person" },
+      { error: "Winner and loser can't be the same person" },
       { status: 400 }
     );
   }
@@ -55,56 +58,37 @@ export default function EventIdNewIcing() {
   const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
 
+  const winnerRef = useRef<HTMLSelectElement>(null);
+
+  useEffect(() => {
+    if (actionData?.error) {
+      winnerRef.current?.focus();
+    }
+  }, [actionData]);
+
   return (
     <div className="min-h-full w-full">
       <h1 className="my-4 text-center text-2xl font-bold">Add new Icing</h1>
       <Form method="post" className="flex w-full flex-col items-center">
-        <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text-alt text-sm">Winner</span>
-          </label>
-          <select
-            className={clsx(
-              "select-bordered select",
-              actionData?.errors && "select-error"
-            )}
-            name="winner"
-            defaultValue={data.users[0].id}
-          >
-            {data.users.map(({ id, name, username }) => {
-              return (
-                <option key={id} value={id}>
-                  {name} @{username}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div className="form-control mt-2 w-full max-w-xs">
-          <label className="label">
-            <span className="label-text-alt text-sm">Loser</span>
-          </label>
-          <select
-            className={clsx(
-              "select-bordered select",
-              actionData?.errors && "select-error"
-            )}
-            name="loser"
-            defaultValue={data.users[0].id}
-          >
-            {data.users.map(({ id, name, username }) => {
-              return (
-                <option key={id} value={id}>
-                  {name} @{username}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+        <UserSelectInput
+          ref={winnerRef}
+          label="Winner"
+          name="winner"
+          users={data.users}
+          error={!!actionData?.error}
+        />
 
-        {actionData?.errors && (
-          <p className="mt-4 font-medium text-error">* {actionData.errors}</p>
+        <UserSelectInput
+          label="Loser"
+          name="loser"
+          users={data.users}
+          error={!!actionData?.error}
+        />
+
+        {actionData?.error && (
+          <p className="mt-4 font-medium text-error">* {actionData.error}</p>
         )}
+
         <div className="mt-8 flex justify-start gap-4">
           <Link
             to={`/events/${data.eventId}`}
