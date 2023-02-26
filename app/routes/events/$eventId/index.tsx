@@ -7,11 +7,11 @@ import {
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import { TbArrowLeft, TbTrash } from "react-icons/tb";
 import invariant from "tiny-invariant";
+
 import { EventDetails } from "~/components/event/EventDetails";
 import { EventIcingList } from "~/components/event/EventIcingList";
-
-import { HorizontalIcingItem } from "~/components/event/HorizontalIcingItem";
 import { StickyButton } from "~/components/StickyButton";
+
 import { deleteEvent, getEvent } from "~/models/event.server";
 import { requireUserId } from "~/session.server";
 import { useOptionalUser } from "~/utils";
