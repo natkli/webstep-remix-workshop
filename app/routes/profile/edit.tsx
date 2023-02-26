@@ -1,11 +1,22 @@
 import { Form, Link, useActionData } from "@remix-run/react";
-import { json, redirect, type ActionArgs } from "@remix-run/server-runtime";
+import {
+  json,
+  MetaFunction,
+  redirect,
+  type ActionArgs,
+} from "@remix-run/server-runtime";
 import { useEffect, useRef } from "react";
 import { TextInput } from "~/components/TextInput";
 import { updateUser } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
 
 import { useOptionalUser } from "~/utils";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Icing | Edit profile",
+  };
+};
 
 export async function action({ request }: ActionArgs) {
   const userId = await requireUserId(request);
