@@ -1,7 +1,5 @@
-import { TbArrowRight, TbCalendarEvent, TbLocation } from "react-icons/tb";
-import { IcingAvatar } from "../IcingAvatar";
+import { TbArrowRight } from "react-icons/tb";
 
-import { formattedDate } from "~/utils";
 import { EventCardHeader } from "./EventCardHeader";
 import { EventCardIcingList } from "./EventCardIcingList";
 
