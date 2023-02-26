@@ -1,23 +1,22 @@
 import clsx from "clsx";
-import { type RefObject } from "react";
+import { forwardRef, type Ref } from "react";
 
 interface IProps {
   label: string;
   error?: string | null;
   name: string;
   placeholder?: string;
-  ref: RefObject<any>;
   type?: "text" | "password";
 }
 
-export function TextInput({
-  label,
-  error,
-  name,
-  placeholder,
-  ref,
-  type = "text",
-}: IProps) {
+export const TextInput = forwardRef(TextInputComponent);
+
+function TextInputComponent(
+  props: IProps,
+  ref: Ref<HTMLInputElement> | undefined
+) {
+  const { label, error, name, placeholder, type = "text" } = props;
+
   return (
     <div className="form-control mt-2 w-full max-w-xs">
       <label className="label">

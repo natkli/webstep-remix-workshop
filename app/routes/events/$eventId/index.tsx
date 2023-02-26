@@ -13,7 +13,7 @@ import {
 } from "react-icons/tb";
 import invariant from "tiny-invariant";
 
-import { EventIcingItem } from "~/components/events/eventIcingItem";
+import { EventDetailIcingItem } from "~/components/eventDetails/EventDetailIcingItem";
 import { StickyButton } from "~/components/StickyButton";
 import { deleteEvent, getEvent } from "~/models/event.server";
 import { requireUserId } from "~/session.server";
@@ -107,7 +107,11 @@ export default function EventDetailsPage() {
               <div className="flex flex-col gap-2 px-2">
                 {icings.map(({ id, winner, loser }) => {
                   return (
-                    <EventIcingItem key={id} winner={winner} loser={loser} />
+                    <EventDetailIcingItem
+                      key={id}
+                      winner={winner}
+                      loser={loser}
+                    />
                   );
                 })}
               </div>

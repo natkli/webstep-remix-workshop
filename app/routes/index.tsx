@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
 import { json, type MetaFunction } from "@remix-run/server-runtime";
-import { EventCard } from "~/components/EventCard";
+import { EventCard } from "~/components/eventCard/EventCard";
 import { Frontpage } from "~/components/Frontpage";
 import { StickyButton } from "~/components/StickyButton";
 import { getEventList } from "~/models/event.server";

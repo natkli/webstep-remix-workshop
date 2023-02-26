@@ -9,7 +9,7 @@ interface IProps {
   loser: IIcingUser;
 }
 
-export function EventIcingItem({ winner, loser }: IProps) {
+export function EventDetailIcingItem({ winner, loser }: IProps) {
   return (
     <div className="event-icing-item mt-4 flex flex-col gap-2 bg-primary-content">
       <div className="flex flex-row items-center justify-between">
