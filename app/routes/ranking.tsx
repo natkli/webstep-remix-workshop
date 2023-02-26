@@ -5,6 +5,7 @@ import {
   type MetaFunction,
 } from "@remix-run/server-runtime";
 import { useEffect, useState } from "react";
+
 import { getUsersWithStats } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
 import { getAvatarById } from "~/utils";
@@ -95,7 +96,7 @@ export default function RankingPage() {
             <div key={index} className="mb-4 w-full">
               <div className="flex flex-row justify-between">
                 <div className="flex flex-row items-center justify-center gap-2">
-                  <p className="mr-2">#{index + 1}</p>
+                  <p className="mr-2 text-neutral-400">#{index + 1}</p>
                   <div className="avatar">
                     <div className="w-10 rounded-full bg-neutral-focus text-neutral-content">
                       <img

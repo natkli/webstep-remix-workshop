@@ -1,4 +1,4 @@
-import { IcingAvatar } from "../IcingAvatar";
+import { VerticalIcingItem } from "./VerticalIcingItem";
 
 interface IIcingUser {
   name: string | null;
@@ -16,12 +16,12 @@ export function EventsIcingList({ icings }: IProps) {
       {icings.map(({ id, winner, loser }) => {
         return (
           <div key={id} className="flex gap-3">
-            <IcingAvatar
+            <VerticalIcingItem
               name={winner.username || ""}
               avatarId={winner.avatarId}
               isWinner
             />
-            <IcingAvatar
+            <VerticalIcingItem
               avatarId={loser.avatarId}
               name={loser.username || ""}
             />
