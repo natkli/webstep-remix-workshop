@@ -5,7 +5,7 @@ import {
   type MetaFunction,
 } from "@remix-run/server-runtime";
 import { TbLogout } from "react-icons/tb";
-import { ProfileAvatar } from "~/components/avatar/ProfileAvatar";
+import { ProfileAvatar } from "~/components/ProfileAvatar";
 import { requireUserId } from "~/session.server";
 
 import { useOptionalUser } from "~/utils";

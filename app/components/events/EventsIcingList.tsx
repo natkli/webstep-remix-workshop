@@ -10,7 +10,7 @@ interface IProps {
   icings: { id: string; winner: IIcingUser; loser: IIcingUser }[];
 }
 
-export function EventCardIcingList({ icings }: IProps) {
+export function EventsIcingList({ icings }: IProps) {
   return (
     <div className="relative mt-4 mb-8 flex items-center gap-3">
       {icings.map(({ id, winner, loser }) => {

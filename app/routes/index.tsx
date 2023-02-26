@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
 import { json, type MetaFunction } from "@remix-run/server-runtime";
-import { EventCard } from "~/components/eventCard/EventCard";
+import { EventsCard } from "~/components/events/EventsCard";
 import { Frontpage } from "~/components/Frontpage";
 import { StickyButton } from "~/components/StickyButton";
 import { getEventList } from "~/models/event.server";
@@ -36,7 +36,7 @@ export default function Index() {
         {data.eventList.map(
           ({ id, title, location, createdAt, owner, icings }) => {
             return (
-              <EventCard
+              <EventsCard
                 key={id}
                 id={id}
                 title={title}
