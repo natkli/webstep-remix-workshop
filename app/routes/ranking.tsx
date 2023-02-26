@@ -9,7 +9,6 @@ import { RankedIcing } from "~/components/icings/RankedIcing";
 
 import { getUsersRank } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
-import { getAvatarById } from "~/utils";
 
 export const meta: MetaFunction = () => {
   return {
