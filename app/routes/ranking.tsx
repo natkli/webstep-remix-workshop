@@ -5,8 +5,9 @@ import {
   type MetaFunction,
 } from "@remix-run/server-runtime";
 import { useEffect, useState } from "react";
+import { RankedIcing } from "~/components/icings/RankedIcing";
 
-import { getUsersWithStats } from "~/models/user.server";
+import { getUsersRank } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
 import { getAvatarById } from "~/utils";
 
@@ -19,7 +20,7 @@ export const meta: MetaFunction = () => {
 export async function loader({ request }: LoaderArgs) {
   await requireUserId(request);
 
-  const users = await getUsersWithStats();
+  const users = await getUsersRank();
 
   if (!users) {
     throw new Response("Not Found", { status: 404 });
@@ -91,45 +92,21 @@ export default function RankingPage() {
       </div>
 
       <div className="card mt-4 mb-[10rem] bg-primary-content py-6 px-4 shadow-lg">
-        {rankingList.map((user, index) => {
-          return (
-            <div key={index} className="mb-4 w-full">
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-row items-center justify-center gap-2">
-                  <p className="mr-2 text-neutral-400">#{index + 1}</p>
-                  <div className="avatar">
-                    <div className="w-10 rounded-full bg-neutral-focus text-neutral-content">
-                      <img
-                        src={user && getAvatarById(user?.avatarId)}
-                        className="bg-neutral-content"
-                        alt={`${user?.name} avatar`}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <p>{user.name}</p>
-                    <p className="text-icing-red">@{user.username}</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-row gap-4">
-                  <div className="flex flex-row">
-                    <p className="flex gap-1">
-                      {user.icingWins.length}
-                      <span className="text-green-500">W</span>
-                    </p>
-                  </div>
-                  <div className="flex flex-row">
-                    <p className="flex gap-1">
-                      {user.icingLoses.length}
-                      <span className="text-red-500">L</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {rankingList.map(
+          ({ name, username, avatarId, icingWins, icingLoses }, index) => {
+            return (
+              <RankedIcing
+                key={index}
+                rank={index + 1}
+                name={name}
+                avatarId={avatarId}
+                username={username}
+                icingWins={icingWins.length}
+                icingLoses={icingLoses.length}
+              />
+            );
+          }
+        )}
       </div>
     </div>
   );

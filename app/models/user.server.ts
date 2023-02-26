@@ -98,7 +98,7 @@ export function updateUser(
   });
 }
 
-export function getUsersWithStats() {
+export function getUsersRank() {
   return prisma.user.findMany({
     select: {
       id: true,

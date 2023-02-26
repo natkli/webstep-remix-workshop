@@ -8,7 +8,7 @@ import {
 } from "@remix-run/server-runtime";
 import invariant from "tiny-invariant";
 
-import { UserSelectInput } from "~/components/UserSelectInput";
+import { UserSelect } from "~/components/UserSelect";
 
 import { createIcing } from "~/models/icing.server";
 import { getUsers } from "~/models/user.server";
@@ -70,7 +70,7 @@ export default function EventIdNewIcing() {
     <div className="min-h-full w-full">
       <h1 className="my-4 text-center text-2xl font-bold">Add new Icing</h1>
       <Form method="post" className="flex w-full flex-col items-center">
-        <UserSelectInput
+        <UserSelect
           ref={winnerRef}
           label="Winner"
           name="winner"
@@ -78,7 +78,7 @@ export default function EventIdNewIcing() {
           error={!!actionData?.error}
         />
 
-        <UserSelectInput
+        <UserSelect
           label="Loser"
           name="loser"
           users={data.users}

@@ -15,9 +15,9 @@ interface IProps {
   users: IUser[];
 }
 
-export const UserSelectInput = forwardRef(UserSelectInputComponent);
+export const UserSelect = forwardRef(UserSelectComponent);
 
-function UserSelectInputComponent(
+function UserSelectComponent(
   props: IProps,
   ref: Ref<HTMLSelectElement> | undefined
 ) {

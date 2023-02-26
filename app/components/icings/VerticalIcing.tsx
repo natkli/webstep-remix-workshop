@@ -5,7 +5,7 @@ interface IProps {
   isWinner?: boolean;
 }
 
-export function VerticalIcingItem({ name, avatarId, isWinner }: IProps) {
+export function VerticalIcing({ name, avatarId, isWinner }: IProps) {
   return (
     <div className="flex flex-col items-center">
       {isWinner ? (

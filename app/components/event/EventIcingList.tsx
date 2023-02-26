@@ -1,4 +1,4 @@
-import { HorizontalIcingItem } from "./HorizontalIcingItem";
+import { HorizontalIcing } from "../icings/HorizontalIcing";
 
 interface IIcing {
   id: string;
@@ -33,7 +33,7 @@ export function EventIcingList({ icings }: IProps) {
       <h2 className="mt-4 px-2 text-lg font-bold">Icing list</h2>
       <div className="flex flex-col gap-2 px-2">
         {icings.map(({ id, winner, loser }) => {
-          return <HorizontalIcingItem key={id} winner={winner} loser={loser} />;
+          return <HorizontalIcing key={id} winner={winner} loser={loser} />;
         })}
       </div>
     </>
