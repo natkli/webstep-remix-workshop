@@ -9,7 +9,12 @@ interface IProps {
   location: string;
 }
 
-export function EventDetails({ title, owner, createdAt, location }: IProps) {
+export function EventCardDetails({
+  title,
+  owner,
+  createdAt,
+  location,
+}: IProps) {
   return (
     <>
       <div className="flex justify-between">

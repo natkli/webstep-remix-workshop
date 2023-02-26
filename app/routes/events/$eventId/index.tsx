@@ -43,7 +43,7 @@ export default function EventDetailsPage() {
   const { id, title, location, owner, createdAt, icings } = data.event;
 
   return (
-    <div>
+    <div className="w-full">
       <div className="mb-4 flex justify-between">
         <a
           className="link-primary link flex items-center gap-1 text-xl font-bold no-underline"

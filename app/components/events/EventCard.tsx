@@ -1,7 +1,7 @@
 import { TbArrowRight } from "react-icons/tb";
 
-import { EventDetails } from "./EventDetails";
-import { EventsIcingList } from "./EventsIcingList";
+import { EventCardDetails } from "./EventCardDetails";
+import { EventCardIcingList } from "./EventCardIcingList";
 
 interface IIcingUser {
   name: string | null;
@@ -18,7 +18,7 @@ interface IProps {
   icings: { id: string; winner: IIcingUser; loser: IIcingUser }[];
 }
 
-export function EventsCard({
+export function EventCard({
   id,
   title,
   owner,
@@ -29,14 +29,14 @@ export function EventsCard({
   return (
     <div className="card mb-4 bg-primary-content shadow-lg">
       <div className="p-6">
-        <EventDetails
+        <EventCardDetails
           title={title}
           owner={owner}
           createdAt={createdAt}
           location={location}
         />
 
-        <EventsIcingList icings={icings} />
+        <EventCardIcingList icings={icings} />
 
         <a
           className="link-primary link flex items-center gap-1 font-bold no-underline"

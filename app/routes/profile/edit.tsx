@@ -21,11 +21,11 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (typeof username !== "string" || username.length > 4) {
+  if (typeof username !== "string" || username.length !== 4) {
     return json(
       {
         errors: {
-          username: "Max 4 characters",
+          username: "Username must be 4 characters",
           name: null,
         },
       },

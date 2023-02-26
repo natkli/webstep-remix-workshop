@@ -5,14 +5,13 @@ import {
   type MetaFunction,
 } from "@remix-run/server-runtime";
 import { TbLogout } from "react-icons/tb";
-import { ProfileAvatar } from "~/components/ProfileAvatar";
 import { requireUserId } from "~/session.server";
 
-import { useOptionalUser } from "~/utils";
+import { getAvatarById, useOptionalUser } from "~/utils";
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Icing | My profile",
+    title: "Icing | Profile",
   };
 };
 
@@ -26,12 +25,19 @@ export default function ProfilePage() {
 
   return (
     <div className="w-full">
+      <h1 className="my-4 text-center text-2xl font-bold">Profile</h1>
       <div className="flex flex-col">
-        <h1 className="my-4 text-center text-2xl font-bold">Profile</h1>
-
         {user && (
           <div className="flex flex-col items-center">
-            <ProfileAvatar name={user.name} avatarId={user.avatarId} />
+            <div className="avatar mt-8 mb-4">
+              <div className="w-28 rounded-full bg-neutral-focus text-neutral-content">
+                <img
+                  src={getAvatarById(user.avatarId)}
+                  className="bg-neutral-content"
+                  alt={`${user.name} avatar`}
+                />
+              </div>
+            </div>
             <div className="text-center">
               <p className="text-lg font-bold">{user?.username}</p>
               <p>{user?.name}</p>

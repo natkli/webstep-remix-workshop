@@ -52,12 +52,12 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (username.length > 4) {
+  if (username.length !== 4) {
     return json(
       {
         errors: {
           email: null,
-          username: "Max 4 characters",
+          username: "Username must be 4 characters",
           name: null,
           password: null,
         },
