@@ -53,7 +53,7 @@ export default function ProfilePage() {
         </div>
 
         <Form action="/logout" method="post" className="flex justify-center">
-          <button type="submit" className="btn-secondary btn mt-[30vh] gap-2">
+          <button type="submit" className="btn-secondary btn my-[20vh] gap-2">
             <TbLogout size={18} />
             Logout
           </button>

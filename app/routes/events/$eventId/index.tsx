@@ -100,9 +100,9 @@ export function CatchBoundary() {
         >
           <TbArrowLeft size={16} /> Events
         </a>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center px-8">
           <img
-            className="mt-[15vh] max-h-[25rem] w-[80vw]"
+            className="mt-[15vh] max-h-[25rem] w-full"
             src={undrawPageNotFound}
             alt="drink illustration"
           />
