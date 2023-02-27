@@ -12,7 +12,7 @@ interface IProps {
 
 export function EventCardIcingList({ icings }: IProps) {
   return (
-    <div className="relative mt-4 mb-8 flex items-center gap-3">
+    <div className="relative mt-4 mb-6 flex items-center gap-3">
       {icings.map(({ id, winner, loser }) => {
         return (
           <div key={id} className="flex gap-3">
@@ -30,7 +30,7 @@ export function EventCardIcingList({ icings }: IProps) {
       })}
 
       {icings.length === 0 && (
-        <div className="bg-icing-yellow-light card px-4 py-2">
+        <div className="card bg-icing-yellow-light px-4 py-2">
           <p>Icing begins ..</p>
         </div>
       )}

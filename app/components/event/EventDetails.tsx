@@ -35,7 +35,7 @@ export function EventDetails({ title, location, owner, createdAt }: IProps) {
       </div>
       <div className="flex flex-col items-center justify-center gap-2 py-6">
         <div className="avatar">
-          <div className="w-12 rounded-full bg-neutral-focus text-neutral-content">
+          <div className="w-14 rounded-full bg-neutral-focus text-neutral-content">
             <img
               src={owner && getAvatarById(owner?.avatarId)}
               className="bg-neutral-content"
@@ -43,8 +43,8 @@ export function EventDetails({ title, location, owner, createdAt }: IProps) {
             />
           </div>
         </div>
-        <div className="text-center font-medium">
-          <p className="text-md">{owner.name}</p>
+        <div className="text-center">
+          <p className="text-md font-bold">{owner.name}</p>
           <span className="text-sm text-icing-orange">@{owner.username}</span>
         </div>
       </div>
