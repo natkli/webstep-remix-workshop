@@ -16,6 +16,8 @@ import { deleteEvent, getEvent } from "~/models/event.server";
 import { requireUserId } from "~/session.server";
 import { useOptionalUser } from "~/utils";
 
+import undrawPageNotFound from "~/images/undraw_page_not_found.svg";
+
 export async function loader({ params, request }: LoaderArgs) {
   await requireUserId(request);
   invariant(params.eventId, "eventId not found");
@@ -55,7 +57,7 @@ export default function EventDetailsPage() {
           {owner.id === user?.id && (
             <button
               type="submit"
-              className="btn-warning btn-ghost btn-sm btn flex gap-1 text-icing-red"
+              className="btn-warning btn-ghost btn-sm btn flex gap-1 text-icing-orange"
             >
               <TbTrash size={20} />
             </button>
@@ -90,7 +92,24 @@ export function CatchBoundary() {
   const caught = useCatch();
 
   if (caught.status === 404) {
-    return <div>Note not found</div>;
+    return (
+      <div>
+        <a
+          className="link-primary link flex items-center gap-1 text-xl font-bold no-underline"
+          href="/events"
+        >
+          <TbArrowLeft size={16} /> Events
+        </a>
+        <div className="flex flex-col items-center justify-center">
+          <img
+            className="mt-[15vh] max-h-[25rem] w-[80vw]"
+            src={undrawPageNotFound}
+            alt="drink illustration"
+          />
+          <h1 className="mt-12 text-2xl font-black">Event not found</h1>
+        </div>
+      </div>
+    );
   }
 
   throw new Error(`Unexpected caught response with status: ${caught.status}`);

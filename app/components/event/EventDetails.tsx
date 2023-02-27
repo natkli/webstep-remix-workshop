@@ -45,7 +45,7 @@ export function EventDetails({ title, location, owner, createdAt }: IProps) {
         </div>
         <div className="text-center font-medium">
           <p className="text-md">{owner.name}</p>
-          <span className="text-sm text-icing-red">@{owner.username}</span>
+          <span className="text-sm text-icing-orange">@{owner.username}</span>
         </div>
       </div>
     </>

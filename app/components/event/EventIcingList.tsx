@@ -21,7 +21,7 @@ interface IProps {
 export function EventIcingList({ icings }: IProps) {
   if (icings.length === 0) {
     return (
-      <div className="card bg-icing-orange-light p-4 text-center">
+      <div className="bg-icing-yellow-light card p-4 text-center">
         <h2 className="mb-2 text-lg font-medium">Icing begins!</h2>
         <p>Press + to add one</p>
       </div>

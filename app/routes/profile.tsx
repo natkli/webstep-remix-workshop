@@ -39,7 +39,7 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="text-center">
-              <p className="text-lg font-bold text-icing-red">
+              <p className="text-lg font-bold text-icing-orange">
                 @{user?.username}
               </p>
               <p>{user?.name}</p>

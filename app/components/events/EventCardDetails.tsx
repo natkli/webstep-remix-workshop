@@ -19,7 +19,7 @@ export function EventCardDetails({
     <>
       <div className="flex justify-between">
         <h2 className="card-title">{title}</h2>
-        <p className="text-icing-red">@{owner}</p>
+        <p className="text-icing-orange">@{owner}</p>
       </div>
       <div className="mt-2 flex gap-4 text-sm text-base-600">
         <p className="flex items-center gap-1">

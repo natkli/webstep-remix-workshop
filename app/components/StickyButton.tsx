@@ -17,7 +17,7 @@ export function StickyButton({ url, color }: IProps) {
             <button
               className={clsx(
                 "btn-circle btn-lg btn",
-                color === "red" && "border-icing-red bg-icing-red"
+                color === "red" && "border-icing-orange bg-icing-orange"
               )}
             >
               <TbPlus size={26} />

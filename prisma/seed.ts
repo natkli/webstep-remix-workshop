@@ -47,7 +47,7 @@ async function seed() {
     usersList.push(mockUser.id);
   }
 
-  // Create Hemsedal events
+  // Create Hemsedal event
   const hemsedalEvent = await prisma.event.create({
     data: {
       title: "Hemsedal - Save the date",

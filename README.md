@@ -40,11 +40,11 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 
 ## Known issue
 
-- Read only database error. Error message in browser's console
+- Read only database error in browser's console
   ```
   Failed to update database because the database is read only
   ```
-  Reset your database, run:
+  Fix the issue by resetting your database, run:
   ```
   npm run setup
   ```

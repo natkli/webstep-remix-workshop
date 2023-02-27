@@ -45,7 +45,7 @@ export function StickyMenu() {
               to={menu.link}
               className={clsx(
                 "flex items-center justify-center border-b-[3px]",
-                isActiveLink(menu) ? "border-icing-red" : "border-primary"
+                isActiveLink(menu) ? "border-icing-orange" : "border-primary"
               )}
             >
               <li>{menu.icon}</li>

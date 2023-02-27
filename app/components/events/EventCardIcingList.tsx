@@ -30,7 +30,7 @@ export function EventCardIcingList({ icings }: IProps) {
       })}
 
       {icings.length === 0 && (
-        <div className="card bg-icing-orange-light px-4 py-2">
+        <div className="bg-icing-yellow-light card px-4 py-2">
           <p>Icing begins ..</p>
         </div>
       )}
