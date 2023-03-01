@@ -1,10 +1,17 @@
 import { Link } from "@remix-run/react";
+import clsx from "clsx";
+import { useState } from "react";
 import undrawEnegizer from "~/images/undraw_energizer.svg";
 
 export function Frontpage() {
+  const [showEasterEgg, setShowEasterEgg] = useState(false);
+
   return (
     <div className="flex h-screen flex-col items-center justify-center">
-      <h1 className="relative text-center text-6xl font-black tracking-tight">
+      <h1
+        className="relative mb-8 text-center text-6xl font-black tracking-tight"
+        onClick={() => setShowEasterEgg(!showEasterEgg)}
+      >
         ICE
         <span className="absolute -left-24 top-8 -rotate-[20deg] text-4xl">
           ICE
@@ -12,7 +19,16 @@ export function Frontpage() {
         <span className="absolute top-8 -right-24 rotate-[20deg] text-4xl">
           ICE
         </span>
+        <span
+          className={clsx(
+            "absolute top-20 right-0 text-4xl transition duration-200 ease-in-out",
+            showEasterEgg ? "opacity-100" : "opacity-0"
+          )}
+        >
+          BABY
+        </span>
       </h1>
+
       <img
         className="mt-24 mb-8 max-h-[25rem] w-[80vw]"
         src={undrawEnegizer}
