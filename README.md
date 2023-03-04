@@ -1,8 +1,8 @@
 # Oppgave 6: Profileside
 
-Denne oppgaven skal vi jobbe med profilside. Oppgaven er litt større enn tidligere oppgaver og består av fire deloppgaver.
-
 > **Tags**: [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files), [Link](https://remix.run/docs/en/1.14.0/components/link#react-router-link), [Form](https://remix.run/docs/en/1.14.0/components/form), [Outlet](https://remix.run/docs/en/1.14.0/components/outlet)
+
+Denne oppgaven skal vi jobbe med profilside. Oppgaven er litt større enn tidligere oppgaver og består av fire deloppgaver.
 
 <br>
 
