@@ -1,58 +1,100 @@
-# Remix Lofi Stack
+# Oppgave 6: Profileside
 
-![The Remix Lofi Stack](/lofi-stack.png?raw=true)
-Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run/stacks).
+Denne oppgaven skal vi jobbe med profilside. Oppgaven er litt større enn tidligere oppgaver og består av fire deloppgaver.
 
-## What's in the stack
+> **Tags**: [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files), [Link](https://remix.run/docs/en/1.14.0/components/link#react-router-link), [Form](https://remix.run/docs/en/1.14.0/components/form), [Outlet](https://remix.run/docs/en/1.14.0/components/outlet)
 
-- Production-ready [SQLite Database](https://sqlite.org)
-- Email/Password Authentication with [cookie-based sessions](https://remix.run/docs/en/v1/api/remix#createcookiesessionstorage)
-- Database ORM with [Prisma](https://prisma.io)
-- Styling with [Tailwind](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
-- Code formatting with [Prettier](https://prettier.io)
-- Linting with [ESLint](https://eslint.org)
-- Static Types with [TypeScript](https://typescriptlang.org)
-- Illustrations [uinDraw](https://undraw.co/)
-- Avatars [Boringavatars](https://boringavatars.com/)
+<br>
 
-## Development
+## Oppgave 6.1: Link, Route og Outlet
 
-- Getting started:
+Under `/routes/profile/index.tsx`, oppdater linken slik at det navigere deg videre til `/profile/edit`
 
-  ```
-  npm install
-  ```
+```js
+<Link to="edit" className="btn-outline btn-primary btn">
+  Edit profile
+</Link>
+```
 
-- Initial setup:
+Trykk på `Edit profile` knappen. Har du lagt merket til at innholdet til `index.tsx` ble erstattet med `edit.tsx` ? <br /> Dette er på grunn av `<Outlet/>` komponenten på `profile.tsx` som bytter ut innhold basert på **route**.
 
-  ```
-  npm run setup
-  ```
+<br>
 
-- Start dev server:
+## Oppgave 6.2: Form
 
-  ```
-  npm run dev
-  ```
+Legg til to text input på `routes/profile/edit.tsx` vi skal bruke for å oppdatere `username` og `name`.
 
-This starts your app in development mode, rebuilding assets on file changes.
+```js
+<TextInput
+  label="Username"
+  name="username"
+  ref={usernameRef}
+  placeholder={user?.username}
+/>
+```
 
-The database seed script creates a new user with some data you can use to get started:
+```js
+<TextInput
+  label="Name"
+  name="name"
+  ref={usernameRef}
+  placeholder={user?.username}
+/>
+```
 
-- Email: `rachel@remix.run`
-- Password: `racheliscool`
+<br>
 
-## Database error
+## Oppgave 6.3: Action
 
-If you get this error in console: `Failed to update database because the database is read only`
+Nå skal vi lagre form data med `action` funksjon. Bytt ut eksisterende `action` med koden under
 
-- Restart dev server:
+```js
+export async function action({ request }: ActionArgs) {
+  const userId = await requireUserId(request);
 
-  ```
-  npm run dev
-  ```
+  const formData = await request.formData();
+  const username = formData.get("username");
+  const name = formData.get("name");
 
-- Or run full database reset:
-  ```
-  npm run setup
-  ```
+  if (typeof username !== "string" || username.length === 0) {
+    return json(
+      { errors: { username: "Username is required", name: null } },
+      { status: 400 }
+    );
+  }
+
+  if (typeof username !== "string" || username.length !== 4) {
+    return json(
+      {
+        errors: {
+          username: "Username must be 4 characters",
+          name: null,
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  if (typeof name !== "string" || name.length === 0) {
+    return json(
+      { errors: { username: null, name: "Name is required" } },
+      { status: 400 }
+    );
+  }
+
+  await updateUser(userId, username, name);
+
+  return redirect(`/profile`);
+}
+```
+
+<br>
+
+## Oppgave 6.4: Validering
+
+Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til validerings regler på `action` funksjonen. <br/><br/>Legg til feilmelding på `<TextInput/>` for `username` og `name`
+
+```js
+error={actionData?.errors.username}
+error={actionData?.errors.name}
+```

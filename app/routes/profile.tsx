@@ -5,8 +5,8 @@ import {
   type MetaFunction,
 } from "@remix-run/server-runtime";
 import { TbLogout } from "react-icons/tb";
-import { requireUserId } from "~/session.server";
 
+import { requireUserId } from "~/session.server";
 import { getAvatarById, useOptionalUser } from "~/utils";
 
 export const meta: MetaFunction = () => {
@@ -48,6 +48,7 @@ export default function ProfilePage() {
           </div>
         )}
 
+        {/* Outlet */}
         <div className="mt-8 flex w-full justify-center">
           <Outlet />
         </div>

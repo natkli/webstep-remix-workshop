@@ -12,4 +12,7 @@ module.exports = {
       version: 28,
     },
   },
+  rules: {
+    "@typescript-eslint/no-unused-vars": "off",
+  },
 };
