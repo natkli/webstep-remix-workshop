@@ -2,14 +2,7 @@
 
 > **Tags**: [Dynamic route](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
 
-Denne oppgaven skal vi jobbe med `dynamic route` og det skal vi bruke for å hente event detaljer basert på `eventId` i urlèn.
-
-Først la oss se på `/routes/events/$eventId`. Her ligger to filer `index.tsx` og `new-icing.tsx`.
-
-1. `index.tsx` tilsvarer url `/events/[eventId]`. Denne skal vi bruke både for å hente og vise event detaljer.
-2. `new-icing.tsx` tilsvarer url `/events/[eventId]/new-icing`. Her skal vi bruke til å legge til icing på eventId.
-
-La oss fokusere bare på `index.tsx` filen.
+Denne oppgaven skal vi jobbe med `dynamic route`. Vi kommer til å bruke dynamic route for håndtere uthenting av event detaljer basert på eventId på urlèn.
 
 <br />
 
@@ -50,7 +43,7 @@ export async function loader({ params, request }: LoaderArgs) {
 }
 ```
 
-Her henter vi eventId fra urlèn med `params.eventId` og bruke for å hente event detaljer `getEvent(params.eventId)`.
+Her henter vi eventId fra urlèn med `params.eventId` og bruke den for å hente event detaljer på `getEvent(params.eventId)`.
 
 Dersom eventId er gyldig vil vi få tilbake event detaljer vi forventer. Men hvis eventId derimot ikke finnes, kaste en feil og blir håndtert av `ErrorBoundary` og `CatchBoundary`.
 
@@ -58,7 +51,7 @@ Dersom eventId er gyldig vil vi få tilbake event detaljer vi forventer. Men hvi
 
 ## Oppgave 5.3: Vis frem event detaljer
 
-Nå skal du har fått event detaljer med fra `loader` funksjonen, men siden ser fortsatt litt tomt ut. <br />
+Nå skal du har fått event detaljer fra `loader` funksjonen, men siden ser fortsatt litt tomt ut. <br />
 
 Oppdater `EventDetailsPage` komponenten med `useOptionalUser` og `useLoaderData` å hente data.
 
