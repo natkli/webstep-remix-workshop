@@ -2,14 +2,16 @@
 
 > **Tags**: [Dynamic route](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
 
-Denne oppgaven skal vi jobbe `dynamic route` og vi skal bruke det til å hente event detaljer basert på `eventId`.
+Denne oppgaven skal vi jobbe `dynamic route` og det skal vi bruke til å hente event detaljer basert på `eventId`.
 
 La oss se på `/routes/events/$eventId`, her ligger to filer `index.tsx` og `new-icing.tsx`.
 
-1. `index.tsx` tilsvarer `/events/[eventId]` og vi bruker til å vise detaljer på et event.
-2. `newicing.tsx` tilsvarer `/events/[eventId]/new-icing`. Her skal vi senere bruke til å legge til icing på event.
+1. `index.tsx` tilsvarer en url `/events/[eventId]`. Den skal vi bruke både for å hente og vise event detaljer.
+2. `newicing.tsx` tilsvarer en url `/events/[eventId]/new-icing`. Her skal vi bruke til å legge til icing på eventId.
 
-Men la oss bare fokusere på `index.tsx` først.
+Men la oss bare fokusere på `index.tsx`.
+
+<br />
 
 ## Oppgave 5.1: Hent event detaljer med dynamic route og url params
 
