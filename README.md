@@ -33,10 +33,12 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
   npm run dev
   ```
 
-## Test user
+  This starts your app in development mode, rebuilding assets on file changes.
 
-- Email: `rachel@remix.run`
-- Password: `racheliscool`
+The database seed script creates a new user with some data you can use to get started:
+
+Email: rachel@remix.run
+Password: racheliscool
 
 ## Known issue
 
