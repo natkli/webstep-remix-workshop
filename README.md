@@ -43,9 +43,7 @@ export async function loader({ params, request }: LoaderArgs) {
 }
 ```
 
-Her henter vi eventId fra urlèn med `params.eventId` og bruke den for å hente event detaljer på `getEvent(params.eventId)`.
-
-Dersom eventId er gyldig vil vi få tilbake event detaljer vi forventer. Men hvis eventId derimot ikke finnes, kaste en feil og blir håndtert av `ErrorBoundary` og `CatchBoundary`.
+Om eventId er gyldig vil vi få tilbake data vi forventer. Men om eventId er ugyldig, kaste vi en feil og håndterte med `ErrorBoundary` og `CatchBoundary`.
 
 <br />
 
