@@ -18,16 +18,8 @@ import { useOptionalUser } from "~/utils";
 
 import undrawPageNotFound from "~/images/undraw_page_not_found.svg";
 
+// Oppgave 5.1
 export async function loader({ params, request }: LoaderArgs) {
-  await requireUserId(request);
-  invariant(params.eventId, "eventId not found");
-
-  const event = await getEvent(params.eventId);
-
-  if (!event) {
-    throw new Response("Not Found", { status: 404 });
-  }
-
   return json({ event });
 }
 
@@ -42,6 +34,8 @@ export async function action({ request, params }: ActionArgs) {
 export default function EventDetailsPage() {
   const user = useOptionalUser();
   const data = useLoaderData<typeof loader>();
+
+  // @ts-ignore
   const { id, title, location, owner, createdAt, icings } = data.event;
 
   return (

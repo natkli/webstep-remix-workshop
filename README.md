@@ -1,100 +1,37 @@
-# Oppgave 6: Profileside
+# Oppgave 5: Dynamic Route
 
-> **Tags**: [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files), [Link](https://remix.run/docs/en/1.14.0/components/link#react-router-link), [Form](https://remix.run/docs/en/1.14.0/components/form), [Outlet](https://remix.run/docs/en/1.14.0/components/outlet)
+> **Tags**: [Dynamic route](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
 
-Denne oppgaven skal vi jobbe med profilside. Oppgaven er litt større enn tidligere oppgaver og består av fire deloppgaver.
+Denne oppgaven skal vi jobbe `dynamic route` og vi skal bruke det til å hente event detaljer basert på `eventId`.
 
-<br>
+La oss se på `/routes/events/$eventId`, her ligger to filer `index.tsx` og `new-icing.tsx`.
 
-## Oppgave 6.1: Link, Route og Outlet
+1. `index.tsx` tilsvarer `/events/[eventId]` og vi bruker til å vise detaljer på et event.
+2. `newicing.tsx` tilsvarer `/events/[eventId]/new-icing`. Her skal vi senere bruke til å legge til icing på event.
 
-Under `/routes/profile/index.tsx`, oppdater linken slik at det navigere deg videre til `/profile/edit`
+Men la oss bare fokusere på `index.tsx` først.
 
-```js
-<Link to="edit" className="btn-outline btn-primary btn">
-  Edit profile
-</Link>
-```
+## Oppgave 5.1: Hent event detaljer med dynamic route og url params
 
-Trykk på `Edit profile` knappen. Har du lagt merket til at innholdet til `index.tsx` ble erstattet med `edit.tsx` ? <br /> Dette er på grunn av `<Outlet/>` komponenten på `profile.tsx` som bytter ut innhold basert på **route**.
-
-<br>
-
-## Oppgave 6.2: Form
-
-Legg til to text input på `routes/profile/edit.tsx` vi skal bruke for å oppdatere `username` og `name`.
+På `/routes/events/$eventId/index.tsx`. Bytt ut eksisterende `loader` funksjon med en mer oppdatert loader for å hente event detaljer.
 
 ```js
-<TextInput
-  label="Username"
-  name="username"
-  ref={usernameRef}
-  placeholder={user?.username}
-/>
-```
+export async function loader({ params, request }: LoaderArgs) {
+  await requireUserId(request);
+  invariant(params.eventId, "eventId not found");
 
-```js
-<TextInput
-  label="Name"
-  name="name"
-  ref={usernameRef}
-  placeholder={user?.username}
-/>
-```
+  const event = await getEvent(params.eventId);
 
-<br>
-
-## Oppgave 6.3: Action
-
-Nå skal vi lagre form data med `action` funksjon. Bytt ut eksisterende `action` med koden under
-
-```js
-export async function action({ request }: ActionArgs) {
-  const userId = await requireUserId(request);
-
-  const formData = await request.formData();
-  const username = formData.get("username");
-  const name = formData.get("name");
-
-  if (typeof username !== "string" || username.length === 0) {
-    return json(
-      { errors: { username: "Username is required", name: null } },
-      { status: 400 }
-    );
+  if (!event) {
+    throw new Response("Not Found", { status: 404 });
   }
 
-  if (typeof username !== "string" || username.length !== 4) {
-    return json(
-      {
-        errors: {
-          username: "Username must be 4 characters",
-          name: null,
-        },
-      },
-      { status: 400 }
-    );
-  }
-
-  if (typeof name !== "string" || name.length === 0) {
-    return json(
-      { errors: { username: null, name: "Name is required" } },
-      { status: 400 }
-    );
-  }
-
-  await updateUser(userId, username, name);
-
-  return redirect(`/profile`);
+  return json({ event });
 }
 ```
 
-<br>
+Her henter vi eventId fra urlèn med `params.eventId` og bruke for å hente event detaljer `getEvent(params.eventId)`.
 
-## Oppgave 6.4: Validering
+Dersom eventId er gyldig vil vi få tilbake event detaljer vi forventer. Men hvis eventId derimot ikke finnes, kaste en feil og blir håndtert av `ErrorBoundary` og `CatchBoundary`.
 
-Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til validerings regler på `action` funksjonen. <br/><br/>Legg til feilmelding på `<TextInput/>` for `username` og `name`
-
-```js
-error={actionData?.errors.username}
-error={actionData?.errors.name}
-```
+<br />
