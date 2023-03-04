@@ -12,6 +12,8 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 - Code formatting with [Prettier](https://prettier.io)
 - Linting with [ESLint](https://eslint.org)
 - Static Types with [TypeScript](https://typescriptlang.org)
+- Illustrations [uinDraw](https://undraw.co/)
+- Avatars [Boringavatars](https://boringavatars.com/)
 
 ## Development
 
@@ -33,20 +35,24 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
   npm run dev
   ```
 
-  This starts your app in development mode, rebuilding assets on file changes.
+This starts your app in development mode, rebuilding assets on file changes.
 
 The database seed script creates a new user with some data you can use to get started:
 
-Email: rachel@remix.run
-Password: racheliscool
+- Email: `rachel@remix.run`
+- Password: `racheliscool`
 
-## Known issue
+## Database error
 
-- Read only database error in browser's console
+If you get this error in console: `Failed to update database because the database is read only`
+
+- Restart dev server:
+
   ```
-  Failed to update database because the database is read only
+  npm run dev
   ```
-  Fix the issue by resetting your database, run:
+
+- Or run full database reset:
   ```
   npm run setup
   ```
