@@ -17,11 +17,9 @@ La oss fokusere bare på `index.tsx` filen.
 
 Ta en rask sjekk om vi klare å hente `eventId` fra urlèn. Sett en enkelt `console.log()` i loader funksjon.
 
-<br />
-
-`/routes/events/$eventId/index.tsx.`
-
 ```js
+//..routes/events/$eventId/index.tsx
+
 export async function loader({ params, request }: LoaderArgs) {
   console.log(params.eventId);
 
