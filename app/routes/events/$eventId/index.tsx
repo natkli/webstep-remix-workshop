@@ -18,9 +18,10 @@ import { useOptionalUser } from "~/utils";
 
 import undrawPageNotFound from "~/images/undraw_page_not_found.svg";
 
-// Oppgave 5.1
+// Oppgave 5.1 og 5.2
 export async function loader({ params, request }: LoaderArgs) {
-  return json({ event });
+  console.log(params.eventId);
+  return json({});
 }
 
 export async function action({ request, params }: ActionArgs) {
@@ -35,46 +36,7 @@ export default function EventDetailsPage() {
   const user = useOptionalUser();
   const data = useLoaderData<typeof loader>();
 
-  // @ts-ignore
-  const { id, title, location, owner, createdAt, icings } = data.event;
-
-  return (
-    <div className="w-full">
-      <div className="mb-4 flex justify-between">
-        <a
-          className="link-primary link flex items-center gap-1 text-xl font-bold no-underline"
-          href="/events"
-        >
-          <TbArrowLeft size={16} /> Events
-        </a>
-        <Form method="post">
-          {owner.id === user?.id && (
-            <button
-              type="submit"
-              className="btn-warning btn-ghost btn-sm btn flex gap-1 text-icing-orange"
-            >
-              <TbTrash size={20} />
-            </button>
-          )}
-        </Form>
-      </div>
-
-      <div className="card mb-[10rem] bg-primary-content px-4 py-8 shadow-lg">
-        <div className="flex flex-col">
-          <EventDetails
-            title={title}
-            location={location}
-            owner={owner}
-            createdAt={createdAt}
-          />
-
-          <EventIcingList icings={icings} />
-        </div>
-      </div>
-
-      <StickyButton url={`/events/${id}/new-icing`} color="red" />
-    </div>
-  );
+  return <div></div>;
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
