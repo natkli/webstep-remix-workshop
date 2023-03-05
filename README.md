@@ -1,18 +1,16 @@
-# Oppgave 5: Dynamic Route
+# Oppgave 5: Dynamic segments
 
-> **Tags**: [Dynamic route](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
+> **Tags**: [Dynamic segments](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
 
-Denne oppgaven skal vi jobbe med `dynamic route`. Vi kommer til å bruke dynamic route for håndtere uthenting av event detaljer basert på eventId på urlèn.
+Dynamic segment eller dynamic route prefikser med `$`. Denne oppgaaven skal bruke det for å håndtere uthenting av event detaljer basert på eventId i urlèn.
 
 <br />
 
-## Oppgave 5.1: Hent eventId fra url
+## Oppgave 5.1: Hent eventId
 
-Ta en rask sjekk om vi klare å hente `eventId` fra urlèn. Sett en enkelt `console.log()` i loader funksjon.
+På `routes/events/$eventId/index.tsx`. Hent `eventId` fra url parameter og ta en console.log().
 
 ```js
-//..routes/events/$eventId/index.tsx
-
 export async function loader({ params, request }: LoaderArgs) {
   console.log(params.eventId);
 
@@ -20,13 +18,13 @@ export async function loader({ params, request }: LoaderArgs) {
 }
 ```
 
-I nettleseren sett inn eks. `http://localhost:3000/events/1234567`. Fikk du `1234567` i consolen?
+Skriv inn f.eks `http://localhost:3000/events/1234567` i nettleser. Fikk du `1234567` i consolen?
 
 <br />
 
-## Oppgave 5.2: Hent event detaljer med dynamic route og url params
+## Oppgave 5.2: Hent event detaljer med eventId
 
-Oppdater `loader` funksjoner med `getEvent(params.eventId)` for å hente event detaljer og returnere data som json.
+Oppdater `loader` funksjoner med `getEvent(params.eventId)` for å hente event detaljer og returnere det som json.
 
 ```js
 export async function loader({ params, request }: LoaderArgs) {
@@ -43,15 +41,15 @@ export async function loader({ params, request }: LoaderArgs) {
 }
 ```
 
-Om eventId er gyldig vil vi få tilbake data vi forventer. Men om eventId er ugyldig, kaste vi en feil og håndterte med `ErrorBoundary` og `CatchBoundary`.
+Om eventId er gyldig vil vi få tilbake data vi forventer. Men om eventId er ugyldig, kaste vi en feil og håndtere feilen med `ErrorBoundary` og `CatchBoundary`.
 
 <br />
 
 ## Oppgave 5.3: Vis frem event detaljer
 
-Nå skal du har fått event detaljer fra `loader` funksjonen, men siden ser fortsatt litt tomt ut. <br />
+Nå skal du har fått event detaljer fra `loader` funksjonen, men siden er fortsatt helt blank. <br />
 
-Oppdater `EventDetailsPage` komponenten med `useOptionalUser` og `useLoaderData` å hente data.
+Oppdater `EventDetailsPage` komponenten med `useOptionalUser` og `useLoaderData`
 
 ```js
 export default function EventDetailsPage() {
@@ -62,7 +60,7 @@ export default function EventDetailsPage() {
 
 ```
 
-Legg til disse i return blokken og voilà ✨
+Og legg til disse i return blokken. Voilà ✨
 
 ```js
 return (
