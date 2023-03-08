@@ -22,44 +22,23 @@ export async function loader({ request }: LoaderArgs) {
   return json({});
 }
 
+// Oppgave 4.1
 export async function action({ request }: ActionArgs) {
-  const userId = await requireUserId(request);
-
-  const formData = await request.formData();
-  const title = formData.get("title");
-  const location = formData.get("location");
-
-  if (typeof title !== "string" || title.length === 0) {
-    return json(
-      { errors: { title: "Event title is required", location: null } },
-      { status: 400 }
-    );
-  }
-
-  if (typeof location !== "string" || location.length === 0) {
-    return json(
-      { errors: { title: null, location: "Location is required" } },
-      { status: 400 }
-    );
-  }
-
-  const event = await createEvent(userId, title, location);
-
-  return redirect(`/events/${event.id}`);
+  return json({});
 }
 
 export default function NewEventPage() {
-  const actionData = useActionData<typeof action>();
-  const titleRef = useRef<HTMLInputElement>(null);
-  const locationRef = useRef<HTMLInputElement>(null);
+  // const actionData = useActionData<typeof action>();
+  // const titleRef = useRef<HTMLInputElement>(null);
+  // const locationRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (actionData?.errors?.title) {
-      titleRef.current?.focus();
-    } else if (actionData?.errors?.location) {
-      locationRef.current?.focus();
-    }
-  }, [actionData]);
+  // useEffect(() => {
+  //   if (actionData?.errors?.title) {
+  //     titleRef.current?.focus();
+  //   } else if (actionData?.errors?.location) {
+  //     locationRef.current?.focus();
+  //   }
+  // }, [actionData]);
 
   return (
     <div className="min-h-full w-full">
@@ -68,15 +47,13 @@ export default function NewEventPage() {
         <TextInput
           label="Event title"
           name="title"
-          ref={titleRef}
-          error={actionData?.errors.title}
+          // error={actionData?.errors.title}
         />
 
         <TextInput
           label="Location"
           name="location"
-          ref={locationRef}
-          error={actionData?.errors.location}
+          // error={actionData?.errors.location}
         />
 
         <div className="mt-8 flex justify-start gap-4">

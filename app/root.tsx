@@ -12,19 +12,18 @@ import {
 import { StickyMenu } from "./components/StickerMenu";
 import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
-import indexStyleshettUrl from "./styles/index.css";
+import indexStylesheetUrl from "./styles/index.css";
 import { useOptionalUser } from "./utils";
 
 export const links: LinksFunction = () => {
   return [
-    { rel: "stylesheet", href: indexStyleshettUrl },
+    { rel: "stylesheet", href: indexStylesheetUrl },
     { rel: "stylesheet", href: tailwindStylesheetUrl },
   ];
 };
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Remix - Icing",
   viewport: "width=device-width,initial-scale=1",
 });
 

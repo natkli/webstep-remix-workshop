@@ -1,94 +1,110 @@
-# Oppgave 5: Dynamic route params
+# Oppgave 4: Action
 
-> **Tags**: [Dynamic segments](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
+> **Tags**: [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action)
 
-Denne oppgaven skal bruke `dynamic route` for å håndtere uthenting av event detaljer basert på eventId i urlèn. Naming konvensjon for Dynamic routes prefikser med `$`.
+Nå skal vi se på hvordan vi kan opprette ny icing **event**. Her skal vi bruke remix sitt `action` funksjon for å håndtere formData og lagrer det i databasen.
 
 <br />
 
-## Oppgave 5.1: Hent eventId
-
-På `routes/events/$eventId/index.tsx`. Hent `eventId` fra url parameter og ta en console.log().
+Først, la oss se på `new-event.tsx`. Hert ligger en tomt **action** funksjon
 
 ```js
-export async function loader({ params, request }: LoaderArgs) {
-  console.log(params.eventId);
-
-  return json({ event });
+export async function action({ request }: ActionArgs) {
+  return json({});
 }
 ```
 
-Skriv inn f.eks `http://localhost:3000/events/1234567` i nettleser. Fikk du `1234567` i consolen?
+Ligger også en `<Form />` komponent med to `<TextInput />`, en for event **title** og en for **location**.
 
 <br />
 
-## Oppgave 5.2: Hent event detaljer med eventId
+## Oppgave 4.1: Hent formData
 
-Oppdater `loader` funksjoner med `getEvent(params.eventId)` for å hente event detaljer og returnere det som json.
+Bruk `request.formData()` for å hente formData.
 
 ```js
-export async function loader({ params, request }: LoaderArgs) {
-  await requireUserId(request);
-  invariant(params.eventId, "eventId not found");
+export async function action({ request }: ActionArgs) {
+  const formData = await request.formData();
+  const title = formData.get("title");
+  const location = formData.get("location");
 
-  const event = await getEvent(params.eventId);
+  return json({});
+}
+```
 
-  if (!event) {
-    throw new Response("Not Found", { status: 404 });
+Du kan ta `console.log(formData)` og trykk på **Create** knappen og se om du fikk hente formData.
+
+<br />
+
+## Oppgave 4.2: FormData validering
+
+Nå har vi klart å hente formData. Før vi gå videre trenger vi å legge inn validering siden backend funksjonen `createEvent()` har tre påkrevd parameter `userId`, `title` og `location`.
+
+Først hent ut `userId`
+
+```js
+const userId = await requireUserId(request);
+```
+
+Og legg til validering for `title` og `location`
+
+```js
+if (typeof title !== "string" || title.length === 0) {
+  return json(
+    { errors: { title: "Event title is required", location: null } },
+    { status: 400 }
+  );
+}
+
+if (typeof location !== "string" || location.length === 0) {
+  return json(
+    { errors: { title: null, location: "Location is required" } },
+    { status: 400 }
+  );
+}
+```
+
+<br />
+
+## Oppgave 4.2: Lagre formData
+
+Bruk `createEvent()` funksjonen for å lagre formData, og sett en redirect til event side du opprettet.
+
+```js
+const event = await createEvent(userId, title, location);
+return redirect(`/events/${event.id}`);
+```
+
+Slik vil fullstende `action` funksjonen se ut
+
+```js
+export async function action({ request }: ActionArgs) {
+  const userId = await requireUserId(request);
+
+  const formData = await request.formData();
+  const title = formData.get("title");
+  const location = formData.get("location");
+
+  if (typeof title !== "string" || title.length === 0) {
+    return json(
+      { errors: { title: "Event title is required", location: null } },
+      { status: 400 }
+    );
   }
 
-  return json({ event });
+  if (typeof location !== "string" || location.length === 0) {
+    return json(
+      { errors: { title: null, location: "Location is required" } },
+      { status: 400 }
+    );
+  }
+
+  const event = await createEvent(userId, title, location);
+
+  return redirect(`/events/${event.id}`);
 }
 ```
 
-Om eventId er gyldig vil vi få tilbake data vi forventer. Men om eventId er ugyldig, kaste vi en feil og håndtere feilen med `ErrorBoundary` og `CatchBoundary`.
+Nå prøv å opprett ny event nå! ✨🍾
 
-<br />
-
-## Oppgave 5.3: Vis frem event detaljer
-
-Nå skal du har fått event detaljer fra `loader` funksjonen, men siden er fortsatt helt blank. <br />
-
-Oppdater `EventDetailsPage` komponenten med `useOptionalUser` og `useLoaderData`
-
-```js
-export default function EventDetailsPage() {
-  const data = useLoaderData<typeof loader>();
-
-  const { id, title, location, owner, createdAt, icings } = data.event;
-
-```
-
-Og legg til disse i return blokken. Voilà ✨
-
-```js
-return (
-  <div className="w-full">
-    <div className="mb-4 flex justify-between">
-      <a
-        className="link-primary link flex items-center gap-1 text-xl font-bold no-underline"
-        href="/events"
-      >
-        <TbArrowLeft size={16} /> Events
-      </a>
-    </div>
-
-    <div className="card mb-[10rem] bg-primary-content px-4 py-8 shadow-lg">
-      <div className="flex flex-col">
-        <EventDetails
-          title={title}
-          location={location}
-          owner={owner}
-          createdAt={createdAt}
-        />
-
-        <EventIcingList icings={icings} />
-      </div>
-    </div>
-
-    <StickyButton url={`/events/${id}/new-icing`} color="red" />
-  </div>
-);
-```
-
-Prøv igjen nå, lettere å se hva som er feil ikke sant? ✨
+Funker?, Klar for neste?
