@@ -6,7 +6,7 @@ Nå skal vi se på hvordan vi kan opprette ny icing **event**. Her skal vi bruke
 
 <br />
 
-Først, la oss se på `new-event.tsx`. Hert ligger en tomt **action** funksjon
+Først, la oss se på `new-event.tsx`. Der ligger en tomt **action** funksjon
 
 ```js
 export async function action({ request }: ActionArgs) {
@@ -38,7 +38,7 @@ Du kan ta `console.log(formData)` og trykk på **Create** knappen og se om du fi
 
 ## Oppgave 4.2: FormData validering
 
-Nå har vi klart å hente formData. Før vi gå videre trenger vi å legge inn validering siden backend funksjonen `createEvent()` har tre påkrevd parameter `userId`, `title` og `location`.
+Nå har vi klart å hente formData. Før vi gå videre trenger vi å legge inn validering, siden backend funksjonen `createEvent()` har tre påkrevd parameter `userId`, `title` og `location`.
 
 Først hent ut `userId`
 
@@ -68,14 +68,14 @@ if (typeof location !== "string" || location.length === 0) {
 
 ## Oppgave 4.2: Lagre formData
 
-Bruk `createEvent()` funksjonen for å lagre formData, og sett en redirect til event side du opprettet.
+Bruk `createEvent()` funksjonen for å lagre formData, og sett redirect til eventsside du opprettet.
 
 ```js
 const event = await createEvent(userId, title, location);
 return redirect(`/events/${event.id}`);
 ```
 
-Slik vil fullstende `action` funksjonen se ut
+Fullstende `action` funksjonen ser slik ut
 
 ```js
 export async function action({ request }: ActionArgs) {
@@ -105,6 +105,6 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Nå prøv å opprett ny event nå! ✨🍾
+Nå, prøv å opprette ny event! ✨🍾
 
 Funker?, Klar for neste?
