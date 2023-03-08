@@ -6,7 +6,7 @@ Denne oppgaven skal vi jobbe med profilside og bli bedre kjent med Action, Route
 
 <br>
 
-## Oppgave 6.1: Link til oppdaterings side
+## Oppgave 6.1: Link
 
 Under `/routes/profile/index.tsx`, oppdater linken slik at det navigere deg videre til `/profile/edit`
 
@@ -20,7 +20,7 @@ Trykk på **Edit profile** knappen. Har du lagt merket til at innholdet til **in
 
 <br>
 
-## Oppgave 6.2: Skjema for å oppdatere profil data
+## Oppgave 6.2: Inputs
 
 Legg til to `<TextInput/>` på `routes/profile/edit.tsx`, de skal vi bruke for å oppdatere **username** og **name**.
 
