@@ -53,7 +53,6 @@ Oppdater `EventDetailsPage` komponenten med `useOptionalUser` og `useLoaderData`
 
 ```js
 export default function EventDetailsPage() {
-  const user = useOptionalUser();
   const data = useLoaderData<typeof loader>();
 
   const { id, title, location, owner, createdAt, icings } = data.event;
@@ -72,16 +71,6 @@ return (
       >
         <TbArrowLeft size={16} /> Events
       </a>
-      <Form method="post">
-        {owner.id === user?.id && (
-          <button
-            type="submit"
-            className="btn-warning btn-ghost btn-sm btn flex gap-1 text-icing-orange"
-          >
-            <TbTrash size={20} />
-          </button>
-        )}
-      </Form>
     </div>
 
     <div className="card mb-[10rem] bg-primary-content px-4 py-8 shadow-lg">

@@ -12,9 +12,8 @@ import { EventDetails } from "~/components/event/EventDetails";
 import { EventIcingList } from "~/components/event/EventIcingList";
 import { StickyButton } from "~/components/StickyButton";
 
-import { deleteEvent, getEvent } from "~/models/event.server";
+import { getEvent } from "~/models/event.server";
 import { requireUserId } from "~/session.server";
-import { useOptionalUser } from "~/utils";
 
 import undrawPageNotFound from "~/images/undraw_page_not_found.svg";
 
@@ -27,13 +26,10 @@ export async function loader({ params, request }: LoaderArgs) {
 export async function action({ request, params }: ActionArgs) {
   const userId = await requireUserId(request);
   invariant(params.eventId, "eventId not found");
-
-  await deleteEvent(params.eventId, userId);
   return redirect("/");
 }
 
 export default function EventDetailsPage() {
-  const user = useOptionalUser();
   const data = useLoaderData<typeof loader>();
 
   return <div></div>;
