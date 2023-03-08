@@ -6,7 +6,7 @@ Denne oppgaven skal vi jobbe med profilside og bli bedre kjent med Action, Route
 
 <br>
 
-## Oppgave 6.1: Profile side
+## Oppgave 6.1: Link til oppdaterings side
 
 Under `/routes/profile/index.tsx`, oppdater linken slik at det navigere deg videre til `/profile/edit`
 
@@ -16,7 +16,7 @@ Under `/routes/profile/index.tsx`, oppdater linken slik at det navigere deg vide
 </Link>
 ```
 
-Trykk på **"Edit profile"** knappen. Har du lagt merket til at innholdet til **index.tsx** ble erstattet med **edit.tsx**? Dette er på grunn av `<Outlet/>` bytter ut innhold basert på **route** man er på. Er du på `/profile` får du det som ligger i **index.tsx** og **edit.tsx** når du er på `/profile/edit`
+Trykk på **Edit profile** knappen. Har du lagt merket til at innholdet til **index.tsx** ble erstattet med **edit.tsx**? Dette er på grunn av `<Outlet/>` bytter ut innhold basert på **route** man er på. Er du på `/profile` får du det som ligger i **index.tsx** og **edit.tsx** når du er på `/profile/edit`
 
 <br>
 
@@ -25,21 +25,11 @@ Trykk på **"Edit profile"** knappen. Har du lagt merket til at innholdet til **
 Legg til to `<TextInput/>` på `routes/profile/edit.tsx`, de skal vi bruke for å oppdatere **username** og **name**.
 
 ```js
-<TextInput
-  label="Username"
-  name="username"
-  ref={usernameRef}
-  placeholder={user?.username}
-/>
+<TextInput label="Username" name="username" />
 ```
 
 ```js
-<TextInput
-  label="Name"
-  name="name"
-  ref={usernameRef}
-  placeholder={user?.username}
-/>
+<TextInput label="Name" name="name" />
 ```
 
 <br>
@@ -103,11 +93,15 @@ const actionData = useActionData<typeof action>();
 Og legg til feilmeldinger på `<TextInput/>` både for **username** og **name**
 
 ```js
-error={actionData?.errors.username}
+<TextInput
+  label="Username"
+  name="username"
+  error={actionData?.errors.username}
+/>
 ```
 
 ```js
-error={actionData?.errors.name}
+<TextInput label="Name" name="name" error={actionData?.errors.name} />
 ```
 
 Prøv igjen nå, lettere å se hva som er feil ikke sant? ✨

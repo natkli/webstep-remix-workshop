@@ -5,12 +5,9 @@ import {
   type MetaFunction,
   type ActionArgs,
 } from "@remix-run/server-runtime";
-import { useEffect, useRef } from "react";
 import { TextInput } from "~/components/TextInput";
 import { updateUser } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
-
-import { useOptionalUser } from "~/utils";
 
 export const meta: MetaFunction = () => {
   return {
@@ -23,8 +20,6 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function ProfileEditPage() {
-  const user = useOptionalUser();
-
   return (
     <Form method="post" className="flex w-full flex-col items-center">
       {/* Legg til username og name input her */}
