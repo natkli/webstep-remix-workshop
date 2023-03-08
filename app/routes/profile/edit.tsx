@@ -25,21 +25,9 @@ export async function action({ request }: ActionArgs) {
 export default function ProfileEditPage() {
   const user = useOptionalUser();
 
-  const actionData = useActionData<typeof action>();
-  const usernameRef = useRef<HTMLInputElement>(null);
-  const nameRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (actionData?.errors?.username) {
-      usernameRef.current?.focus();
-    } else if (actionData?.errors?.name) {
-      nameRef.current?.focus();
-    }
-  }, [actionData]);
-
   return (
     <Form method="post" className="flex w-full flex-col items-center">
-      {/* Legg til uername og name input her */}
+      {/* Legg til username og name input her */}
 
       <div className="mt-8 flex justify-start gap-4">
         <Link to="/profile" className="btn-outline  btn-secondary btn">

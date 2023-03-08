@@ -92,7 +92,15 @@ export async function action({ request }: ActionArgs) {
 
 ## Oppgave 6.4: Validering
 
-Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til validerings regler på `action` funksjonen. <br/><br/>Legg til feilmelding på `<TextInput/>` både for **username** og **name**
+Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til validerings regler på `action` funksjonen.
+
+Bruk `useActionData` hooken for å hente ut valideringsmelding
+
+```js
+const actionData = useActionData<typeof action>();
+```
+
+Og legg til feilmeldinger på `<TextInput/>` både for **username** og **name**
 
 ```js
 error={actionData?.errors.username}
@@ -102,4 +110,4 @@ error={actionData?.errors.username}
 error={actionData?.errors.name}
 ```
 
-Prøv igjen nå, mer tydelig å se hva som er feil ikke sant? ✨
+Prøv igjen nå, lettere å se hva som er feil ikke sant? ✨
