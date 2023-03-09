@@ -19,6 +19,12 @@ export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: indexStylesheetUrl },
     { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    { rel: "preconnect", href: "https://fonts.gstatic.com" },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700;900&display=swap",
+    },
   ];
 };
 
@@ -40,16 +46,6 @@ export default function App() {
     <html lang="en" className="h-full" data-theme="lofi">
       <head>
         <Meta />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700;900&display=swap"
-          rel="stylesheet"
-        />
         <Links />
       </head>
       <body className="bg-gray-100 font-archivo">
