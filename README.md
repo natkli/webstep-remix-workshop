@@ -66,7 +66,7 @@ if (typeof location !== "string" || location.length === 0) {
 
 <br />
 
-## Oppgave 4.2: Lagre formData
+## Oppgave 4.3: Lagre formData
 
 Bruk `createEvent()` funksjonen for å lagre formData, og sett redirect til eventsside du opprettet.
 
