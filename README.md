@@ -1,6 +1,6 @@
 # Oppgave 6: Profileside
 
-> **Tags**: [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files), [Link](https://remix.run/docs/en/1.14.0/components/link#react-router-link), [Form](https://remix.run/docs/en/1.14.0/components/form), [Outlet](https://remix.run/docs/en/1.14.0/components/outlet)
+> **Tags**: [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files), [Link](https://remix.run/docs/en/1.14.0/components/link#react-router-link), [Form](https://remix.run/docs/en/1.14.0/components/form), [Outlet](https://remix.run/docs/en/1.14.0/components/outlet), [Backend for frontend](https://remix.run/docs/en/1.14.0/guides/bff)
 
 Denne oppgaven skal vi jobbe med profilside og bli bedre kjent med Action, Route, Form og Outlet.
 
@@ -34,9 +34,31 @@ Legg til to `<TextInput/>` på `routes/profile/edit.tsx`, de skal vi bruke for �
 
 <br>
 
-## Oppgave 6.3: Action
+## Oppgave 6.3: Backend for fontend (BFF)
 
-Nå skal vi lagre form data til databasen med `action` funksjon. Oppdater funksjonen med koden under.
+Nå har vi lagt inn to input felt for **username** og **name**, men vi mangler fortsatt backend biten. La oss fikse backend for det. Gå inn på `user.server.ts` og legge `updateUser()` funksjon som tar imot tre parameter, `userId`, `username` og `name`.
+
+```js
+export function updateUser(
+  userId: User["id"],
+  username: User["username"],
+  name: User["email"]
+) {
+  return prisma.user.update({
+    data: {
+      name,
+      username,
+    },
+    where: { id: userId },
+  });
+}
+```
+
+<br>
+
+## Oppgave 6.4: Action
+
+Nå har vi fikset backend og klar for å lagre form data til databasen. Legg til `action` funksjon for å håndtere form submit.
 
 ```js
 export async function action({ request }: ActionArgs) {
@@ -78,13 +100,13 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
+Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til validerings regler på `action` funksjonen.
+
 <br>
 
 ## Oppgave 6.4: Validering
 
-Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til validerings regler på `action` funksjonen.
-
-Bruk `useActionData` hooken for å hente ut valideringsmelding
+Bruk `useActionData` for å hente ut valideringsmeldinger
 
 ```js
 const actionData = useActionData<typeof action>();
