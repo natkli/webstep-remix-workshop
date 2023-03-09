@@ -84,20 +84,6 @@ export async function verifyLogin(
   return userWithoutPassword;
 }
 
-export function updateUser(
-  userId: User["id"],
-  username: User["username"],
-  name: User["email"]
-) {
-  return prisma.user.update({
-    data: {
-      name,
-      username,
-    },
-    where: { id: userId },
-  });
-}
-
 export function getUsersRank() {
   return prisma.user.findMany({
     select: {

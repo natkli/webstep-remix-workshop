@@ -6,7 +6,6 @@ import {
   type ActionArgs,
 } from "@remix-run/server-runtime";
 import { TextInput } from "~/components/TextInput";
-import { updateUser } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
 
 export const meta: MetaFunction = () => {
