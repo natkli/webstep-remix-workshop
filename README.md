@@ -100,7 +100,7 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til validerings regler på `action` funksjonen.
+Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til valideringer på formData.
 
 <br>
 
