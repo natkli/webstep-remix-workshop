@@ -36,7 +36,7 @@ Legg til to `<TextInput/>` p책 `routes/profile/edit.tsx`, de skal vi bruke for �
 
 ## Oppgave 6.3: Backend for fontend (BFF)
 
-N책 har vi lagt inn to input felt for **username** og **name**, men vi mangler fortsatt backend biten. La oss fikse backend for det. G책 inn p책 `user.server.ts` og legge `updateUser()` funksjon som tar imot tre parameter, `userId`, `username` og `name`.
+N책 har vi lagt inn to input felt for **username** og **name**, men vi mangler fortsatt backend biten. La oss fikse backend for det. G책 inn p책 `user.server.ts` og legge inn `updateUser()` funksjon som tar imot tre parameter, `userId`, `username` og `name`.
 
 ```js
 export function updateUser(
