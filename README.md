@@ -12,7 +12,7 @@ Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run
 - Code formatting with [Prettier](https://prettier.io)
 - Linting with [ESLint](https://eslint.org)
 - Static Types with [TypeScript](https://typescriptlang.org)
-- Illustrations [uinDraw](https://undraw.co/)
+- Illustrations [unDraw](https://undraw.co/)
 - Avatars [Boringavatars](https://boringavatars.com/)
 
 ## Development
