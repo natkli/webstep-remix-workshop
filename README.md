@@ -2,27 +2,24 @@
 
 > **Tags**: [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action)
 
-Nå skal vi se på hvordan vi kan opprette ny icing **event**. Her skal vi bruke remix sitt `action` funksjon for å håndtere formData og lagrer det i databasen.
+Vi skal nå se hvordan vi kan opprette ett nytt icing **event**.
+For å gjøre dette skal vi bruke Remix sin `action` funksjon for å håndtere formData og lagre det i databasen.
 
-<br />
+Først, la oss se på `new-event.tsx`. Der ligger en tom **action** funksjon:
 
-Først, la oss se på `new-event.tsx`. Der ligger en tomt **action** funksjon
-
-```js
+```ts
 export async function action({ request }: ActionArgs) {
   return json({});
 }
 ```
 
-Ligger også en `<Form />` komponent med to `<TextInput />`, en for event **title** og en for **location**.
-
-<br />
+Legg merge til at det også ligger en `<Form />`-komponent med to `<TextInput />`s; En for event **title** og en for **location**.
 
 ## Oppgave 4.1: Hent formData
 
-Bruk `request.formData()` for å hente formData.
+Utvid funksjonen til å bruke `request.formData()` for å hente ut formData:
 
-```js
+```ts
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
   const title = formData.get("title");
@@ -32,23 +29,22 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Du kan ta `console.log(formData)` og trykk på **Create** knappen og se om du fikk hente formData.
+Hvis du har lyst kan du å kjøre `console.log(formData)` og trykke på **Create** knappen. Du skal da se dataen du har mottatt i konsollen.
 
-<br />
+## Oppgave 4.2: Validering av FormData
 
-## Oppgave 4.2: FormData validering
+Nå har vi klart å hente ut formData. 
+Før vi går videre trenger vi å legge inn validering, siden backend funksjonen `createEvent()` har tre påkrevde parametere; `userId`, `title` og `location`.
 
-Nå har vi klart å hente formData. Før vi gå videre trenger vi å legge inn validering, siden backend funksjonen `createEvent()` har tre påkrevd parameter `userId`, `title` og `location`.
+Start med å hente ut `userId`:
 
-Først hent ut `userId`
-
-```js
+```ts
 const userId = await requireUserId(request);
 ```
 
-Og legg til validering for `title` og `location`
+Legg deretter til validering for `title` og `location`:
 
-```js
+```ts
 if (typeof title !== "string" || title.length === 0) {
   return json(
     { errors: { title: "Event title is required", location: null } },
@@ -64,20 +60,18 @@ if (typeof location !== "string" || location.length === 0) {
 }
 ```
 
-<br />
-
 ## Oppgave 4.3: Lagre formData
 
-Bruk `createEvent()` funksjonen for å lagre formData, og sett redirect til eventsside du opprettet.
+Vi skal nå ta i bruk `createEvent()` funksjonen for å lagre formData, og tilslutt redirecte til events-siden vi har opprettet:
 
-```js
+```tsx
 const event = await createEvent(userId, title, location);
 return redirect(`/events/${event.id}`);
 ```
 
-Fullstende `action` funksjonen ser slik ut
+Fullstending versjon av `action`-funksjonen vil se ut som noe slikt:
 
-```js
+```tsx
 export async function action({ request }: ActionArgs) {
   const userId = await requireUserId(request);
 
@@ -105,6 +99,6 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Nå, prøv å opprette ny event! ✨🍾
+Gå til nettleseren og prøv å opprette ett nytt event! ✨🤞
 
-Funker?, Klar for neste?
+Funker bra, sant? 🍾 Klar for neste del?
