@@ -2,43 +2,41 @@
 
 > **Tags**: [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files), [Link](https://remix.run/docs/en/1.14.0/components/link#react-router-link), [Form](https://remix.run/docs/en/1.14.0/components/form), [Outlet](https://remix.run/docs/en/1.14.0/components/outlet), [Backend for frontend](https://remix.run/docs/en/1.14.0/guides/bff)
 
-Denne oppgaven skal vi jobbe med profilside og bli bedre kjent med Action, Route, Form og Outlet.
-
-<br>
+I denne oppgaven skal vi jobbe med profilsiden og bli bedre kjent med konseptene Action, Route, Form og Outlet.
 
 ## Oppgave 6.1: Link
 
-Under `/routes/profile/index.tsx`, oppdater linken slik at det navigere deg videre til `/profile/edit`
+Gå til `/routes/profile/index.tsx` og oppdater linken slik at den navigerer deg videre til `/profile/edit`:
 
-```js
+```tsx
 <Link to="edit" className="btn-outline btn-primary btn">
   Edit profile
 </Link>
 ```
 
-Trykk på **Edit profile** knappen. Har du lagt merket til at innholdet til **index.tsx** ble erstattet med **edit.tsx**? Dette er på grunn av `<Outlet/>` bytter ut innhold basert på **route** man er på. Er du på `/profile` får du det som ligger i **index.tsx** og **edit.tsx** når du er på `/profile/edit`
-
-<br>
+I nettleseren, trykk på **Edit profile** knappen.
+Ser du at innholdet fra **index.tsx** ble erstattet med innholdet i **edit.tsx**? 
+Dette skyldes at `<Outlet/>` bytter ut innhold basert på hvilken **route** man er på. 
+Er du på `/profile` får du det som ligger i **index.tsx** og **edit.tsx** når du er på `/profile/edit`
 
 ## Oppgave 6.2: Inputs
 
-Legg til to `<TextInput/>` på `routes/profile/edit.tsx`, de skal vi bruke for å oppdatere **username** og **name**.
+Legg til to `<TextInput/>` på `routes/profile/edit.tsx`. Disse skal vi bruke for å oppdatere **username** og **name**.
 
-```js
+```tsx
 <TextInput label="Username" name="username" />
 ```
 
-```js
+```tsx
 <TextInput label="Name" name="name" />
 ```
 
-<br>
+## Oppgave 6.3: Backend for frontend (BFF)
 
-## Oppgave 6.3: Backend for fontend (BFF)
+Nå har vi lagt inn to input felt for **username** og **name**, men vi mangler fortsatt å koble disse til backend.
+Så la oss gjøre nettop det! Gå inn i `user.server.ts` og legg inn en funksjon `updateUser` som tar imot tre parametere: `userId`, `username` og `name`.
 
-Nå har vi lagt inn to input felt for **username** og **name**, men vi mangler fortsatt backend biten. La oss fikse backend for det. Gå inn på `user.server.ts` og legge inn `updateUser()` funksjon som tar imot tre parameter, `userId`, `username` og `name`.
-
-```js
+```ts
 export function updateUser(
   userId: User["id"],
   username: User["username"],
@@ -54,13 +52,12 @@ export function updateUser(
 }
 ```
 
-<br>
-
 ## Oppgave 6.4: Action
 
-Nå har vi fikset backend og klar for å lagre form data til databasen. Legg til `action` funksjon for å håndtere form submit.
+Nå som vi har opprettet en funksjon for å oppdatere brukeren backend er vi klar for å lagre form dataen til databasen.
+Legg til en `action` funksjon for å håndtere form submit:
 
-```js
+```tsx
 export async function action({ request }: ActionArgs) {
   const userId = await requireUserId(request);
 
@@ -100,21 +97,19 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Prøv å oppdatere profil med tomt username, gikk det? **NEI!**, dette er fordi at vi har lagt til valideringer på formData.
-
-<br>
+Prøv å oppdatere profilen med tomt username. Funket det? **NIKS!**. Dette er fordi vi har lagt til valideringer av formData.
 
 ## Oppgave 6.4: Validering
 
-Bruk `useActionData` for å hente ut valideringsmeldinger
+Bruk nå `useActionData` for å hente ut valideringsmeldingene:
 
-```js
+```ts
 const actionData = useActionData<typeof action>();
 ```
 
-Og legg til feilmeldinger på `<TextInput/>` både for **username** og **name**
+Videre ønsker vi å knytte feilmeldingene opp mot `<TextInput />` både for **username** og **name**:
 
-```js
+```tsx
 <TextInput
   label="Username"
   name="username"
@@ -122,8 +117,8 @@ Og legg til feilmeldinger på `<TextInput/>` både for **username** og **name**
 />
 ```
 
-```js
+```tsx
 <TextInput label="Name" name="name" error={actionData?.errors.name} />
 ```
 
-Prøv igjen nå, lettere å se hva som er feil ikke sant? ✨
+Prøv igjen nå. Litt lettere å se hva som er feil, ikke sant? ✨
