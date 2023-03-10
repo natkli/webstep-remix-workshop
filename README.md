@@ -2,31 +2,28 @@
 
 > **Tags**: [Dynamic segments](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
 
-Denne oppgaven skal bruke `dynamic route` for å håndtere uthenting av event detaljer basert på eventId i urlèn. Naming konvensjon for Dynamic routes prefikser med `$`.
-
-<br />
+I denne oppgaven skal vi bruke en `dynamic route` for å håndtere uthenting av event-detaljer basert på `eventId` i url-en. 
+Konvensjon for navngiving av Dynamic routes er at de prefikses med `$`.
 
 ## Oppgave 5.1: Hent eventId
 
-På `routes/events/$eventId/index.tsx`. Hent `eventId` fra url parameter og ta en console.log().
+Gå til `routes/events/$eventId/index.tsx`. Hent `eventId` fra url-parameter og `console.log()` det du finner:
 
-```js
+```ts
 export async function loader({ params, request }: LoaderArgs) {
-  console.log(params.eventId);
+  console.log("Event ID:", params.eventId);
 
   return json({ event });
 }
 ```
 
-Skriv inn f.eks `http://localhost:3000/events/1234567` i nettleser. Fikk du `1234567` i consolen?
+Skriv inn f.eks `http://localhost:3000/events/1234567` i nettleseren. Fikk du `1234567` i consolen?
 
-<br />
+## Oppgave 5.2: Hent event-detaljer med eventId
 
-## Oppgave 5.2: Hent event detaljer med eventId
+Oppdater `loader` funksjonen med `getEvent(params.eventId)` for å hente eventdetaljer og returnere det som json.
 
-Oppdater `loader` funksjoner med `getEvent(params.eventId)` for å hente event detaljer og returnere det som json.
-
-```js
+```ts
 export async function loader({ params, request }: LoaderArgs) {
   await requireUserId(request);
   invariant(params.eventId, "eventId not found");
@@ -41,27 +38,26 @@ export async function loader({ params, request }: LoaderArgs) {
 }
 ```
 
-Om eventId er gyldig vil vi få tilbake data vi forventer. Men om eventId er ugyldig, kaste vi en feil og håndtere feilen med `ErrorBoundary` og `CatchBoundary`.
+Om `eventId` er gyldig og finnes vil vi få tilbake data slik vi forventer.
+Men, om `eventId` er ugyldig vil vi kaste en feil og håndtere feilen med `ErrorBoundary` og `CatchBoundary`.
 
-<br />
+## Oppgave 5.3: Vis frem eventdetaljer
 
-## Oppgave 5.3: Vis frem event detaljer
+Selv om du har fått eventdetaljer fra `loader` funksjonen er siden fortsatt helt blank. Det skal vi fikse nå. 
 
-Nå skal du har fått event detaljer fra `loader` funksjonen, men siden er fortsatt helt blank. <br />
+Oppdater `EventDetailsPage`-komponenten til å bruke `useOptionalUser` og `useLoaderData`:
 
-Oppdater `EventDetailsPage` komponenten med `useOptionalUser` og `useLoaderData`
-
-```js
+```ts
 export default function EventDetailsPage() {
   const data = useLoaderData<typeof loader>();
 
   const { id, title, location, owner, createdAt, icings } = data.event;
-
+}
 ```
 
-Og legg til disse i return blokken. Voilà ✨
+Legg deretter til følgende i return blokken. Voilà :
 
-```js
+```tsx
 return (
   <div className="w-full">
     <div className="mb-4 flex justify-between">
@@ -91,4 +87,4 @@ return (
 );
 ```
 
-Prøv igjen nå, lettere å se hva som er feil ikke sant? ✨
+Prøv igjen nå. Lettere å se hva som er feil, sant? ✨
