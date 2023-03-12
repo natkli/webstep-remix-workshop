@@ -2,7 +2,7 @@
 
 > **Tags**: [Dynamic segments](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
 
-I denne oppgaven skal vi bruke en `dynamic route` for å håndtere uthenting av event-detaljer basert på `eventId` i url-en. 
+I denne oppgaven skal vi bruke en `dynamic route` for å håndtere uthenting av event-detaljer basert på `eventId` i url-en.
 Konvensjon for navngiving av Dynamic routes er at de prefikses med `$`.
 
 ## Oppgave 5.1: Hent eventId
@@ -43,7 +43,7 @@ Men, om `eventId` er ugyldig vil vi kaste en feil og håndtere feilen med `Error
 
 ## Oppgave 5.3: Vis frem eventdetaljer
 
-Selv om du har fått eventdetaljer fra `loader` funksjonen er siden fortsatt helt blank. Det skal vi fikse nå. 
+Selv om du har fått eventdetaljer fra `loader` funksjonen er siden fortsatt helt blank. Det skal vi fikse nå.
 
 Oppdater `EventDetailsPage`-komponenten til å bruke `useOptionalUser` og `useLoaderData`:
 
@@ -55,7 +55,7 @@ export default function EventDetailsPage() {
 }
 ```
 
-Legg deretter til følgende i return blokken. Voilà :
+Legg deretter til følgende i return blokken. Voilà ✨:
 
 ```tsx
 return (
@@ -69,7 +69,7 @@ return (
       </a>
     </div>
 
-    <div className="card mb-[10rem] bg-primary-content px-4 py-8 shadow-lg">
+    <div className="card bg-primary-content mb-[10rem] px-4 py-8 shadow-lg">
       <div className="flex flex-col">
         <EventDetails
           title={title}
@@ -86,5 +86,3 @@ return (
   </div>
 );
 ```
-
-Prøv igjen nå. Lettere å se hva som er feil, sant? ✨
