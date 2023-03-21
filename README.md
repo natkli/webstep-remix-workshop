@@ -1,8 +1,8 @@
-# Oppgave 5: Dynamic route params
+# Oppgave 5: Dynamic segments
 
 > **Tags**: [Dynamic segments](https://remix.run/docs/en/1.14.0/guides/routing#dynamic-segments), [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action), [Route](https://remix.run/docs/en/1.14.0/file-conventions/routes-files)
 
-I denne oppgaven skal vi bruke en `dynamic route` for å håndtere uthenting av event-detaljer basert på `eventId` i url-en.
+I denne oppgaven skal vi bruke en `dynamic segment` for å håndtere uthenting av event-detaljer basert på `eventId` i url-en.
 Konvensjon for navngiving av Dynamic routes er at de prefikses med `$`.
 
 ## Oppgave 5.1: Hent eventId
