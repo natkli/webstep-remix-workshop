@@ -4,7 +4,7 @@
 
 Når du er her så forventer vi at du har klar å start opp applikasjonen ✨🍾
 
-I nettleser, gå til `http://localhost:3000/profile`.
+I nettleser, gå til `http://localhost:3000`.
 Akkurat nå ser applikasjonen broken ut fordi det mangler styling. Først, la oss se på `root.tsx` under `/app/routes`. Denne filen er root til applikasjonen vår.
 
 ## Oppgave 1.1: Legg til styling
