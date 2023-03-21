@@ -14,10 +14,10 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader() {
-  const eventList = await getEventList();
-  if (!eventList) {
-    throw new Response("Not Found", { status: 404 });
-  }
+  //@ts-ignore
+  const eventList = [];
+
+  //@ts-ignore
   return json({ eventList });
 }
 
