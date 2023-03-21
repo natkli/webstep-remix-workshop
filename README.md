@@ -1,31 +1,58 @@
-# Oppgave 1: Styling
+# Remix Lofi Stack
 
-> **Tags**: [Styling](https://remix.run/docs/en/1.14.3/guides/styling#regular-stylesheets)
+![The Remix Lofi Stack](/lofi-stack.png?raw=true)
+Inspired by Remix Indie Stack, learn more about [Remix Stacks](https://remix.run/stacks).
 
-Når du er her så forventer vi at du har klar å start opp applikasjonen ✨🍾
+## What's in the stack
 
-I nettleser, gå til `http://localhost:3000/profile`.
-Akkurat nå ser applikasjonen broken ut fordi det mangler styling. Først, la oss se på `root.tsx` under `/app/routes`. Denne filen er root til applikasjonen vår.
+- Production-ready [SQLite Database](https://sqlite.org)
+- Email/Password Authentication with [cookie-based sessions](https://remix.run/docs/en/v1/api/remix#createcookiesessionstorage)
+- Database ORM with [Prisma](https://prisma.io)
+- Styling with [Tailwind](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/)
+- Code formatting with [Prettier](https://prettier.io)
+- Linting with [ESLint](https://eslint.org)
+- Static Types with [TypeScript](https://typescriptlang.org)
+- Illustrations [unDraw](https://undraw.co/)
+- Avatars [Boringavatars](https://boringavatars.com/)
 
-## Oppgave 1.1: Legg til styling
+## Development
 
-Legg til en link funksjon for å hente inn styling:
+- Getting started:
 
-```ts
-export const links: LinksFunction = () => {
-  return [
-    { rel: "stylesheet", href: indexStylesheetUrl },
-    { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "preconnect", href: "https://fonts.googleapis.com" },
-    { rel: "preconnect", href: "https://fonts.gstatic.com" },
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700;900&display=swap",
-    },
-  ];
-};
-```
+  ```
+  npm install
+  ```
 
-Ser det bedre ut nå?
+- Initial setup:
 
-Ja? Fortsett videre på **oppgave2** branchen.
+  ```
+  npm run setup
+  ```
+
+- Start dev server:
+
+  ```
+  npm run dev
+  ```
+
+This starts your app in development mode, rebuilding assets on file changes.
+
+The database seed script creates a new user with some data you can use to get started:
+
+- Email: `rachel@remix.run`
+- Password: `racheliscool`
+
+## Database error
+
+If you get this error in console: `Failed to update database because the database is read only`
+
+- Restart dev server:
+
+  ```
+  npm run dev
+  ```
+
+- Or run full database reset:
+  ```
+  npm run setup
+  ```
