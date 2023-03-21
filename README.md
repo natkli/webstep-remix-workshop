@@ -125,7 +125,7 @@ export default function RankingPage() {
 }
 ```
 
-Da skal `/ranking` route være klar. I nettleseren, gå til `http://localhost:3000/ranking` og se hva vi får opp. Ser det riktig ut?
+Da skal `/ranking` route være klar. I nettleser, gå til `http://localhost:3000/ranking` og se hva vi får opp. Ser det riktig ut?
 
 ## Oppgave 3.2: Legg til ranking route i hovedmeny
 
