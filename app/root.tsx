@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { StickyMenu } from "./components/StickerMenu";
+import { StickyMenu } from "./components/StickyMenu";
 import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import indexStylesheetUrl from "./styles/index.css";
