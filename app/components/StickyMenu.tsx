@@ -18,10 +18,6 @@ const menuList: IMenuList[] = [
     cononicalLinks: ["/events"],
   },
   {
-    link: "/ranking",
-    icon: <TbFlame size={24} />,
-  },
-  {
     link: "/profile",
     icon: <TbUser size={24} />,
   },

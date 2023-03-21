@@ -1,104 +1,143 @@
-# Oppgave 4: Action
+# Oppgave 3: Remix routing
 
-> **Tags**: [Form](https://remix.run/docs/en/1.14.0/components/form), [Action](https://remix.run/docs/en/1.14.0/route/action)
+> **Tags**: [Routing](https://remix.run/docs/en/1.14.3/guides/routing), [Action](https://remix.run/docs/en/1.14.0/route/action)
 
-Vi skal nå se hvordan vi kan opprette ett nytt icing **event**.
-For å gjøre dette skal vi bruke Remix sin `action` funksjon for å håndtere formData og lagre det i databasen.
+Denne oppgaven skal vi jobbe med **Routing**. Routing er muligens det viktikgste konsepter å forstå i Remix. **File System based routing** i Remix lar oss lage en kompleks layout struktur på en effektivt måte.
 
-Først, la oss se på `new-event.tsx`. Der ligger en tom **action** funksjon:
+Ut ifra hovedmenyen har vi to routes, en index route `/` som lister ut icing eventer på forsiden og en profil route `/profile`. Nå har vi lyst på en ny `/ranking` route vi skal bruke for å vise icings rangering.
 
-```ts
-export async function action({ request }: ActionArgs) {
-  return json({});
-}
-```
+## Oppgave 3.1: Ny route fil
 
-Legg merge til at det også ligger en `<Form />`-komponent med to `<TextInput />`s; En for event **title** og en for **location**.
-
-## Oppgave 4.1: Hent formData
-
-Utvid funksjonen til å bruke `request.formData()` for å hente ut formData:
+Opprette en ny route fil `rankings.tsx` under `/app/routes` og deretter legg til koden for å hente detaljer ranking informasjon og renderer ut på siden:
 
 ```ts
-export async function action({ request }: ActionArgs) {
-  const formData = await request.formData();
-  const title = formData.get("title");
-  const location = formData.get("location");
+import { useLoaderData } from "@remix-run/react";
+import {
+  json,
+  type LoaderArgs,
+  type MetaFunction,
+} from "@remix-run/server-runtime";
+import { useEffect, useState } from "react";
+import { RankedIcing } from "~/components/icings/RankedIcing";
 
-  return json({});
-}
-```
+import { getUsersRank } from "~/models/user.server";
+import { requireUserId } from "~/session.server";
 
-Hvis du har lyst kan du å kjøre `console.log(formData)` og trykke på **Create** knappen. Du skal da se dataen du har mottatt i konsollen.
+export const meta: MetaFunction = () => {
+  return {
+    title: "Icing | Ranking",
+  };
+};
 
-## Oppgave 4.2: Validering av FormData
+export async function loader({ request }: LoaderArgs) {
+  await requireUserId(request);
 
-Nå har vi klart å hente ut formData. 
-Før vi går videre trenger vi å legge inn validering, siden backend funksjonen `createEvent()` har tre påkrevde parametere; `userId`, `title` og `location`.
+  const users = await getUsersRank();
 
-Start med å hente ut `userId`:
-
-```ts
-const userId = await requireUserId(request);
-```
-
-Legg deretter til validering for `title` og `location`:
-
-```ts
-if (typeof title !== "string" || title.length === 0) {
-  return json(
-    { errors: { title: "Event title is required", location: null } },
-    { status: 400 }
-  );
-}
-
-if (typeof location !== "string" || location.length === 0) {
-  return json(
-    { errors: { title: null, location: "Location is required" } },
-    { status: 400 }
-  );
-}
-```
-
-## Oppgave 4.3: Lagre formData
-
-Vi skal nå ta i bruk `createEvent()` funksjonen for å lagre formData, og tilslutt redirecte til events-siden vi har opprettet:
-
-```tsx
-const event = await createEvent(userId, title, location);
-return redirect(`/events/${event.id}`);
-```
-
-Fullstending versjon av `action`-funksjonen vil se ut som noe slikt:
-
-```tsx
-export async function action({ request }: ActionArgs) {
-  const userId = await requireUserId(request);
-
-  const formData = await request.formData();
-  const title = formData.get("title");
-  const location = formData.get("location");
-
-  if (typeof title !== "string" || title.length === 0) {
-    return json(
-      { errors: { title: "Event title is required", location: null } },
-      { status: 400 }
-    );
+  if (!users) {
+    throw new Response("Not Found", { status: 404 });
   }
 
-  if (typeof location !== "string" || location.length === 0) {
-    return json(
-      { errors: { title: null, location: "Location is required" } },
-      { status: 400 }
-    );
-  }
+  return json({ users });
+}
 
-  const event = await createEvent(userId, title, location);
+type SortMethod = "name" | "wins" | "loses";
 
-  return redirect(`/events/${event.id}`);
+export default function RankingPage() {
+  const data = useLoaderData<typeof loader>();
+
+  const [sortMethod, setSortMethod] = useState<SortMethod>("wins");
+  const [rankingList, setRankingList] = useState(data.users);
+
+  useEffect(() => {
+    if (sortMethod === "wins") {
+      const sortedByWins = [...rankingList].sort(
+        (a, b) => b.icingWins.length - a.icingWins.length
+      );
+
+      setRankingList(sortedByWins);
+      return;
+    }
+
+    if (sortMethod === "loses") {
+      const sortedByLoses = [...rankingList].sort(
+        (a, b) => b.icingLoses.length - a.icingLoses.length
+      );
+
+      setRankingList(sortedByLoses);
+      return;
+    }
+
+    if (sortMethod === "name") {
+      const sortedByName = [...rankingList].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+
+      setRankingList(sortedByName);
+      return;
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortMethod]);
+
+  return (
+    <div className="w-full">
+      <h1 className="my-4 text-center text-2xl font-bold">Ranking</h1>
+      <div className="flex w-full justify-center">
+        <div>
+          <label className="label">
+            <span className="label-text w-full text-center">Sort by</span>
+          </label>
+          <select
+            className="select-bordered select select-md w-full"
+            onChange={(event) => {
+              const value = event.target.value as SortMethod;
+              setSortMethod(value);
+            }}
+            defaultValue="wins"
+          >
+            <option value="wins">Wins</option>
+            <option value="loses">Loses</option>
+            <option value="name">Name</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="card mt-4 mb-[10rem] bg-primary-content py-6 px-4 shadow-lg">
+        {rankingList.map(
+          ({ name, username, avatarId, icingWins, icingLoses }, index) => {
+            return (
+              <RankedIcing
+                key={index}
+                rank={index + 1}
+                name={name}
+                avatarId={avatarId}
+                username={username}
+                icingWins={icingWins.length}
+                icingLoses={icingLoses.length}
+              />
+            );
+          }
+        )}
+      </div>
+    </div>
+  );
 }
 ```
 
-Gå til nettleseren og prøv å opprette ett nytt event! ✨🤞
+Da skal `/ranking` route være klar. I nettleseren, gå til `http://localhost:3000/ranking` og se hva vi får opp. Ser det riktig ut?
 
-Funker bra, sant? 🍾 Klar for neste del?
+## Oppgave 3.2: Legg til ranking route i hovedmeny
+
+På `StickyMenu.tsx`, legg til en `/ranking` route på meny element. Legg gjerne som andre menyelement for mest logisk rekkefølge.
+
+```ts
+{
+  link: "/ranking",
+  icon: <TbFlame size={24} />,
+},
+```
+
+Da er vi ferdig med routing! ✨
+
+Skal vi videre til **oppgave4**?
