@@ -26,6 +26,6 @@ export const links: LinksFunction = () => {
 };
 ```
 
-Ser det bedre ut nå?
+Ta en refresh, ser det bedre ut nå?
 
 Ja? Fortsett videre på **oppgave2** branchen.
