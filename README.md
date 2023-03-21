@@ -14,7 +14,7 @@ export async function loader {
 };
 ```
 
-I nettleser, gå til `http://localhost:3000`. Nå ser vi en tomt side fordi index route har ingen data å vise. La oss se nærmere på index route `index.tsx` under `/app/routes`.
+Akkurat nå ser vi en tomt side fordi index route har ingen data å vise. La oss se nærmere på index route `index.tsx` under `/app/routes`.
 Vi ser ingenting fordi loader funksjonen retunerer en tomt array:
 
 ```ts
