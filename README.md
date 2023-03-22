@@ -1,16 +1,26 @@
-# Oppgave 3: Remix routing
+# Oppgave 3: Remix Routing
 
 > **Tags**: [Routing](https://remix.run/docs/en/1.14.3/guides/routing), [Action](https://remix.run/docs/en/1.14.0/route/action)
 
-Denne oppgaven skal vi jobbe med **Routing**. Routing er muligens det viktikgste konsepter å forstå i Remix. **File System based routing** i Remix lar oss lage en kompleks layout struktur på en effektivt måte.
+I denne oppgaven skal vi jobbe med **Routing**. 
+Routing er trolig det viktikgste konseptet å forstå i Remix. 
+I likhet med Next.js bruker Remix såkalt **File System based routing**. En slik filbasert routing
+lar oss bygge komplekse layoutstrukturer på en enkel og effektivt måte. 
+I tillegg har det ytterligere fordeler i at det gjør
+at en hver Remix applikasjon ser "lik" ut, og gjør at ved å lese hvordan filene ligger vil utviklere få innsikt i hvordan appen
+og logikken er bygd opp. I tillegg slipper man diskusjoner om hvor filer burde ligge og hva som er "riktig" filstruktur. 
+Mindre bikeshedding og mer tid til å skape verdi og faktisk utvikle.
 
-Ut ifra hovedmenyen har vi to routes, en index route `/` som lister ut icing eventer på forsiden og en profil route `/profile`. Nå har vi lyst på en ny `/ranking` route vi skal bruke for å vise icings rangering.
+Om du kikker på hovedmenyen kan du se at vi har to routes. En index route `/` som lister ut icing eventer på 
+forsiden, samen en profil-route, `/profile`. 
+Det vi ønsker å gjøre nå er å legge til en tredje route, `/ranking`. Denne routen skal vi bruke til å vise en global rangering over icinger.
 
-## Oppgave 3.1: Ny route fil
+## Oppgave 3.1: Legge til ny route
 
-Opprette en ny route fil `ranking.tsx` under `/app/routes` og deretter legg til koden for å hente detaljer ranking informasjon og renderer ut på siden:
+Start med å opprett en ny route fil `ranking.tsx` under `/app/routes`. Deretter kan du 
+legge til koden under. Det denne gjør er å hente ut detaljert rankinginformasjon fra databasen, og deretter rendre det ut på siden:
 
-```ts
+```tsx
 import { useLoaderData } from "@remix-run/react";
 import {
   json,
@@ -125,19 +135,29 @@ export default function RankingPage() {
 }
 ```
 
-Da skal `/ranking` route være klar. I nettleser, gå til `http://localhost:3000/ranking` og se hva vi får opp. Ser det riktig ut?
+Koden har også litt diverse snacks som sortering basert på diverse kriterier, samt styling.
 
-## Oppgave 3.2: Legg til ranking route i hovedmeny
+Om du har lagt til filen på riktig plass skal `/ranking`-routen være klar. 
+Gå til `http://localhost:3000/ranking` i nettleseren og verfiser at du får siden opp. Ser det riktig ut? Så bra 👏
 
-På `StickyMenu.tsx`, legg til en `/ranking` route på meny element. Legg gjerne som andre menyelement for mest logisk rekkefølge.
+## Oppgave 3.2: Legg til ranking i hovedmeny
 
-```ts
+Nå som vi har lagt til routen i applikasjonen vår, ønsker vi å gjøre det litt lettere å navigere til den.
+Lenker til de forsjellige routsene i applikajsonen ligger i en komponent kalt `StikyMenu`. 
+Denne finner du i filen `app/components/StickyMenu.tsx`. 
+Legg til følgende i listen over meny-elementer (`menuList`):
+
+```tsx
 {
   link: "/ranking",
   icon: <TbFlame size={24} />,
 },
 ```
 
-Da er vi ferdig med routing! ✨
+Om du kikker i render-funksjonen i koden vil du se at listen ittereres over og rendres som `Link`-komponenter. 
+`Link` er en komponent som lett lar deg rendre navigering i applikasjonen din,
+og virker nok kjent dersom du har brukt React-Router tidligere.
 
-Skal vi videre til **oppgave4**?
+Da sier vi oss ferdig med routing for nå! Bra jobba! ✨
+
+Vi beveger oss nå videre til [Oppgave 4](https://github.com/natkli/webstep-remix-workshop/tree/oppgave4#readme).
