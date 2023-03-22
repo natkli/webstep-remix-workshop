@@ -103,4 +103,4 @@ Gå til nettleseren. Sjekk Network fanen i browser inspector og følg med på fe
 
 Nå, prøv å opprette ett nytt event! ✨🤞
 
-Du fikk - Status Code: 🟢 200 OK?, sant? 🍾 Klar for neste del?
+Fik du - Status Code: 🟢 200 OK?, sant? 🍾 Klar for neste del?
