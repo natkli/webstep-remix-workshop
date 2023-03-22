@@ -15,19 +15,6 @@ import tailwindStylesheetUrl from "./styles/tailwind.css";
 import indexStylesheetUrl from "./styles/index.css";
 import { useOptionalUser } from "./utils";
 
-export const links: LinksFunction = () => {
-  return [
-    { rel: "stylesheet", href: indexStylesheetUrl },
-    { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "preconnect", href: "https://fonts.googleapis.com" },
-    { rel: "preconnect", href: "https://fonts.gstatic.com" },
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700;900&display=swap",
-    },
-  ];
-};
-
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   viewport: "width=device-width,initial-scale=1",
