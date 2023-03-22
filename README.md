@@ -8,7 +8,7 @@ Ut ifra hovedmenyen har vi to routes, en index route `/` som lister ut icing eve
 
 ## Oppgave 3.1: Ny route fil
 
-Opprette en ny route fil `rankings.tsx` under `/app/routes` og deretter legg til koden for å hente detaljer ranking informasjon og renderer ut på siden:
+Opprette en ny route fil `ranking.tsx` under `/app/routes` og deretter legg til koden for å hente detaljer ranking informasjon og renderer ut på siden:
 
 ```ts
 import { useLoaderData } from "@remix-run/react";
