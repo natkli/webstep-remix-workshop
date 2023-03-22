@@ -99,8 +99,24 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Gå til nettleseren. Sjekk Network fanen i browser inspector og følg med på fetch/XHR.
+I tillegg, legg tilbake linjene som er kommentert ut under `NewEventPage()` komponent:
+
+```ts
+// const actionData = useActionData<typeof action>();
+// const titleRef = useRef<HTMLInputElement>(null);
+// const locationRef = useRef<HTMLInputElement>(null);
+
+// useEffect(() => {
+//   if (actionData?.errors?.title) {
+//     titleRef.current?.focus();
+//   } else if (actionData?.errors?.location) {
+//     locationRef.current?.focus();
+//   }
+// }, [actionData]);
+```
+
+og litt igjen på `<TextInput />` komponent lenger ned. Nå skal alt være på plass. Men før teste, gå til nettleseren. Sjekk Network fanen i browser inspector og følg med på fetch/XHR.
 
 Nå, prøv å opprette ett nytt event! ✨🤞
 
-Fik du - Status Code: 🟢 200 OK?, sant? 🍾 Klar for neste del?
+Fikk du - Status Code: 🟢 200 OK? Klar for neste del?
