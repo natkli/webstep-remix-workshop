@@ -8,7 +8,7 @@ Vi skal nå starte med en enkel oppgave for å bli varme i trøya.
 Sjekk ut applikasjonen på `http://localhost:3000` i nettleseren din.
 Du legger kanskje merke til at akkurat nå ser applikasjonen ikke helt fin ut, og mangler styling litt styling? La oss fikse dette!
 Først, ta en titt på filen `root.tsx` under `/app/routes`. Denne filen er det vi kaller "root" i Remix, altså landingsiden eller entry pointet til applikasjonen vår (`/`).
-Om vi vil legge til golbal styling er det her vi må gjøre det.
+Om vi vil legge til global styling er det her vi må gjøre det.
 
 ## Oppgave 1.1: Legg til styling 
 
