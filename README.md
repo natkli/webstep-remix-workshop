@@ -8,8 +8,8 @@ Eller som de så godt sier det selv: «Remix is a full stack web framework that 
 Hvis du leser dette skal du etter planen akkurat ha mottatt en rask introduksjon til Remix og server side rendering (SSR). 
 Det vi nå skal gjøre er å bruke Remix til å bygge en super-duper-fresh [icing](https://en.wikipedia.org/wiki/Icing_(game))-app.
 
-Sluttproduktet vil være er en enkel app som holder styr over hvem som har icet hvem, og på hvilket 
-hvilket arrangement icingen tok sted. Applikasjonen skal vi naturligvis bygge ved hjelp av Remix og Typescript, 
+Sluttproduktet vil være er en enkel app som holder styr over hvem som har icet hvem, og på hvilket
+arrangement icingen tok sted. Applikasjonen skal vi naturligvis bygge ved hjelp av Remix og Typescript, 
 og vil dekke alt fra database til sluttbruker (deployment holder vi utenfor scope i denne omgang).
 
 Kurset består av et enkelt skjellett av en app som du finner her på `main`-branchen. Vi har valgt å kalle dette utgangspunktet for 
