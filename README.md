@@ -1,15 +1,18 @@
-# Oppgave 1: Styling
+# Oppgave 1: Getting started – Styling
 
 > **Tags**: [Styling](https://remix.run/docs/en/1.14.3/guides/styling#regular-stylesheets)
 
-Når du er her så forventer vi at du har klar å start opp applikasjonen ✨🍾
+Hei 👋 Nå som du er her burde det være trygt å annta at du har klar å start opp applikasjonen ✨ Bra jobba! 🍾 
+Vi skal nå starte med en enkel oppgave for å bli varme i trøya.
 
-I nettleser, gå til `http://localhost:3000`.
-Akkurat nå ser applikasjonen broken ut fordi det mangler styling. Først, la oss se på `root.tsx` under `/app/routes`. Denne filen er root til applikasjonen vår.
+Sjekk ut applikasjonen på `http://localhost:3000` i nettleseren din.
+Du legger kanskje merke til at akkurat nå ser applikasjonen ikke helt fin ut, og mangler styling litt styling? La oss fikse dette!
+Først, ta en titt på filen `root.tsx` under `/app/routes`. Denne filen er det vi kaller "root" i Remix, altså landingsiden eller entry pointet til applikasjonen vår (`/`).
+Om vi vil legge til golbal styling er det her vi må gjøre det.
 
-## Oppgave 1.1: Legg til styling
+## Oppgave 1.1: Legg til styling 
 
-Legg til en link funksjon for å hente inn styling:
+Gå til `root.tsx` og legg til følgende link-funksjon for å hente inn styling:
 
 ```ts
 export const links: LinksFunction = () => {
@@ -26,6 +29,6 @@ export const links: LinksFunction = () => {
 };
 ```
 
-Ta en refresh, ser det bedre ut nå?
+Gå deretter til browseren og refresh siden. Ser det bedre ut nå? Så bra 🖌
 
-Ja? Fortsett videre på **oppgave2** branchen.
+Fortsett videre til [Oppgave 2](https://github.com/natkli/webstep-remix-workshop/tree/oppgave2#readme).
