@@ -13,7 +13,7 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Legg merge til at det også ligger en `<Form />`-komponent med to `<TextInput />`s; En for event **title** og en for **location**.
+Legg merke til at det også ligger en `<Form />`-komponent med to `<TextInput />`s; En for event **title** og en for **location**.
 
 ## Oppgave 4.1: Hent formData
 
@@ -29,11 +29,11 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Hvis du har lyst kan du å kjøre `console.log(formData)` og trykke på **Create** knappen. Du skal da se dataen du har mottatt i konsollen.
+Hvis du har lyst kan du å kjøre `console.log(title)` for å se om du klarer hente formData. Trykk på "+" knappen på forsiden for å oprettet ny icing event, fyll ut **title** og **location** og deretter trykke på **Create** knappen. Du skal da se dataen du har mottatt i konsollen.
 
 ## Oppgave 4.2: Validering av FormData
 
-Nå har vi klart å hente ut formData. 
+Nå har vi klart å hente ut formData.
 Før vi går videre trenger vi å legge inn validering, siden backend funksjonen `createEvent()` har tre påkrevde parametere; `userId`, `title` og `location`.
 
 Start med å hente ut `userId`:
@@ -99,6 +99,8 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Gå til nettleseren og prøv å opprette ett nytt event! ✨🤞
+Gå til nettleseren. Sjekk Network fanen i browser inspector og følg med på fetch/XHR.
 
-Funker bra, sant? 🍾 Klar for neste del?
+Nå, prøv å opprette ett nytt event! ✨🤞
+
+Du fikk - Status Code: 🟢 200 OK?, sant? 🍾 Klar for neste del?
