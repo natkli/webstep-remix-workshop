@@ -86,3 +86,7 @@ return (
   </div>
 );
 ```
+
+Vi er nesten i mål! 🤩
+
+Fortsett videre til siste oppgaven, [Oppgave 6](https://github.com/natkli/webstep-remix-workshop/tree/oppgave6#readme)
