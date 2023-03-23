@@ -2,7 +2,7 @@
 
 > **Tags**: [Styling](https://remix.run/docs/en/1.14.3/guides/styling#regular-stylesheets)
 
-Hei 👋 Nå som du er her burde det være trygt å annta at du har klar å start opp applikasjonen ✨ Bra jobba! 🍾 
+Hei 👋 Nå som du er her burde det være trygt å annta at du har klar å start opp applikasjonen ✨ Bra jobba! 🍾
 Vi skal nå starte med en enkel oppgave for å bli varme i trøya.
 
 Sjekk ut applikasjonen på `http://localhost:3000` i nettleseren din.
@@ -10,7 +10,7 @@ Du legger kanskje merke til at akkurat nå ser applikasjonen ikke helt fin ut, o
 Først, ta en titt på filen `root.tsx` under `/app/routes`. Denne filen er det vi kaller "root" i Remix, altså landingsiden eller entry pointet til applikasjonen vår (`/`).
 Om vi vil legge til global styling er det her vi må gjøre det.
 
-## Oppgave 1.1: Legg til styling 
+## Oppgave 1.1: Legg til styling
 
 Gå til `root.tsx` og legg til følgende link-funksjon for å hente inn styling:
 
@@ -31,4 +31,11 @@ export const links: LinksFunction = () => {
 
 Gå deretter til browseren og refresh siden. Ser det bedre ut nå? Så bra 🖌
 
-Fortsett videre til [Oppgave 2](https://github.com/natkli/webstep-remix-workshop/tree/oppgave2#readme).
+Nå kan du logge deg inn i applikasjonen. Du kan velge å opprett en ny konto eller bruker en test konto:
+
+```
+Email: rachel@remix.run
+Password: racheliscool
+```
+
+Fikk du logge deg inn? Fortsett videre til [Oppgave 2](https://github.com/natkli/webstep-remix-workshop/tree/oppgave2#readme).
