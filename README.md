@@ -119,4 +119,4 @@ og litt igjen på `<TextInput />` komponent lenger ned. Nå skal alt være på p
 
 Nå, prøv å opprette ett nytt event! ✨🤞
 
-Fikk du - Status Code: 🟢 200 OK? Klar for neste del?
+Fikk du - Status Code: 🟢 200 OK? Klar for neste del? [Oppgave 5](https://github.com/natkli/webstep-remix-workshop/tree/oppgave5#readme)
