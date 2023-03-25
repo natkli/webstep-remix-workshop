@@ -2,7 +2,7 @@
 
 > **Tags**: [Styling](https://remix.run/docs/en/1.14.3/guides/styling#regular-stylesheets)
 
-Hei 👋 Nå som du er her burde det være trygt å annta at du har klar å start opp applikasjonen ✨ Bra jobba! 🍾
+Hei 👋 Nå som du er her burde det være trygt å anta at du har klar å start opp applikasjonen ✨ Bra jobba! 🍾
 Vi skal nå starte med en enkel oppgave for å bli varme i trøya.
 
 Sjekk ut applikasjonen på `http://localhost:3000` i nettleseren din.
