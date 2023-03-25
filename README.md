@@ -29,7 +29,7 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Hvis du har lyst kan du å kjøre `console.log(title)` for å se om du klarer hente formData. Trykk på "+" knappen på forsiden for å oprettet ny icing event, fyll ut **title** og **location** og deretter trykke på **Create** knappen. Du skal da se dataen du har mottatt i konsollen.
+Hvis du har lyst kan du å kjøre `console.log(title)` for å se om du klarer hente formData. Trykk på "+" knappen på forsiden for å oprettet ny icing event, fyll ut **title** og **location** og deretter trykke på **Create** knappen. Fikk du det du skrev i konsollen?
 
 ## Oppgave 4.2: Validering av FormData
 
@@ -115,8 +115,9 @@ I tillegg, legg tilbake linjene som er kommentert ut under `NewEventPage()` komp
 // }, [actionData]);
 ```
 
-og litt igjen på `<TextInput />` komponent lenger ned. Nå skal alt være på plass. Men før teste, gå til nettleseren. Sjekk Network fanen i browser inspector og følg med på fetch/XHR.
+og litt igjen på `<TextInput />` komponent lenger ned. Nå skal alt være på plass. Men før teste, gå til nettleseren. Sjekk Network fanen i browser inspector og følg med på en POST kall.
 
-Nå, prøv å opprette ett nytt event! ✨🤞
+Nå, prøv å opprette et nytt event! ✨🤞
 
-Fikk du - Status Code: 🟢 200 OK? Klar for neste del? [Oppgave 5](https://github.com/natkli/webstep-remix-workshop/tree/oppgave5#readme)
+Fikk du - Status Code: 🟢 204 No Content? Ja? Da har du opprettet et event 🍾
+Klar for neste del? [Oppgave 5](https://github.com/natkli/webstep-remix-workshop/tree/oppgave5#readme)
