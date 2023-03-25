@@ -23,12 +23,6 @@ export async function loader({ params, request }: LoaderArgs) {
   return json({});
 }
 
-export async function action({ request, params }: ActionArgs) {
-  const userId = await requireUserId(request);
-  invariant(params.eventId, "eventId not found");
-  return redirect("/");
-}
-
 export default function EventDetailsPage() {
   const data = useLoaderData<typeof loader>();
 
