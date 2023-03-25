@@ -54,7 +54,7 @@ export function updateUser(
 
 ## Oppgave 6.4: Action
 
-Nå som vi har opprettet en funksjon for å oppdatere brukeren backend er vi klar for å lagre form dataen til databasen. Tilbake til`routes/profile/edit.tsx`. Legg til en `action` funksjon for å håndtere form submit:
+Nå som vi har opprettet en funksjon for å oppdatere brukeren backend er vi klar for å lagre form dataen til databasen. Tilbake til `routes/profile/edit.tsx`. Legg til en `action` funksjon for å håndtere form submit:
 
 ```tsx
 export async function action({ request }: ActionArgs) {
