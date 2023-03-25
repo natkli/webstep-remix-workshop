@@ -15,13 +15,13 @@ Gå til `/routes/profile/index.tsx` og oppdater linken slik at den navigerer deg
 ```
 
 I nettleseren, trykk på **Edit profile** knappen.
-Ser du at innholdet fra **index.tsx** ble erstattet med innholdet i **edit.tsx**? 
-Dette skyldes at `<Outlet/>` bytter ut innhold basert på hvilken **route** man er på. 
+Ser du at innholdet fra **index.tsx** ble erstattet med innholdet i **edit.tsx**?
+Dette skyldes at `<Outlet/>` bytter ut innhold basert på hvilken **route** man er på.
 Er du på `/profile` får du det som ligger i **index.tsx** og **edit.tsx** når du er på `/profile/edit`
 
 ## Oppgave 6.2: Inputs
 
-Legg til to `<TextInput/>` på `routes/profile/edit.tsx`. Disse skal vi bruke for å oppdatere **username** og **name**.
+Under `routes/profile/edit.tsx`. Legg til to `<TextInput/>` på `ProfileEditPage`-komponenten. Disse skal vi bruke for å oppdatere **username** og **name**.
 
 ```tsx
 <TextInput label="Username" name="username" />
@@ -54,8 +54,7 @@ export function updateUser(
 
 ## Oppgave 6.4: Action
 
-Nå som vi har opprettet en funksjon for å oppdatere brukeren backend er vi klar for å lagre form dataen til databasen.
-Legg til en `action` funksjon for å håndtere form submit:
+Nå som vi har opprettet en funksjon for å oppdatere brukeren backend er vi klar for å lagre form dataen til databasen. Tilbake til`routes/profile/edit.tsx`. Legg til en `action` funksjon for å håndtere form submit:
 
 ```tsx
 export async function action({ request }: ActionArgs) {
