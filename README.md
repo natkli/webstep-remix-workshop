@@ -117,7 +117,8 @@ I tillegg, legg tilbake linjene som er kommentert ut under `NewEventPage()` komp
 
 og litt igjen på `<TextInput />` komponent lenger ned. Nå skal alt være på plass. Men før teste, gå til nettleseren. Sjekk Network fanen i browser inspector og følg med på en POST kall.
 
-Nå, prøv å opprette et nytt event! ✨🤞
+Nå, prøv å opprette ett event! ✨🤞
 
 Fikk du - Status Code: 🟢 204 No Content? Ja? Da har du opprettet et event 🍾
+
 Klar for neste del? [Oppgave 5](https://github.com/natkli/webstep-remix-workshop/tree/oppgave5#readme)
