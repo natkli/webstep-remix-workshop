@@ -31,9 +31,9 @@ export const links: LinksFunction = () => {
 
 Gå deretter til browseren og refresh siden. Ser det bedre ut nå? Så bra 🖌
 
-Nå kan du logge deg inn i applikasjonen. Du kan velge å opprett en ny konto eller bruker en test konto:
+Nå kan du logge deg inn i applikasjonen. Du kan velge å opprette en ny konto, eller bruker en testkonto som allerede er satt opp fra før:
 
 - Email: `rachel@remix.run`
 - Password: `racheliscool`
 
-Fikk du logge deg inn? Fortsett videre til [Oppgave 2](https://github.com/natkli/webstep-remix-workshop/tree/oppgave2#readme).
+Verifiser at du får logget inn og fortsett videre til [Oppgave 2](https://github.com/natkli/webstep-remix-workshop/tree/oppgave2#readme).
