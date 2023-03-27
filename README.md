@@ -21,7 +21,8 @@ Er du på `/profile` får du det som ligger i **index.tsx** og **edit.tsx** når
 
 ## Oppgave 6.2: Inputs
 
-Under `routes/profile/edit.tsx`. Legg til to `<TextInput/>` på `ProfileEditPage`-komponenten. Disse skal vi bruke for å oppdatere **username** og **name**.
+Gå til `routes/profile/edit.tsx`. Legg til to `<TextInput/>` på `ProfileEditPage`-komponenten.
+Disse skal vi bruke for å oppdatere **username** og **name**.
 
 ```tsx
 <TextInput label="Username" name="username" />
@@ -34,7 +35,7 @@ Under `routes/profile/edit.tsx`. Legg til to `<TextInput/>` på `ProfileEditPage
 ## Oppgave 6.3: Backend for frontend (BFF)
 
 Nå har vi lagt inn to input felt for **username** og **name**, men vi mangler fortsatt å koble disse til backend.
-Så la oss gjøre nettop det! Gå inn i `user.server.ts` og legg inn en funksjon `updateUser` som tar imot tre parametere: `userId`, `username` og `name`.
+Så la oss gjøre nettopp det! Gå inn i `user.server.ts` og legg inn en funksjon `updateUser` som tar imot tre parametere: `userId`, `username` og `name`.
 
 ```ts
 export function updateUser(
@@ -52,9 +53,12 @@ export function updateUser(
 }
 ```
 
+Denne funksjonen skal vi ta i bruk i neste oppgave.
+
 ## Oppgave 6.4: Action
 
-Nå som vi har opprettet en funksjon for å oppdatere brukeren backend er vi klar for å lagre form dataen til databasen. Tilbake til `routes/profile/edit.tsx`. Importer `updateUser` funksjonen og deretter legge til en `action` funksjon for å håndtere form submit:
+Nå som vi har opprettet en funksjon for å oppdatere brukeren backend er vi klar for å lagre form-dataen til databasen. Gå tilbake til `routes/profile/edit.tsx`. 
+Importer `updateUser`-funksjonen vi nettopp la til, og legg deretter til en `action`-funksjon for å håndtere form submit:
 
 ```tsx
 export async function action({ request }: ActionArgs) {
@@ -96,7 +100,7 @@ export async function action({ request }: ActionArgs) {
 }
 ```
 
-Prøv å oppdatere profilen med tomt username. Funket det? **NIKS!**. Dette er fordi vi har lagt til valideringer av formData.
+Prøv å oppdatere profilen med tomt username. Funket det? **NIKS!**. Dette er fordi vi har lagt til valideringe av formData.
 
 ## Oppgave 6.4: Validering
 
